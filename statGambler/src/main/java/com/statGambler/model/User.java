@@ -5,13 +5,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+
 @Entity
 public class User {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	Long id;
-	String username;
-	String psswrd;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	public String username;
+	public String psswrd;
 
 	public User() { }
 
