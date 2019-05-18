@@ -11,8 +11,8 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	String username;
-	String psswrd;
+	public String username;
+	public String psswrd;
 
 	public User() { }
 
