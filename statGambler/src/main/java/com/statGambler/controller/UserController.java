@@ -2,51 +2,69 @@ package com.statGambler.controller;
 
 import java.util.List;
 
-import org.springframework.beans.BeanUtils;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.statGambler.model.User;
 import com.statGambler.repository.UserRepository;
 
-@RestController
-@RequestMapping("api/v1/")
+@Controller
 public class UserController {
 	
 	@Autowired
-	private UserRepository userRepository;
-
-	@RequestMapping(value = "users", method = RequestMethod.GET)
-	public List<User> list() {
-		return userRepository.findAll();
-	}
-
-	@RequestMapping(value = "users", method = RequestMethod.POST)
-	public User create(@RequestBody User shipwreck) {
-		return userRepository.saveAndFlush(shipwreck);
-	}
-
-	@RequestMapping(value = "users/{id}", method = RequestMethod.GET)
-	public User get(@PathVariable Long id) {
-		return userRepository.findOne(id);
-	}
-
-	@RequestMapping(value = "users/{id}", method = RequestMethod.PUT)
-	public User update(@PathVariable Long id, @RequestBody User shipwreck) {
-		User existingShipwreck = userRepository.findOne(id);
-		BeanUtils.copyProperties(shipwreck, existingShipwreck);
-		return userRepository.saveAndFlush(existingShipwreck);
-	}
-
-	@RequestMapping(value = "users/{id}", method = RequestMethod.DELETE)
-	public User delete(@PathVariable Long id) {
-		User existingShipwreck = userRepository.findOne(id);
-		userRepository.delete(existingShipwreck);
-		return existingShipwreck;
-	}
-	
+	UserRepository userRepository;
+     
+    @GetMapping("/signup")
+    public String showSignUpForm(User user) {
+        return "add-user";
+    }
+     
+    @PostMapping("/adduser")
+    public String addUser(@Valid User user, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return "add-user";
+        }
+         
+        userRepository.save(user);
+        model.addAttribute("users", userRepository.findAll());
+        return "index";
+    }
+ 
+    @GetMapping("/edit/{id}")
+    public String showUpdateForm(@PathVariable("id") long id, Model model) {
+        User user = userRepository.findById(id)
+          .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+         
+        model.addAttribute("user", user);
+        return "update-user";
+    }
+    
+    @PostMapping("/update/{id}")
+    public String updateUser(@PathVariable("id") long id, @Valid User user, 
+      BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            user.setId(id);
+            return "update-user";
+        }
+             
+        userRepository.save(user);
+        model.addAttribute("users", userRepository.findAll());
+        return "index";
+    }
+         
+    @GetMapping("/delete/{id}")
+    public String deleteUser(@PathVariable("id") long id, Model model) {
+        User user = userRepository.findById(id)
+          .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+        userRepository.delete(user);
+        model.addAttribute("users", userRepository.findAll());
+        return "index";
+    }
 }
