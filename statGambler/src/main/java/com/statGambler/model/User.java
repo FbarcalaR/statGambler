@@ -5,14 +5,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 public class User {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	Long id;
-	@NotBlank(message = "Username is mandatory")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	String username;
 	String psswrd;
 
