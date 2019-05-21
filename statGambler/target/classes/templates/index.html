@@ -1,61 +1,62 @@
-<div>
-	<div th:switch="${users}">
-		<h2 th:case="null">No users yet!</h2>
-		<div th:case="*">
-			<h2>Users</h2>
-			<table>
-				<thead>
-					<tr>
-						<th>Userame</th>
-						<th>Contraseña</th>
-						<th>Edit</th>
-						<th>Delete</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="user : ${users}">
-						<td th:text="${user.username}"></td>
-						<td th:text="${user.psswrd}"></td>
-						<td><a th:href="@{/edit/{id}(id=${user.id})}">Edit</a></td>
-						<td><a th:href="@{/delete/{id}(id=${user.id})}">Delete</a></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<p>
-			<a href="/signup">Add a new user</a>
-		</p>
-	</div>
+<!-- <div> -->
+<!-- 	<div th:switch="${users}"> -->
+<!-- 		<h2 th:case="null">No users yet!</h2> -->
+<!-- 		<div th:case="*"> -->
+<!-- 			<h2>Users</h2> -->
+<!-- 			<table> -->
+<!-- 				<thead> -->
+<!-- 					<tr> -->
+<!-- 						<th>Userame</th> -->
+<!-- 						<th>Contraseña</th> -->
+<!-- 						<th>Edit</th> -->
+<!-- 						<th>Delete</th> -->
+<!-- 					</tr> -->
+<!-- 				</thead> -->
+<!-- 				<tbody> -->
+<!-- 					<tr th:each="user : ${users}"> -->
+<!-- 						<td th:text="${user.username}"></td> -->
+<!-- 						<td th:text="${user.psswrd}"></td> -->
+<!-- 						<td><a th:href="@{/edit/{id}(id=${user.id})}">Edit</a></td> -->
+<!-- 						<td><a th:href="@{/delete/{id}(id=${user.id})}">Delete</a></td> -->
+<!-- 					</tr> -->
+<!-- 				</tbody> -->
+<!-- 			</table> -->
+<!-- 		</div> -->
+<!-- 		<p> -->
+<!-- 			<a href="/signup">Add a new user</a> -->
+<!-- 		</p> -->
+<!-- 	</div> -->
 
-	<br />
-	<br />
-	<br />
+<!-- 	<br /> -->
+<!-- 	<br /> -->
+<!-- 	<br /> -->
 
-	<div th:switch="${games}">
-		<h2 th:case="null">No games yet!</h2>
-		<div th:case="*">
-			<h2>Games</h2>
-			<table>
-				<thead>
-					<tr>
-						<th>Id</th>
-						<th>Nombre</th>
-						<th>Edit</th>
-						<th>Delete</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="game : ${games}">
-						<td th:text="${game.id}"></td>
-						<td th:text="${game.name}"></td>
-						<td><a th:href="@{/editgame/{id}(id=${game.id})}">Edit</a></td>
-						<td><a th:href="@{/deletegame/{id}(id=${game.id})}">Delete</a></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<p>
-			<a href="/gameform">Add a new game</a>
-		</p>
-	</div>
-</div>
+<!-- 	<div th:switch="${games}"> -->
+<!-- 		<h2 th:case="null">No games yet!</h2> -->
+<!-- 		<div th:case="*"> -->
+<!-- 			<h2>Games</h2> -->
+<!-- 			<table> -->
+<!-- 				<thead> -->
+<!-- 					<tr> -->
+<!-- 						<th>Id</th> -->
+<!-- 						<th>Nombre</th> -->
+<!-- 						<th>Edit</th> -->
+<!-- 						<th>Delete</th> -->
+<!-- 					</tr> -->
+<!-- 				</thead> -->
+<!-- 				<tbody> -->
+<!-- 					<tr th:each="game : ${games}"> -->
+<!-- 						<td th:text="${game.id}"></td> -->
+<!-- 						<td th:text="${game.name}"></td> -->
+<!-- 						<td><a th:href="@{/editgame/{id}(id=${game.id})}">Edit</a></td> -->
+<!-- 						<td><a th:href="@{/deletegame/{id}(id=${game.id})}">Delete</a></td> -->
+<!-- 					</tr> -->
+<!-- 				</tbody> -->
+<!-- 			</table> -->
+<!-- 		</div> -->
+<!-- 		<p> -->
+<!-- 			<a href="/gameform">Add a new game</a> -->
+<!-- 		</p> -->
+<!-- 	</div> -->
+<!-- </div> -->
+

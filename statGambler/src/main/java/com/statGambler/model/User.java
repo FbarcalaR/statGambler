@@ -14,6 +14,7 @@ public class User {
 	public String username;
 	public String psswrd;
 
+	
 	public User() { }
 
 	public User(Long id, String name, String pass) {
@@ -44,6 +45,12 @@ public class User {
 
 	public void setPsswrd(String psswrd) {
 		this.psswrd = psswrd;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		User u=(User)obj;
+		return u.psswrd.equals(this.psswrd) && u.username.equals(this.username);
 	}
 
 	

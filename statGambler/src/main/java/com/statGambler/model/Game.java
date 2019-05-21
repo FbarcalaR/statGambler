@@ -12,6 +12,7 @@ public /*abstract*/ class Game {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
+	private double probabilidad;
 
 	public Game() {}
 	

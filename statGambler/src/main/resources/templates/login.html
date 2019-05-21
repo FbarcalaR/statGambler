@@ -1,0 +1,44 @@
+<div>
+	<table>
+		<thead>
+			<tr>
+				<th>
+					<h3>Login</h3>
+				</th>
+				<th>
+					<h3>Nuevo usuario</h3>
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>
+					<div>
+						<form action="#" th:action="@{/login}" th:object="${user}" method="post">
+							<label for="username">Username</label> 
+							<input type="text" th:field="*{username}" id="username" placeholder="Username">
+							<span th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
+							<label for="psswrd">Contraseña</label>
+							<input type="text" th:field="*{psswrd}" id="psswrd" placeholder="Psswrd"> 
+							<span th:if="${#fields.hasErrors('psswrd')}" th:errors="*{psswrd}"></span>
+							<input type="submit" value="Login">
+						</form>
+					</div>
+				</td>
+				<td>
+					<div>
+						<form action="#" th:action="@{/newuser}" th:object="${user}" method="post">
+							<label for="username">Username</label> 
+							<input type="text" th:field="*{username}" id="username" placeholder="Username">
+							<span th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span> 
+							<label for="psswrd">Contraseña</label>
+							<input type="text" th:field="*{psswrd}" id="psswrd" placeholder="Psswrd"> 
+							<span th:if="${#fields.hasErrors('psswrd')}" th:errors="*{psswrd}"></span>
+							<input type="submit" value="Login">
+						</form>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

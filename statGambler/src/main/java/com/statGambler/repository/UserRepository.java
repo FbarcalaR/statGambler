@@ -6,6 +6,4 @@ import org.springframework.stereotype.Repository;
 import com.statGambler.model.User;
 
 @Repository
-public interface UserRepository extends CrudRepository<User, Long> {
-
-}
+public interface UserRepository extends CrudRepository<User, Long> {}

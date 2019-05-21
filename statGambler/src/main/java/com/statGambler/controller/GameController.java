@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.statGambler.model.Game;
 import com.statGambler.repository.GameRepository;
+import com.statGambler.services.GameService;
 
 
 @Controller
@@ -24,7 +25,7 @@ public class GameController {
     public String showSignUpForm(Game game) {
         return "add-game";
     }
-     
+    
     @PostMapping("/addgame")
     public String addGame(@Valid Game game, BindingResult result, Model model) {
         if (result.hasErrors()) {
@@ -33,7 +34,7 @@ public class GameController {
          
         gameRepository.save(game);
         model.addAttribute("games", gameRepository.findAll());
-        return "index";
+        return "games";
     }
  
     @GetMapping("/editgame/{id}")
@@ -55,7 +56,7 @@ public class GameController {
              
         gameRepository.save(game);
         model.addAttribute("games", gameRepository.findAll());
-        return "index";
+        return "games";
     }
          
     @GetMapping("/deletegame/{id}")
@@ -64,6 +65,6 @@ public class GameController {
           .orElseThrow(() -> new IllegalArgumentException("Invalid game Id:" + id));
         gameRepository.delete(game);
         model.addAttribute("games", gameRepository.findAll());
-        return "index";
+        return "games";
     }
 }
