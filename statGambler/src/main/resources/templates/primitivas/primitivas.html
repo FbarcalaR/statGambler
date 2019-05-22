@@ -1,0 +1,27 @@
+<div th:switch="${primitivas}">
+	<h2 th:case="null">No primitivas yet!</h2>
+	<div th:case="*">
+		<h2>Primitivas</h2>
+		<table>
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Nombre</th>
+					<th>Edit</th>
+					<th>Delete</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="primitiva : ${primitivas}">
+					<td th:text="${primitiva.id}"></td>
+					<td th:text="${primitiva.name}"></td>
+					<td><a th:href="@{/editprimitiva/{id}(id=${primitiva.id})}">Edit</a></td>
+					<td><a th:href="@{/deleteprimitiva/{id}(id=${primitiva.id})}">Delete</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<p>
+		<a href="/primitivaform">Add a new primitiva</a>
+	</p>
+</div>

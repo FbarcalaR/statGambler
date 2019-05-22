@@ -1,12 +1,12 @@
 <div>
-	<div th:switch="${games}">
-		<h2 th:case="null">No games yet!</h2>
+	<div th:switch="${primitivas}">
+		<h2 th:case="null">No stats yet!</h2>
 		<div th:case="*">
 			<h2>Probabilidad de Games</h2>
 			<a th:text="${gameService.probabilidad}"></a>
 		</div>
 		<p>
-			<a href="/games">Mostrar editar games</a>
+			<a href="/primitivas">Mostrar editar Primitivas</a>
 		</p>
 	</div>
 </div>

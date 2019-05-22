@@ -14,6 +14,14 @@ public /*abstract*/ class Game {
 	private String name;
 	private double probabilidad;
 
+	public double getProbabilidad() {
+		return probabilidad;
+	}
+
+	public void setProbabilidad(double probabilidad) {
+		this.probabilidad = probabilidad;
+	}
+
 	public Game() {}
 	
 	public Game(Long id) {
