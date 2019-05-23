@@ -9,35 +9,29 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.statGambler.model.Game;
-import com.statGambler.repository.GameRepository;
-import com.statGambler.services.GameService;
+import com.statGambler.model.Primitiva;
+import com.statGambler.repository.PrimitivaRepository;
+import com.statGambler.services.PrimitivaService;
 
 @Controller
 public class StatsController {
 
 	@Autowired
-	GameRepository gameRepository;
+	PrimitivaRepository primitivaRepository;
 	@Autowired
-	GameService gameService;
+	PrimitivaService primitivaService;
 	
-	@GetMapping("/showstats")
+	@GetMapping("/primitivastats")
     public String showStats(Model model) {
-		gameService.CalcularProbabilidad();
-		model.addAttribute("gameService", gameService);
-		model.addAttribute("games", gameRepository.findAll());
+		primitivaService.CalcularProbabilidad();
+		model.addAttribute("primitivaService", primitivaService);
+		model.addAttribute("primitivas", primitivaRepository.findAll());
         return "stats";
     }
      
     @PostMapping("/getstats")
-    public String getStats(@Valid Game game, BindingResult result, Model model) {
+    public String getStats(@Valid Primitiva game, BindingResult result, Model model) {
         return "stats";
-    }
-    
-    @GetMapping("/games")
-    public String showGames(Model model) {
-    	model.addAttribute("games", gameRepository.findAll());
-        return "games";
     }
     
 }

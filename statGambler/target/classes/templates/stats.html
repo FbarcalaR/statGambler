@@ -3,7 +3,7 @@
 		<h2 th:case="null">No stats yet!</h2>
 		<div th:case="*">
 			<h2>Probabilidad de Games</h2>
-			<a th:text="${gameService.probabilidad}"></a>
+			<a th:text="${primitivaService.probabilidad}"></a>
 		</div>
 		<p>
 			<a href="/primitivas">Mostrar editar Primitivas</a>

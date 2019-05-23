@@ -9,21 +9,15 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.statGambler.model.Game;
 import com.statGambler.model.User;
-import com.statGambler.repository.GameRepository;
 import com.statGambler.repository.UserRepository;
-import com.statGambler.services.GameService;
+
 
 @Controller
 public class LoginController {
 	
 	@Autowired
 	UserRepository userRepository;
-	@Autowired
-	GameRepository gameRepository;
-	@Autowired
-	GameService gameService;
 	
 	@GetMapping("/index")
 	public String getIndex(User u) {
@@ -54,10 +48,7 @@ public class LoginController {
     	
     	for(User u: userRepository.findAll()) {
 			if(u.equals(user)) {
-				gameService.CalcularProbabilidad();
-				model.addAttribute("gameService", gameService);
-				model.addAttribute("games", gameRepository.findAll());
-				return "stats";
+				return "index";
 			}
 		}
     	return "login";

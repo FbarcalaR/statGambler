@@ -14,7 +14,7 @@ import com.statGambler.model.Primitiva;
 import com.statGambler.repository.PrimitivaRepository;
 
 @Controller
-public class PrimitivaController extends GameController{
+public class PrimitivaController{
 	
 	@Autowired
 	PrimitivaRepository primitivaRepository;
@@ -22,6 +22,12 @@ public class PrimitivaController extends GameController{
 	@GetMapping("/primitivaform")
     public String showSignUpForm(Primitiva primitiva) {
         return "primitivas/add-primitiva";
+    }
+	
+	@GetMapping("/primitivas")
+    public String showPrimitivas(Model model) {
+    	model.addAttribute("primitivas", primitivaRepository.findAll());
+        return "primitivas/primitivas";
     }
      
     @PostMapping("/addprimitiva")

@@ -2,7 +2,7 @@ package com.statGambler.services;
 
 import org.springframework.stereotype.Service;
 
-@Service("GameService")
+
 public class GameService {
 	public double probabilidad;
 		
