@@ -1,21 +1,31 @@
 package com.statGambler.services;
 
-import org.springframework.stereotype.Service;
-
-
 public class GameService {
-	public double probabilidad;
+	public double mediaResultados;
+	public double mediaComplementos;
 		
-	public double getProbabilidad() {
-		return probabilidad;
+	public double getMediaComplementos() {
+		return mediaComplementos;
 	}
 
-	public void setProbabilidad(double probabilidad) {
-		this.probabilidad = probabilidad;
+	public void setMediaComplementos(double mediaComplementos) {
+		this.mediaComplementos = mediaComplementos;
 	}
 
-	public void CalcularProbabilidad() {
-		probabilidad=2;
+	public double getMediaResultados() {
+		return mediaResultados;
+	}
+
+	public void setMediaResultados(double mediaResultados) {
+		this.mediaResultados = mediaResultados;
+	}
+
+	public void CalcularMediaResultados() {
+		mediaResultados=2;
+	}
+	
+	public void CalcularMediaComplementos() {
+		mediaResultados=2;
 	}
 
 }

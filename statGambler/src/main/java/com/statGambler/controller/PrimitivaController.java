@@ -12,12 +12,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.statGambler.model.Primitiva;
 import com.statGambler.repository.PrimitivaRepository;
+import com.statGambler.services.PrimitivaService;
 
 @Controller
 public class PrimitivaController{
 	
 	@Autowired
 	PrimitivaRepository primitivaRepository;
+	@Autowired
+	PrimitivaService primitivaService;
 	
 	@GetMapping("/primitivaform")
     public String showSignUpForm(Primitiva primitiva) {
@@ -72,5 +75,12 @@ public class PrimitivaController{
         return "primitivas/primitivas";
     }
 	
-	
+    @GetMapping("/primitivastats")
+    public String showStats(Model model) {
+		primitivaService.CalcularMediaResultados();
+		model.addAttribute("primitivaService", primitivaService);
+		model.addAttribute("primitivas", primitivaRepository.findAll());
+        return "primitivas/stats-primitiva";
+    }
+    
 }

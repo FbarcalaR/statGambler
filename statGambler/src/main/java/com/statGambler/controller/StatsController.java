@@ -15,19 +15,6 @@ import com.statGambler.services.PrimitivaService;
 
 @Controller
 public class StatsController {
-
-	@Autowired
-	PrimitivaRepository primitivaRepository;
-	@Autowired
-	PrimitivaService primitivaService;
-	
-	@GetMapping("/primitivastats")
-    public String showStats(Model model) {
-		primitivaService.CalcularProbabilidad();
-		model.addAttribute("primitivaService", primitivaService);
-		model.addAttribute("primitivas", primitivaRepository.findAll());
-        return "stats";
-    }
      
     @PostMapping("/getstats")
     public String getStats(@Valid Primitiva game, BindingResult result, Model model) {

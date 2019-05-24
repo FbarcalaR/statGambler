@@ -1,5 +1,5 @@
-<form action="#" th:action="@{/addprimitiva}" th:object="${primitiva}" method="post">
-    <label for="resultado0">Resultado0</label>
+<form action="#" th:action="@{/updateeuromillones/{id}(id=${euromillones.id})}" th:object="${euromillones}" method="post">
+	<label for="resultado0">Resultado0</label>
     <input type="text" th:field="*{resultado0}" id="resultado0" placeholder="Resultado0">
     <span th:if="${#fields.hasErrors('resultado0')}" th:errors="*{resultado0}"></span>
     <label for="resultado1">Resultado1</label>
@@ -14,14 +14,11 @@
     <label for="resultado4">Resultado4</label>
     <input type="text" th:field="*{resultado4}" id="resultado4" placeholder="Resultado4">
     <span th:if="${#fields.hasErrors('resultado4')}" th:errors="*{resultado4}"></span>
-    <label for="resultado5">Resultado5</label>
-    <input type="text" th:field="*{resultado5}" id="resultado5" placeholder="Reintegro">
-    <span th:if="${#fields.hasErrors('resultado5')}" th:errors="*{resultado5}"></span>
-    <label for="complementario">Complementario</label>
-    <input type="text" th:field="*{complementario}" id="complementario" placeholder="Complementario">
-    <span th:if="${#fields.hasErrors('complementario')}" th:errors="*{complementario}"></span>
-    <label for="reintegro">Reintegro</label>
-    <input type="text" th:field="*{reintegro}" id="reintegro" placeholder="Reintegro">
-    <span th:if="${#fields.hasErrors('reintegro')}" th:errors="*{reintegro}"></span>
-    <input type="submit" value="Add Primitiva">
+    <label for="estrella0">Estrella0</label>
+    <input type="text" th:field="*{estrella0}" id="estrella0" placeholder="Estrella0">
+    <span th:if="${#fields.hasErrors('estrella0')}" th:errors="*{estrella0}"></span>
+    <label for="estrella1">Estrella1</label>
+    <input type="text" th:field="*{estrella1}" id="estrella1" placeholder="Estrella1">
+    <span th:if="${#fields.hasErrors('estrella1')}" th:errors="*{estrella1}"></span>
+    <input type="submit" value="Update Euromillones">   
 </form>

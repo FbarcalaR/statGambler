@@ -1,0 +1,40 @@
+<div th:switch="${euromillones}">
+	<h2 th:case="null">No euromilloness yet!</h2>
+	<div th:case="*">
+		<h2>Euromillones</h2>
+		<table>
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>...</th>
+					<th>....</th>
+					<th>Resultados</th>
+					<th>....</th>
+					<th>....</th>
+					<th>....Estrellas</th>
+					<th>....</th>
+					<th>Edit</th>
+					<th>Delete</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="euromillones : ${euromillones}">
+					<td th:text="${euromillones.id}"></td>
+					<td th:text="${euromillones.resultado0}"></td>
+					<td th:text="${euromillones.resultado1}"></td>
+					<td th:text="${euromillones.resultado2}"></td>
+					<td th:text="${euromillones.resultado3}"></td>
+					<td th:text="${euromillones.resultado4}"></td>
+					<td th:text="${euromillones.estrella0}">
+					<td th:text="${euromillones.estrella1}">
+					<td><a th:href="@{/editeuromillones/{id}(id=${euromillones.id})}">Edit</a></td>
+					<td><a th:href="@{/deleteeuromillones/{id}(id=${euromillones.id})}">Delete</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<p>
+		<a href="/euromillonesform">Add a new euromillones</a>
+		<a href="/euromillonesstats">Volver</a>
+	</p>
+</div>

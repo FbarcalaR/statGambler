@@ -1,0 +1,14 @@
+<div>
+	<div th:switch="${euromillones}">
+		<h2 th:case="null">No stats yet!</h2>
+		<div th:case="*">
+			<h2>Datos de Euromillones</h2>
+			Media resultados<a th:text="${euromillonesService.mediaResultados}"></a>
+			Media Estrellas<a th:text="${euromillonesService.mediaComplementos}"></a>
+		</div>
+		<p>
+			<a href="/euromillones">Mostrar editar Euromilloness</a>
+			<a href="/index">volver al indice</a>
+		</p>
+	</div>
+</div>
