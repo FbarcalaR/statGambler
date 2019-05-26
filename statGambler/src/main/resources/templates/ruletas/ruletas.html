@@ -1,0 +1,28 @@
+<div th:switch="${ruletas}">
+	<h2 th:case="null">No ruletas yet!</h2>
+	<div th:case="*">
+		<h2>Ruletas</h2>
+		<table>
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Numero</th>
+					<th>Edit</th>
+					<th>Delete</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="ruleta : ${ruletas}">
+					<td th:text="${ruleta.id}"></td>
+					<td th:text="${ruleta.numero}">
+					<td><a th:href="@{/editruleta/{id}(id=${ruleta.id})}">Edit</a></td>
+					<td><a th:href="@{/deleteruleta/{id}(id=${ruleta.id})}">Delete</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<p>
+		<a href="/ruletaform">Add a new ruleta</a>
+		<a href="/ruletastats">Volver</a>
+	</p>
+</div>

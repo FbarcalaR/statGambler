@@ -1,0 +1,13 @@
+<div>
+	<div th:switch="${ruletas}">
+		<h2 th:case="null">No stats yet!</h2>
+		<div th:case="*">
+			<h2>Datos de RSuletas</h2>
+			Media de Resultados:<a th:text="${ruletaService.mediaResultados}"></a>
+		</div>
+		<p>
+			<a href="/ruletas">Mostrar editar Ruletas</a>
+			<a href="/index">volver al indice</a>
+		</p>
+	</div>
+</div>

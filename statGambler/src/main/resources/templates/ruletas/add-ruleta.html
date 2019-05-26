@@ -1,0 +1,6 @@
+<form action="#" th:action="@{/addruleta}" th:object="${ruleta}" method="post">
+    <label for="numero">Numero</label>
+    <input type="text" th:field="*{numero}" id="numero" placeholder="Numero">
+    <span th:if="${#fields.hasErrors('numero')}" th:errors="*{numero}"></span>
+    <input type="submit" value="Add Ruleta">
+</form>
