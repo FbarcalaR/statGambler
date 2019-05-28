@@ -3,8 +3,33 @@
 		<h2 th:case="null">No stats yet!</h2>
 		<div th:case="*">
 			<h2>Datos de Euromillones</h2>
-			Media resultados<a th:text="${euromillonesService.mediaResultados}"></a>
-			Media Estrellas<a th:text="${euromillonesService.mediaComplementos}"></a>
+			Media de Resultados:<a th:text="${euromillonesService.mediaResultados}"></a><br/>
+			Media de Estrellas:<a th:text="${euromillonesService.mediaComplementos}"></a><br/>
+			Bote:<a th:text="${euromillonesService.bote}"></a><br/>
+			Esperanza:<a th:text="${euromillonesService.esperanza}"></a><br/>
+			
+			Media de probabilidad6yR:<a th:text="${euromillonesService.probabilidad6yR}"></a><br/>
+			Media de probabilidad6:<a th:text="${euromillonesService.probabilidad6}"></a><br/>
+			Media de probabilidad5yC:<a th:text="${euromillonesService.probabilidad5yC}"></a><br/>
+			Media de probabilidad5:<a th:text="${euromillonesService.probabilidad5}"></a><br/>
+			Media de probabilidad4:<a th:text="${euromillonesService.probabilidad4}"></a><br/>
+			Media de probabilidad3:<a th:text="${euromillonesService.probabilidad3}"></a><br/>
+			Promedios de cada numero: <br/>
+			<ul th:each="promedio : ${euromillonesService.promedioNumero}">
+				<li th:text="${promedio}"></li>
+			</ul>
+			Promedios de reintegros: <br/>
+			<ul th:each="promedio : ${euromillonesService.promedioEstrella}">
+				<li th:text="${promedio}"></li>
+			</ul>
+			Numero de apariciones por número: <br/>
+			<ul th:each="aparicion : ${euromillonesService.aparicionesNumero}">
+				<li th:text="${aparicion}"></li>
+			</ul>
+			Numero de apariciones por reintegro: <br/>
+			<ul th:each="aparicion : ${euromillonesService.aparicionesEstrella}">
+				<li th:text="${aparicion}"></li>
+			</ul><br/>
 		</div>
 		<p>
 			<a href="/euromillones">Mostrar editar Euromilloness</a>

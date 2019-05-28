@@ -77,8 +77,7 @@ public class EuromillonesController{
 	
     @GetMapping("/euromillonesstats")
     public String showStats(Model model) {
-		euromillonesService.CalcularMediaResultados();
-		euromillonesService.CalcularMediaComplementos();
+		euromillonesService.calcularTodo(1000.0);
 		model.addAttribute("euromillonesService", euromillonesService);
 		model.addAttribute("euromillones", euromillonesRepository.findAll());
         return "euromillones/stats-euromillones";

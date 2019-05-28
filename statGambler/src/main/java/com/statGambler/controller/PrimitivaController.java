@@ -77,7 +77,7 @@ public class PrimitivaController{
 	
     @GetMapping("/primitivastats")
     public String showStats(Model model) {
-		primitivaService.CalcularMediaResultados();
+		primitivaService.calcularTodo(1000.0);
 		model.addAttribute("primitivaService", primitivaService);
 		model.addAttribute("primitivas", primitivaRepository.findAll());
         return "primitivas/stats-primitiva";

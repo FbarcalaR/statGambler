@@ -3,7 +3,35 @@
 		<h2 th:case="null">No stats yet!</h2>
 		<div th:case="*">
 			<h2>Datos de Primitivas</h2>
-			Media de Resultados:<a th:text="${primitivaService.mediaResultados}"></a>
+			Media de Resultados:<a th:text="${primitivaService.mediaResultados}"></a><br/>
+			Media de reintegros:<a th:text="${primitivaService.mediaComplementos}"></a><br/>
+			Bote:<a th:text="${primitivaService.bote}"></a><br/>
+			Esperanza:<a th:text="${primitivaService.esperanza}"></a><br/>
+			
+			Media de probabilidad6yR:<a th:text="${primitivaService.probabilidad6yR}"></a><br/>
+			Media de probabilidad6:<a th:text="${primitivaService.probabilidad6}"></a><br/>
+			Media de probabilidad5yC:<a th:text="${primitivaService.probabilidad5yC}"></a><br/>
+			Media de probabilidad5:<a th:text="${primitivaService.probabilidad5}"></a><br/>
+			Media de probabilidad4:<a th:text="${primitivaService.probabilidad4}"></a><br/>
+			Media de probabilidad3:<a th:text="${primitivaService.probabilidad3}"></a><br/>
+			Media de probabilidadR:<a th:text="${primitivaService.probabilidadR}"></a><br/>
+			Media de probabilidad3:<a th:text="${primitivaService.probabilidad3}"></a><br/>
+			Promedios de cada numero: <br/>
+			<ul th:each="promedio : ${primitivaService.promedioNumero}">
+				<li th:text="${promedio}"></li>
+			</ul>
+			Promedios de reintegros: <br/>
+			<ul th:each="promedio : ${primitivaService.promedioReintegro}">
+				<li th:text="${promedio}"></li>
+			</ul>
+			Numero de apariciones por número: <br/>
+			<ul th:each="aparicion : ${primitivaService.aparicionesNumero}">
+				<li th:text="${aparicion}"></li>
+			</ul>
+			Numero de apariciones por reintegro: <br/>
+			<ul th:each="aparicion : ${primitivaService.aparicionesReintegro}">
+				<li th:text="${aparicion}"></li>
+			</ul><br/>
 		</div>
 		<p>
 			<a href="/primitivas">Mostrar editar Primitivas</a>

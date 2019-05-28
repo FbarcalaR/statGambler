@@ -77,7 +77,7 @@ public class RuletaController{
 	
     @GetMapping("/ruletastats")
     public String showStats(Model model) {
-		ruletaService.CalcularMediaResultados();
+		ruletaService.calcularTodo(1000.0);
 		model.addAttribute("ruletaService", ruletaService);
 		model.addAttribute("ruletas", ruletaRepository.findAll());
         return "ruletas/stats-ruleta";
