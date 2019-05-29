@@ -1,12 +1,11 @@
 package com.statGambler.services;
 
-//import org.apache.commons.math4.util.CombinatoricsUtils;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.statGambler.model.Euromillones;
 import com.statGambler.repository.EuromillonesRepository;
+import com.statGambler.Math.Math;
 
 @Service("EuromillonesService")
 public class EuromillonesService implements GameService {
@@ -38,20 +37,20 @@ public class EuromillonesService implements GameService {
 
 	@Override
 	public double calcularProbabilidadesVictoria() {
-//		probabilidad5y2=binomialCoefficient(50,5);
-		probabilidad5y2 = (5.0 * 4.0 * 3.0 * 2.0 * 1.0 * 2.0 * 1.0) / (50.0 * 49.0 * 48.0 * 47.0 * 46.0 * 12.0 * 11.0);
-		probabilidad5y1 = 12*(5.0 * 4.0 * 3.0 * 2.0 * 1.0 * 2.0) / (50.0 * 49.0 * 48.0 * 47.0 * 46.0 * 12.0);
-		probabilidad5 = (5.0 * 4.0 * 3.0 * 2.0 * 1.0) / (50.0 * 49.0 * 48.0 * 47.0 * 46.0);
-		probabilidad4y2 = (5.0 * 4.0 * 3.0 * 2.0 * 2.0 * 1.0) / (50.0 * 49.0 * 48.0 * 47.0 * 12.0 * 11.0);
-		probabilidad4y1 = (5.0 * 4.0 * 3.0 * 2.0 * 2.0) / (50.0 * 49.0 * 48.0 * 47.0 * 12.0);
-		probabilidad3y2 = (5.0 * 4.0 * 3.0 * 2.0 * 1.0) / (50.0 * 49.0 * 48.0 * 12.0 * 11.0);
-		probabilidad4 = (5.0 * 4.0 * 3.0 * 2.0) / (50.0 * 49.0 * 48.0 * 47.0);
-		probabilidad2y2 = (5.0 * 4.0 * 2.0 * 1.0) / (50.0 * 49.0 * 12.0 * 11.0);
-		probabilidad3y1 = (5.0 * 4.0 * 3.0 * 2.0) / (50.0 * 49.0 * 48.0 * 12.0);
-		probabilidad3 = (5.0 * 4.0 * 3.0) / (50.0 * 49.0 * 48.0);
-		probabilidad1y2 = (5.0 * 2.0 * 1.0) / (50.0 * 12.0 * 11.0);
-		probabilidad2y1 = (5.0 * 4.0 * 2.0) / (50.0 * 49.0 * 12.0);
-		probabilidad2 = (5.0 * 4.0) / (50.0 * 49.0);
+		double espacioMuestral=(double)Math.CInt(50,5)*Math.CInt(9,2);
+		probabilidad5y2 = 1/espacioMuestral;
+		probabilidad5y1 = (double)Math.CInt(5, 5)*Math.CInt(2, 1)*Math.CInt(7, 1)/espacioMuestral;
+		probabilidad5 =  (double)Math.CInt(5, 5)*Math.CInt(7, 2) /espacioMuestral;
+		probabilidad4y2 = (double)Math.CInt(5, 4)*Math.CInt(45, 1)*Math.CInt(2, 2) /espacioMuestral;
+		probabilidad4y1 = (double)Math.CInt(5, 4)*Math.CInt(45, 1)*Math.CInt(2, 1)*Math.CInt(7, 1) /espacioMuestral;
+		probabilidad3y2 = (double)Math.CInt(5, 3)*Math.CInt(45, 2)*Math.CInt(2, 2) /espacioMuestral;
+		probabilidad4 = (double)Math.CInt(5, 4)*Math.CInt(45, 1)*Math.CInt(7, 2) /espacioMuestral;
+		probabilidad2y2 =  (double)Math.CInt(5,2)*Math.CInt(45, 3)* Math.CInt(2,2)/espacioMuestral;
+		probabilidad3y1 = (double)Math.CInt(5, 3)*Math.CInt(45, 2)*Math.CInt(2, 1)*Math.CInt(7, 1)/espacioMuestral;
+		probabilidad3 = (double)Math.CInt(5, 3)*Math.CInt(45, 2)*Math.CInt(7, 2) /espacioMuestral;
+		probabilidad1y2 = (double)Math.CInt(5,1)*Math.CInt(45,4)*Math.CInt(2,2) /espacioMuestral;
+		probabilidad2y1 = (double)Math.CInt(5,2)*Math.CInt(45, 3)*Math.CInt(2, 1)*Math.CInt(7, 1)/espacioMuestral;
+		probabilidad2 = (double)Math.CInt(5,2)*Math.CInt(45, 3)*Math.CInt(7, 2) /espacioMuestral;
 		return 0;
 	}
 
