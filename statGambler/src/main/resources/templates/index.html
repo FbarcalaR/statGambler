@@ -1,6 +1,15 @@
-<h1>Ahora que</h1>
-<a href="/primitivastats">Mostrar stats de primitivas</a>
-<br/>
-<a href="/euromillonesstats">Mostrar stats de Euromillones</a>
-<br/>
-<a href="/ruletastats">Mostrar stats de Ruleta</a>
+<head th:include="fragments/header :: headerFragment">
+    <title id="pageTitle">statGAmbler-Home</title>
+</head>
+
+<body>
+<div th:replace="fragments/header :: header">&nbsp;</div>
+	<div data-layout-fragment="content">
+		<h1>Ahora que</h1>
+	<a href="/primitivastats">Mostrar stats de primitivas</a>
+	<br />
+	<a href="/euromillonesstats">Mostrar stats de Euromillones</a>
+	<br />
+	<a href="/ruletastats">Mostrar stats de Ruleta</a>
+	</div>
+</body>
