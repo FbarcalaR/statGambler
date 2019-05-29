@@ -1,61 +1,126 @@
-body {
-  padding-top: 20px;
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
-.starter-template {
-  padding: 40px 15px;
+
+body, html, .login_form {
+  height: 100%;
+}
+
+body {
+  background: #262626;
+}
+
+.login_form {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-flex: center;
+  -moz-box-flex: center;
+  -webkit-flex: center;
+  -ms-flex: center;
+  flex: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  justify-content: center;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.login-wrapper {
+  max-width: 500px;
+  width: 100%;
+}
+
+.logo {
   text-align: center;
 }
-.jumbotron .img-responsive {
-  margin: 0 auto;
+.logo img {
+  max-width: 200px;
+  width: 100%;
+  margin: 1em auto 2em;
 }
-.pad-top {
-  padding-top: 60px;
+
+form {
+  background: #000;
+  padding: 2em 1em;
+  font-family: helvetica, sans-serif;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
 }
-.usertable tr td:nth-child(2) {
-  width: 150px;
+form label {
+  color: #fff;
+  margin: 0 3% .25em;
+  display: block;
+  font-family: helvetica, sans-serif;
 }
-.usertable tr:nth-child(1) td {
-  border-top: none;
+form input {
+  width: 94%;
+  padding: .5em .25em;
+  margin: 0 3% 1em;
+  font-size: 1.2em;
+  border: 2px solid #000;
+  outline: none;
+  -webkit-transition: all 0.25s;
+  -moz-transition: all 0.25s;
+  -ms-transition: all 0.25s;
+  -o-transition: all 0.25s;
+  transition: all 0.25s;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
 }
-/* Have to set height explicity on ui-view
-to prevent collapsing during animation*/
-[ui-view] {
-  height: 65px;
+form input.password {
+  padding-right: 4rem;
 }
-.ui-view-container {
+form input:focus {
+  border: 2px solid #1fd100;
+}
+form button {
+  width: 94%;
+  margin: 2em 3% 0;
+  border: none;
+  background: #1fd100;
+  padding: 1em 0;
+  font-size: 1.25em;
+  clear: both;
+  color: #000;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  outline: none;
+  -webkit-transition: all 0.25s;
+  -moz-transition: all 0.25s;
+  -ms-transition: all 0.25s;
+  -o-transition: all 0.25s;
+  transition: all 0.25s;
+  cursor: pointer;
+}
+form button:focus, form button:hover {
+  background: #262626;
+}
+
+.hide-show {
+  width: 94%;
+  margin: -3.62em 3% 0 1.5%;
   position: relative;
+  z-index: 5;
+  display: none;
 }
-[ui-view].ng-enter,
-[ui-view].ng-leave {
-  position: absolute;
-  left: 0;
-  right: 0;
-  -webkit-transition: all 0.5s ease-in-out;
-  -moz-transition: all 0.5s ease-in-out;
-  -o-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
-}
-[ui-view].ng-enter {
-  opacity: 0;
-  -webkit-transform: scale3d(0.5, 0.5, 0.5);
-  -moz-transform: scale3d(0.5, 0.5, 0.5);
-  transform: scale3d(0.5, 0.5, 0.5);
-}
-[ui-view].ng-enter-active {
-  opacity: 1;
-  -webkit-transform: scale3d(1, 1, 1);
-  -moz-transform: scale3d(1, 1, 1);
-  transform: scale3d(1, 1, 1);
-}
-[ui-view].ng-leave {
-  opacity: 1;
-  -webkit-transform: translate3d(0, 0, 0);
-  -moz-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
-}
-[ui-view].ng-leave-active {
-  opacity: 0;
-  -webkit-transform: translate3d(100px, 0, 0);
-  -moz-transform: translate3d(100px, 0, 0);
-  transform: translate3d(100px, 0, 0);
+.hide-show span {
+  background: #1fd100;
+  font-size: 1em;
+  padding: .5em;
+  float: right;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  cursor: pointer;
 }

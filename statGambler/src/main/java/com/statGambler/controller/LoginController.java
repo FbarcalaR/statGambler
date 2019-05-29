@@ -29,6 +29,21 @@ public class LoginController {
         return "login";
     }
 	
+	@GetMapping("/newuser")
+	public String getNewUser(User u) {
+        return "new-user";
+    }
+	
+	@GetMapping("/login")
+	public String getLoginForm(User u) {
+        return "login";
+    }
+	
+	@GetMapping("/layout")
+	public String getLayout() {
+        return "_Layout";
+    }
+	
     @PostMapping("/newuser")
     public String newUser(@Valid User user, BindingResult result, Model model) {
         if (result.hasErrors()) {
