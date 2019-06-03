@@ -32,6 +32,12 @@ public class PrimitivaController{
     	model.addAttribute("primitivas", primitivaRepository.findAll());
         return "primitivas/primitivas";
     }
+	
+	@PostMapping("/primitivas")
+    public String showPostPrimitivas(Model model) {
+    	model.addAttribute("primitivas", primitivaRepository.findAll());
+        return "primitivas/primitivas";
+    }
      
     @PostMapping("/addprimitiva")
     public String addGame(@Valid Primitiva game, BindingResult result, Model model) {

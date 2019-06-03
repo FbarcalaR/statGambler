@@ -1,8 +1,12 @@
 package com.statGambler.services;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.statGambler.Math.Math;
 import com.statGambler.model.Primitiva;
 import com.statGambler.repository.PrimitivaRepository;
 
@@ -12,8 +16,6 @@ public class PrimitivaService implements GameService{
 	@Autowired
 	PrimitivaRepository primitivaRepository;
 	
-	
-	public double probabilidad6yR;
 	public double probabilidad6;
 	public double probabilidad5yC;
 	public double probabilidad5;
@@ -24,6 +26,7 @@ public class PrimitivaService implements GameService{
 	public double promedioReintegro[];
 	public int aparicionesNumero[];
 	public int aparicionesReintegro[];
+	public List<Estadisticas> estadisticasNumeros;
 	public double bote;
 	public double esperanza;
 	public double mediaResultados;
@@ -31,15 +34,15 @@ public class PrimitivaService implements GameService{
 
 	@Override
 	public double calcularProbabilidadesVictoria() {
-		// TODO Auto-generated method stub
-		probabilidad6yR=(6.0*5.0*4.0*3.0*2.0*1.0*1.0)/(49.0*48.0*47.0*46.0*45.0*44.0*10.0);
-		probabilidad6=(6.0*5.0*4.0*3.0*2.0*1.0)/(49.0*48.0*47.0*46.0*45.0*44.0);
-		probabilidad5yC=6.0*(6.0*5.0*4.0*3.0*2.0*1.0)/(49.0*48.0*47.0*46.0*45.0*44.0);
-		probabilidad5=6.0*(6.0*5.0*4.0*3.0*2.0*42.0)/(49.0*48.0*47.0*46.0*45.0*44.0);
-		probabilidad4=15*(6.0*5.0*4.0*3.0*43.0*42.0)/(49.0*48.0*47.0*46.0*45.0*44.0);
-		probabilidad3=20*(6.0*5.0*4.0*43.0*42.0*41.0)/(49.0*48.0*47.0*46.0*45.0*44.0);
+		double espacioMuestral=(double)Math.CInt(49,6)*Math.CInt(10,1);
+		
+		probabilidad6=1/espacioMuestral;
+		probabilidad5yC=Math.CInt(6, 5)*Math.CInt(1, 1)/espacioMuestral;
+		probabilidad5=Math.CInt(6,5)*Math.CInt(42,1)/espacioMuestral;
+		probabilidad4=Math.CInt(6,4)*Math.CInt(43,2)/espacioMuestral;
+		probabilidad3=Math.CInt(6,3)*Math.CInt(9,1)/espacioMuestral;
 		probabilidadR=1/10;
-		return probabilidad6yR;
+		return probabilidad6;
 	}
 
 	@Override
@@ -118,6 +121,17 @@ public class PrimitivaService implements GameService{
 		mediaComplementos=mediaComplementos/total;
 		return mediaComplementos;
 	}
+	
+	public void llenarEstadisticas() {
+		estadisticasNumeros=new LinkedList<Estadisticas>();
+		int n=1;
+		
+		for(int aparicion : aparicionesNumero) {
+			if(n%2==1) {
+				estadisticasNumeros.add(new Estadisticas(n, aparicion, promedioNumero[n-1]));
+			}
+		}
+	}
 
 	@Override
 	public void calcularTodo(double bote) {
@@ -128,5 +142,6 @@ public class PrimitivaService implements GameService{
 		calcularEsperanza();
 		calcularMediaResultados();		
 		calcularMediaComplementos();
+		llenarEstadisticas();
 	}
 }

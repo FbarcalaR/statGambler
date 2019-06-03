@@ -29,6 +29,11 @@ public class LoginController {
         return "login";
     }
 	
+	@PostMapping("/index")
+	public String getIndexPost() {
+        return "index";
+    }
+	
 	@GetMapping("/newuser")
 	public String getNewUser(User u) {
         return "new-user";
