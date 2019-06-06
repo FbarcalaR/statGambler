@@ -26,7 +26,8 @@ public class LoginController {
 	
 	@GetMapping("/")
 	public String getRoot(User u) {
-        return "login";
+        return "index";
+//        return "login";
     }
 	
 	@PostMapping("/index")

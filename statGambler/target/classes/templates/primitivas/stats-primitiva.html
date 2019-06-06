@@ -64,7 +64,7 @@
 						</tr>
 					</thead>
 					<tbody>
-					<th:block th:each="estadisticas, primitivaServiceStat : ${primitivaService.estadisticasNumeros}">
+					<th:block th:each="estadisticas, primitivaServiceStat : ${primitivaService.promedioNumero}">
 					<span th:if="${primitivaServiceStat.index+25 &lt; 51}">
 					<tr>
 						<b><td th:text="${primitivaServiceStat.index+1}"></td></b>

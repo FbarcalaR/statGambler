@@ -8,7 +8,7 @@ import com.statGambler.repository.EuromillonesRepository;
 import com.statGambler.Math.Math;
 
 @Service("EuromillonesService")
-public class EuromillonesService implements GameService {
+public class EuromillonesService {
 
 	@Autowired
 	EuromillonesRepository euromillonesRepository;
@@ -35,7 +35,7 @@ public class EuromillonesService implements GameService {
 	public double mediaResultados;
 	public double mediaComplementos;
 
-	@Override
+	
 	public double calcularProbabilidadesVictoria() {
 		double espacioMuestral=(double)Math.CInt(50,5)*Math.CInt(9,2);
 		probabilidad5y2 = 1/espacioMuestral;
@@ -54,7 +54,7 @@ public class EuromillonesService implements GameService {
 		return 0;
 	}
 
-	@Override
+	
 	public double calcularPromedioNumero() {
 		int totalEstrella = (int) (euromillonesRepository.count());
 		int totalNumeros = totalEstrella * 6;
@@ -71,7 +71,7 @@ public class EuromillonesService implements GameService {
 		return promedioEstrella[0];
 	}
 
-	@Override
+	
 	public double calcularApariciones() {
 		aparicionesNumero = new int[49];
 		aparicionesEstrella = new int[10];
@@ -88,18 +88,18 @@ public class EuromillonesService implements GameService {
 		return aparicionesNumero[0];
 	}
 
-	@Override
+	
 	public double setBote(double bote) {
 		this.bote = bote;
 		return bote;
 	}
 
-	@Override
+	
 	public double calcularEsperanza() {
 		return probabilidad5y2 * bote;
 	}
 
-	@Override
+	
 	public double calcularMediaResultados() {
 		mediaResultados = 0;
 		int total = 0;
@@ -116,7 +116,7 @@ public class EuromillonesService implements GameService {
 		return mediaResultados;
 	}
 
-	@Override
+	
 	public double calcularMediaComplementos() {
 		mediaComplementos = 0;
 		int total = 0;
@@ -130,7 +130,7 @@ public class EuromillonesService implements GameService {
 		return mediaComplementos;
 	}
 
-	@Override
+	
 	public void calcularTodo(double bote) {
 		calcularProbabilidadesVictoria();
 		calcularApariciones();

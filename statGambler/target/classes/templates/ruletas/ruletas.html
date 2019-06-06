@@ -7,9 +7,12 @@
 <div th:switch="${ruletas}">
 	<h2 th:case="null">No ruletas yet!</h2>
 	<div th:case="*">
-		<h2>Ruletas</h2>
-		<table>
-			<thead>
+	<div class="card">
+		<div class="card-header">Euromillones</div>
+		<div class="card-body">
+			<div class="container">
+				<table class="table table-borderless table-hover">
+					<thead>
 				<tr>
 					<th>Id</th>
 					<th>Numero</th>
@@ -25,11 +28,14 @@
 					<td><a th:href="@{/deleteruleta/{id}(id=${ruleta.id})}">Delete</a></td>
 				</tr>
 			</tbody>
-		</table>
+				</table>
+			</div>
+		</div>
+	</div>
 	</div>
 	<p>
-		<a href="/ruletaform">Add a new ruleta</a>
-		<a href="/ruletastats">Volver</a>
+	<a type="button" class="btn btn-primary" href="/ruletaform">Add a new ruleta</a>
+		<a type="button" class="btn btn-primary" href="/ruletastats">Volver</a>
 	</p>
 </div>
 </body>

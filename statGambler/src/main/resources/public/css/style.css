@@ -124,3 +124,7 @@ form button:focus, form button:hover {
   border-radius: 5px;
   cursor: pointer;
 }
+
+.form-horizontal .control-label.text-left{
+    text-align: left;
+}

@@ -11,7 +11,7 @@ import com.statGambler.model.Primitiva;
 import com.statGambler.repository.PrimitivaRepository;
 
 @Service("PrimitivaService")
-public class PrimitivaService implements GameService{
+public class PrimitivaService {
 
 	@Autowired
 	PrimitivaRepository primitivaRepository;
@@ -26,13 +26,12 @@ public class PrimitivaService implements GameService{
 	public double promedioReintegro[];
 	public int aparicionesNumero[];
 	public int aparicionesReintegro[];
-	public List<Estadisticas> estadisticasNumeros;
 	public double bote;
 	public double esperanza;
 	public double mediaResultados;
 	public double mediaComplementos;
 
-	@Override
+	
 	public double calcularProbabilidadesVictoria() {
 		double espacioMuestral=(double)Math.CInt(49,6)*Math.CInt(10,1);
 		
@@ -45,7 +44,7 @@ public class PrimitivaService implements GameService{
 		return probabilidad6;
 	}
 
-	@Override
+	
 	public double calcularPromedioNumero() {
 		int totalReintegros=(int) (primitivaRepository.count());
 		int totalNumeros=totalReintegros*6;
@@ -63,7 +62,7 @@ public class PrimitivaService implements GameService{
 		return promedioReintegro[0];
 	}
 
-	@Override
+	
 	public double calcularApariciones() {
 		aparicionesNumero=new int[49];
 		aparicionesReintegro=new int[10];
@@ -80,18 +79,18 @@ public class PrimitivaService implements GameService{
 		return aparicionesNumero[0];
 	}
 
-	@Override
+	
 	public double setBote(double bote) {
 		this.bote=bote;
 		return bote;
 	}
 
-	@Override
+	
 	public double calcularEsperanza() {
 		return probabilidad6*bote;
 	}
 
-	@Override
+	
 	public double calcularMediaResultados() {
 		mediaResultados=0;
 		int total=0;
@@ -109,7 +108,7 @@ public class PrimitivaService implements GameService{
 		return mediaResultados;
 	}
 
-	@Override
+	
 	public double calcularMediaComplementos() {
 		mediaComplementos=0;
 		int total=0;
@@ -121,19 +120,8 @@ public class PrimitivaService implements GameService{
 		mediaComplementos=mediaComplementos/total;
 		return mediaComplementos;
 	}
-	
-	public void llenarEstadisticas() {
-		estadisticasNumeros=new LinkedList<Estadisticas>();
-		int n=1;
-		
-		for(int aparicion : aparicionesNumero) {
-			if(n%2==1) {
-				estadisticasNumeros.add(new Estadisticas(n, aparicion, promedioNumero[n-1]));
-			}
-		}
-	}
 
-	@Override
+	
 	public void calcularTodo(double bote) {
 		calcularProbabilidadesVictoria();
 		calcularApariciones();
@@ -142,6 +130,5 @@ public class PrimitivaService implements GameService{
 		calcularEsperanza();
 		calcularMediaResultados();		
 		calcularMediaComplementos();
-		llenarEstadisticas();
 	}
 }
