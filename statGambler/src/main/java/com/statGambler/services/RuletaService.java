@@ -1,5 +1,7 @@
 package com.statGambler.services;
 
+import java.util.Arrays;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +24,7 @@ public class RuletaService{
 	public double probabilidadColumnas;
 	public double probabilidadColor;
 	public double probabilidadParImpar;
-	public double probabilidad1_18;
+	public double probabilidadPasaFalta;
 	public double probabilidad19_36;
 	
 	public double esperanzaPleno;
@@ -34,8 +36,7 @@ public class RuletaService{
 	public double esperanzaColumnas;
 	public double esperanzaColor;
 	public double esperanzaParImpar;
-	public double esperanza1_18;
-	public double esperanza19_36;
+	public double esperanzaPasaFalta;
 	
 	public double apuesta;
 	public double promedioNumero[];
@@ -52,8 +53,7 @@ public class RuletaService{
 		probabilidadColumnas=12.0/37.0;
 		probabilidadColor=18.0/37.0;
 		probabilidadParImpar=18.0/37.0;
-		probabilidad1_18=18.0/37.0;
-		probabilidad19_36=18.0/37.0;
+		probabilidadPasaFalta=18.0/37.0;
 		return probabilidadPleno;
 	}
 
@@ -79,20 +79,19 @@ public class RuletaService{
 	}
 	
 	public double calcularEsperanza() {
-		esperanzaPleno=apuesta*36.0*probabilidadPleno;
-		esperanzaCaballo=apuesta*18.0*probabilidadCaballo;
-		esperanzaTransversal=apuesta*12.0*probabilidadTransversal;
-		esperanzaFilaDoble=apuesta*6.0*probabilidadFilaDoble;
-		esperanzaCuadro=apuesta*9.0*probabilidadCuadro;
-		esperanzaDocenas=apuesta*3.0*probabilidadDocenas;
-		esperanzaColumnas=apuesta*3.0*probabilidadColumnas;
-		esperanzaColor=apuesta*2.0*probabilidadColor;
-		esperanzaParImpar=apuesta*2.0*probabilidadParImpar;
-		esperanza1_18=apuesta*2.0*probabilidad1_18;
-		esperanza19_36=apuesta*2.0*probabilidad19_36;
+		esperanzaPleno=probabilidadPleno*apuesta*35+(1-probabilidadPleno)*(-apuesta);
+		esperanzaCaballo=probabilidadCaballo*apuesta*17+(1-probabilidadCaballo)*(-apuesta);
+		esperanzaTransversal=probabilidadTransversal*apuesta*11+(1-probabilidadTransversal)*(-apuesta);
+		esperanzaFilaDoble=probabilidadFilaDoble*apuesta*5+(1-probabilidadFilaDoble)*(-apuesta);
+		esperanzaCuadro=probabilidadCuadro*apuesta*8+(1-probabilidadCuadro)*(-apuesta);
+		esperanzaDocenas=probabilidadDocenas*apuesta*2+(1-probabilidadDocenas)*(-apuesta);
+		esperanzaColumnas=probabilidadColumnas*apuesta*2+(1-probabilidadColumnas)*(-apuesta);
+		esperanzaColor=probabilidadColor*apuesta*1-(18.0/37.0)*apuesta-(1.0/37.0*0.5)*apuesta;
+		esperanzaParImpar=probabilidadParImpar*apuesta*1-(18.0/37.0)*apuesta-(1.0/37.0*0.5)*apuesta;
+		esperanzaPasaFalta=probabilidadPasaFalta*apuesta*1-(18.0/37.0)*apuesta-(1.0/37.0*0.5)*apuesta;
+		
 		return esperanzaPleno;
 	}
-	
 
 	public void setApuesta(double apuesta) {
 		this.apuesta = apuesta;

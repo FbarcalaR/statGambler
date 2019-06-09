@@ -9,20 +9,82 @@
 		<h2 th:case="null">No stats yet!</h2>
 		<div th:case="*">
 			<!-- cabecera -->
-	<div class="card">
-		<div class="card-header">Datos generales de Euromillones</div>
-		<div class="card-body">
-			<div class="container">
-			
-				<form action="#" th:action="@{/apuesta}" th:object="${ruletaService}" method="post">
-				    <div class="form-group">
-					    <label for="apuesta">Apuesta</label>
-					    <input type="text" class="form-control" th:field="*{apuesta}" id="apuesta" placeholder="Apuesta">
-					    <span th:if="${#fields.hasErrors('apuesta')}" th:errors="*{apuesta}"></span>
-				    </div>
-    				<input type="submit" class="btn btn-primary" value="Actualiza Apuesta">
-				</form>
-				
+			</br>
+
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header">Esperanza de ruleta</div>
+						<div class="card-body">
+							<div class="row">
+							<div class="col-md-3">
+								<form action="#" th:action="@{/apuesta}"
+									th:object="${ruletaService}" method="post">
+									<div class="form-group col-3">
+										<label for="apuesta">Apuesta</label> <input type="text"
+											class="form-control" th:field="*{apuesta}" id="apuesta"
+											placeholder="Apuesta"> <span
+											th:if="${#fields.hasErrors('apuesta')}"
+											th:errors="*{apuesta}"></span>
+									</div>
+									<input type="submit" class="btn btn-primary"
+										value="Actualiza Apuesta">
+								</form>
+							</div>
+								<div class="col-md-4">
+									<table>
+										<tbody>
+											<tr>
+												<th>Esperanza Pleno:</th>
+												<td><a th:text="${ruletaService.esperanzaPleno}"></a></td>
+											</tr>
+											<tr>
+												<th>Esperanza Caballo:</th>
+												<td><a th:text="${ruletaService.esperanzaCaballo}"></a></td>
+											</tr>
+											<tr>
+												<th>Esperanza Transversal:</th>
+												<td><a th:text="${ruletaService.esperanzaTransversal}"></a></td>
+											</tr>
+											<tr>
+												<th>Esperanza Fila Doble:</th>
+												<td><a th:text="${ruletaService.esperanzaFilaDoble}"></a></td>
+											</tr>
+											<tr>
+												<th>Esperanza Cuadro:</th>
+												<td><a th:text="${ruletaService.esperanzaCuadro}"></a></td>
+											</tr>
+											<tr>
+												<th>Esperanza Docenas:</th>
+												<td><a th:text="${ruletaService.esperanzaDocenas}"></a></td>
+											</tr>
+											<tr>
+												<th>Esperanza Columnas:</th>
+												<td><a th:text="${ruletaService.esperanzaColumnas}"></a></td>
+											</tr>
+											<tr>
+												<th>Esperanza Color:</th>
+												<td><a th:text="${ruletaService.esperanzaColor}"></a></td>
+											</tr>
+											<tr>
+												<th>Esperanza Par/Impar:</th>
+												<td><a th:text="${ruletaService.esperanzaParImpar}"></a></td>
+											</tr>
+											<tr>
+												<th>Esperanza Pasa/Falta:</th>
+												<td><a th:text="${ruletaService.esperanzaPasaFalta}"></a></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				</br>
+	<div class="col-md-12">
+		<div class="card">
+			<div class="card-header">Datos generales de Ruletas</div>
+			<div class="card-body">
 				<table class="table table-borderless table-hover table-responsive">
 					<thead>
 						<tr>
@@ -31,12 +93,6 @@
 							<th class="col-xs-1">Probabilidad de transversal</th>
 							<th class="col-xs-1">Probabilidad de fila doble</th>
 							<th class="col-xs-1">Probabilidad de cuadro</th>
-							<th class="col-xs-1">Probabilidad de docenas</th>
-							<th class="col-xs-1">Probabilidad de columnas</th>
-							<th class="col-xs-1">Probabilidad de color</th>
-							<th class="col-xs-1">Probabilidad de par o impar</th>
-							<th class="col-xs-1">Probabilidad de bajos</th>
-							<th class="col-xs-1">Probabilidad de altos</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -46,49 +102,33 @@
 							<td class="col-xs-1"><a th:text="${ruletaService.probabilidadTransversal}"></a></td>
 							<td class="col-xs-1"><a th:text="${ruletaService.probabilidadFilaDoble}"></a></td>
 							<td class="col-xs-1"><a th:text="${ruletaService.probabilidadCuadro}"></a></td>
+						</tr>
+						<tr>
+							<th class="col-xs-1">Probabilidad de docenas</th>
+							<th class="col-xs-1">Probabilidad de columnas</th>
+							<th class="col-xs-1">Probabilidad de color</th>
+							<th class="col-xs-1">Probabilidad de par o impar</th>
+							<th class="col-xs-1">Probabilidad de Pasa o Falta</th>
+						</tr>
+						<tr>
 							<td class="col-xs-1"><a th:text="${ruletaService.probabilidadDocenas}"></a></td>
 							<td class="col-xs-1"><a th:text="${ruletaService.probabilidadColumnas}"></a></td>
 							<td class="col-xs-1"><a th:text="${ruletaService.probabilidadColor}"></a></td>
 							<td class="col-xs-1"><a th:text="${ruletaService.probabilidadParImpar}"></a></td>
-							<td class="col-xs-1"><a th:text="${ruletaService.probabilidad1_18}"></a></td>
-							<td class="col-xs-1"><a th:text="${ruletaService.probabilidad19_36}"></a></td>
-						</tr>
-						<tr>
-							<th class="col-xs-1">Esperanza de pleno</th>
-							<th class="col-xs-1">Esperanza de caballo</th>
-							<th class="col-xs-1">Esperanza de transversal</th>
-							<th class="col-xs-1">Esperanza de fila doble</th>
-							<th class="col-xs-1">Esperanza de cuadro</th>
-							<th class="col-xs-1">Esperanza de docenas</th>
-							<th class="col-xs-1">Esperanza de columnas</th>
-							<th class="col-xs-1">Esperanza de color</th>
-							<th class="col-xs-1">Esperanza de par o impar</th>
-							<th class="col-xs-1">Esperanza de bajos</th>
-							<th class="col-xs-1">Esperanza de altos</th>
-						</tr>
-						<tr>
-							<td class="col-xs-1"><a th:text="${ruletaService.esperanzaPleno}"></a></td>
-							<td class="col-xs-1"><a th:text="${ruletaService.esperanzaCaballo}"></a></td>
-							<td class="col-xs-1"><a th:text="${ruletaService.esperanzaTransversal}"></a></td>
-							<td class="col-xs-1"><a th:text="${ruletaService.esperanzaFilaDoble}"></a></td>
-							<td class="col-xs-1"><a th:text="${ruletaService.esperanzaCuadro}"></a></td>
-							<td class="col-xs-1"><a th:text="${ruletaService.esperanzaDocenas}"></a></td>
-							<td class="col-xs-1"><a th:text="${ruletaService.esperanzaColumnas}"></a></td>
-							<td class="col-xs-1"><a th:text="${ruletaService.esperanzaColor}"></a></td>
-							<td class="col-xs-1"><a th:text="${ruletaService.esperanzaParImpar}"></a></td>
-							<td class="col-xs-1"><a th:text="${ruletaService.esperanza1_18}"></a></td>
-							<td class="col-xs-1"><a th:text="${ruletaService.esperanza19_36}"></a></td>
+							<td class="col-xs-1"><a th:text="${ruletaService.probabilidadPasaFalta}"></a></td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
 		</div>
 	</div>
+	</br>
 		<!-- detalles -->
-<div class="card">
-		<div class="card-header">Estadísticas de Ruleta</div>
-		<div class="card-body">
-			<div class="container accordion">
+		</br>
+	<div class="col-md-12">
+		<div class="card">
+			<div class="card-header">Ruleta Estadísticas</div>
+			<div class="card-body">
 				<table class="table table-hover">
 					<thead>
 						<tr>
@@ -102,12 +142,12 @@
 					</thead>
 					<tbody>
 					<th:block th:each="estadisticas, ruletaServiceStat : ${ruletaService.promedioNumero}">
-					<span th:if="${ruletaServiceStat.index+13 &lt; 36}">
+					<span th:if="${ruletaServiceStat.index+13 &lt; 31}">
 					<tr>
 						<b><td th:text="${ruletaServiceStat.index+1}"></td></b>
 						<td th:text="${ruletaService.promedioNumero[ruletaServiceStat.index]}"></td>
 						<td th:text="${ruletaService.aparicionesNumero[ruletaServiceStat.index]}"></td>
-						<b><td th:text="${ruletaServiceStat.index+13}"></td></b>
+						<b><td th:text="${ruletaServiceStat.index+19}"></td></b>
 						<td th:text="${ruletaService.promedioNumero[ruletaServiceStat.index+12]}"></td>
 						<td th:text="${ruletaService.aparicionesNumero[ruletaServiceStat.index+12]}"></td>
 					</tr>
@@ -115,10 +155,11 @@
 					</th:block>
 					</tbody>
 				</table>
-			</div>
+				</div>
 		</div>
 	</div>
-		</div>
+	</br>
+		<div class="col-md-5 offset-md-7">
 		<p>
 			<a type="button" class="btn btn-primary" href="/ruletas">Mostrar editar Ruletas</a>
 			<a type="button" class="btn btn-primary" href="/index">Volver al indice</a>

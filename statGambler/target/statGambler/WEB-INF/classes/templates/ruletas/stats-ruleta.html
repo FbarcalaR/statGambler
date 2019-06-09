@@ -1,0 +1,169 @@
+<head th:include="fragments/header :: headerFragment">
+    <title id="pageTitle">statGAmbler-Home</title>
+</head>
+
+<body>
+<div th:replace="fragments/header :: header">&nbsp;</div>
+<div>
+	<div th:switch="${ruletas}">
+		<h2 th:case="null">No stats yet!</h2>
+		<div th:case="*">
+			<!-- cabecera -->
+			</br>
+
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header">Esperanza de ruleta</div>
+						<div class="card-body">
+							<div class="row">
+							<div class="col-md-3">
+								<form action="#" th:action="@{/apuesta}"
+									th:object="${ruletaService}" method="post">
+									<div class="form-group col-3">
+										<label for="apuesta">Apuesta</label> <input type="text"
+											class="form-control" th:field="*{apuesta}" id="apuesta"
+											placeholder="Apuesta"> <span
+											th:if="${#fields.hasErrors('apuesta')}"
+											th:errors="*{apuesta}"></span>
+									</div>
+									<input type="submit" class="btn btn-primary"
+										value="Actualiza Apuesta">
+								</form>
+							</div>
+								<div class="col-md-4">
+									<table>
+										<tbody>
+											<tr>
+												<th>Esperanza Pleno:</th>
+												<td><a th:text="${ruletaService.esperanzaPleno}"></a></td>
+											</tr>
+											<tr>
+												<th>Esperanza Caballo:</th>
+												<td><a th:text="${ruletaService.esperanzaCaballo}"></a></td>
+											</tr>
+											<tr>
+												<th>Esperanza Transversal:</th>
+												<td><a th:text="${ruletaService.esperanzaTransversal}"></a></td>
+											</tr>
+											<tr>
+												<th>Esperanza Fila Doble:</th>
+												<td><a th:text="${ruletaService.esperanzaFilaDoble}"></a></td>
+											</tr>
+											<tr>
+												<th>Esperanza Cuadro:</th>
+												<td><a th:text="${ruletaService.esperanzaCuadro}"></a></td>
+											</tr>
+											<tr>
+												<th>Esperanza Docenas:</th>
+												<td><a th:text="${ruletaService.esperanzaDocenas}"></a></td>
+											</tr>
+											<tr>
+												<th>Esperanza Columnas:</th>
+												<td><a th:text="${ruletaService.esperanzaColumnas}"></a></td>
+											</tr>
+											<tr>
+												<th>Esperanza Color:</th>
+												<td><a th:text="${ruletaService.esperanzaColor}"></a></td>
+											</tr>
+											<tr>
+												<th>Esperanza Par/Impar:</th>
+												<td><a th:text="${ruletaService.esperanzaParImpar}"></a></td>
+											</tr>
+											<tr>
+												<th>Esperanza Pasa/Falta:</th>
+												<td><a th:text="${ruletaService.esperanzaPasaFalta}"></a></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				</br>
+	<div class="col-md-12">
+		<div class="card">
+			<div class="card-header">Datos generales de Ruletas</div>
+			<div class="card-body">
+				<table class="table table-borderless table-hover table-responsive">
+					<thead>
+						<tr>
+							<th class="w-25">Probabilidad de pleno</th>
+							<th class="col-xs-1">Probabilidad de caballo</th>
+							<th class="col-xs-1">Probabilidad de transversal</th>
+							<th class="col-xs-1">Probabilidad de fila doble</th>
+							<th class="col-xs-1">Probabilidad de cuadro</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="col-xs-1"><a th:text="${ruletaService.probabilidadPleno}"></a></td>
+							<td class="col-xs-1"><a th:text="${ruletaService.probabilidadCaballo}"></a></td>
+							<td class="col-xs-1"><a th:text="${ruletaService.probabilidadTransversal}"></a></td>
+							<td class="col-xs-1"><a th:text="${ruletaService.probabilidadFilaDoble}"></a></td>
+							<td class="col-xs-1"><a th:text="${ruletaService.probabilidadCuadro}"></a></td>
+						</tr>
+						<tr>
+							<th class="col-xs-1">Probabilidad de docenas</th>
+							<th class="col-xs-1">Probabilidad de columnas</th>
+							<th class="col-xs-1">Probabilidad de color</th>
+							<th class="col-xs-1">Probabilidad de par o impar</th>
+							<th class="col-xs-1">Probabilidad de Pasa o Falta</th>
+						</tr>
+						<tr>
+							<td class="col-xs-1"><a th:text="${ruletaService.probabilidadDocenas}"></a></td>
+							<td class="col-xs-1"><a th:text="${ruletaService.probabilidadColumnas}"></a></td>
+							<td class="col-xs-1"><a th:text="${ruletaService.probabilidadColor}"></a></td>
+							<td class="col-xs-1"><a th:text="${ruletaService.probabilidadParImpar}"></a></td>
+							<td class="col-xs-1"><a th:text="${ruletaService.probabilidadPasaFalta}"></a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	</br>
+		<!-- detalles -->
+		</br>
+	<div class="col-md-12">
+		<div class="card">
+			<div class="card-header">Ruleta Estadísticas</div>
+			<div class="card-body">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>Numero</th>
+							<th>Promedio numero</th>
+							<th>Apariciones numero</th>
+							<th>Numero</th>
+							<th>Promedio numero</th>
+							<th>Apariciones numero</th>
+						</tr>
+					</thead>
+					<tbody>
+					<th:block th:each="estadisticas, ruletaServiceStat : ${ruletaService.promedioNumero}">
+					<span th:if="${ruletaServiceStat.index+13 &lt; 31}">
+					<tr>
+						<b><td th:text="${ruletaServiceStat.index+1}"></td></b>
+						<td th:text="${ruletaService.promedioNumero[ruletaServiceStat.index]}"></td>
+						<td th:text="${ruletaService.aparicionesNumero[ruletaServiceStat.index]}"></td>
+						<b><td th:text="${ruletaServiceStat.index+19}"></td></b>
+						<td th:text="${ruletaService.promedioNumero[ruletaServiceStat.index+12]}"></td>
+						<td th:text="${ruletaService.aparicionesNumero[ruletaServiceStat.index+12]}"></td>
+					</tr>
+					</span>
+					</th:block>
+					</tbody>
+				</table>
+				</div>
+		</div>
+	</div>
+	</br>
+		<div class="col-md-5 offset-md-7">
+		<p>
+			<a type="button" class="btn btn-primary" href="/ruletas">Mostrar editar Ruletas</a>
+			<a type="button" class="btn btn-primary" href="/index">Volver al indice</a>
+		</p>
+	</div>
+</div>
+</body>

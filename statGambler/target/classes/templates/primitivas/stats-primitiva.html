@@ -7,24 +7,23 @@
 		<h2 th:case="null">No stats yet!</h2>
 		<div th:case="*">
 <!-- cabecera -->
-	<div class="card">
-		<div class="card-header">Datos generales de Primitivas</div>
-		<div class="card-body">
-			<div class="container">
-				<table class="table table-borderless table-hover">
+</br>
+	<div class="col-md-12">
+		<div class="card">
+			<div class="card-header">Datos generales de Primitivas</div>
+			<div class="card-body">
+			<table class="table table-borderless table-hover">
 					<thead>
 						<tr>
 							<th>Media de Resultados</th>
 							<th>Media de reintegros</th>
-							<th>Bote</th>
-							<th>Esperanza</th>
+							<th>Esperanza Media</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
 							<td data-title="Media de Resultados"><a	th:text="${primitivaService.mediaResultados}"></a></td>
 							<td data-title="Media de reintegros"><a	th:text="${primitivaService.mediaComplementos}"></a></td>
-							<td data-title="Bote"><a th:text="${primitivaService.bote}"></a></td>
 							<td data-title="Esperanza"><a th:text="${primitivaService.esperanza}"></a></td>
 						</tr>
 						<tr>
@@ -43,16 +42,18 @@
 						</tr>
 					</tbody>
 				</table>
-			</div>
+				</div>
 		</div>
 	</div>
+	</br>
 	
 <!-- detalles -->
-<div class="card">
-		<div class="card-header">Estadísticas de Primitivas</div>
-		<div class="card-body">
-			<div class="container accordion">
-				<table class="table table-hover">
+</br>
+	<div class="col-md-12">
+		<div class="card">
+			<div class="card-header">Estadísticas de Primitivas</div>
+			<div class="card-body">
+			<table class="table table-hover">
 					<thead>
 						<tr>
 							<th>numero</th>
@@ -78,15 +79,46 @@
 					</th:block>
 					</tbody>
 				</table>
+				</div>
+		</div>
+	</div>
+	
+	</br>
+	<div class="col-md-12">
+		<div class="card">
+			<div class="card-header">Estisticas Reintegro</div>
+			<div class="card-body">
+			<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>Reintegro</th>
+							<th>Promedio numeros</th>
+							<th>Apariciones numeros</th>
+						</tr>
+					</thead>
+					<tbody>
+					<th:block th:each="estadisticas, primitivaServiceStat : ${primitivaService.promedioReintegro}">
+					<tr>
+						<b><td th:text="${primitivaServiceStat.index}"></td></b>
+						<td th:text="${primitivaService.promedioReintegro[primitivaServiceStat.index]}"></td>
+						<td th:text="${primitivaService.aparicionesReintegro[primitivaServiceStat.index]}"></td>
+					</tr>
+					</span>
+					</th:block>
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</div>
-	</div>
-		
-	</div>
 </div>
+		
+</div>
+</div>
+</br>
+<div class="col-md-5 offset-md-7">
 	<p>
 		<a type="button" class="btn btn-primary" href="/primitivas">Mostrar editar Primitivas</a>
 		<a type="button" class="btn btn-primary" href="/index">Volver al indice</a>
 	</p>
+	</div>
 </body>

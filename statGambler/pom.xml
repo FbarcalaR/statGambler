@@ -6,7 +6,7 @@
 	<groupId>com.statGambler</groupId>
 	<artifactId>statGambler</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -16,6 +16,20 @@
 
 	<name>das-boot</name>
 	<url>http://maven.apache.org</url>
+
+	<build>
+		<finalName>${project.artifactId}</finalName>
+		
+		<plugins>
+        <plugin>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <configuration>
+                <fork>true</fork>
+                <executable>"C:/Program Files (x86)/Java/jdk1.8.0_101/bin/javac.exe"</executable>
+            </configuration>
+        </plugin>
+    </plugins>
+	</build>
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -40,8 +54,8 @@
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 		<dependency>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-thymeleaf</artifactId>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.flywaydb</groupId>
@@ -51,6 +65,12 @@
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+<!-- 			<scope>provided</scope> -->
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>

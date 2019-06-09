@@ -30,7 +30,6 @@ public class EuromillonesService {
 	public double[] promedioEstrella;
 	public int aparicionesNumero[];
 	public int aparicionesEstrella[];
-	public double bote;
 	public double esperanza;
 	public double mediaResultados;
 	public double mediaComplementos;
@@ -58,8 +57,8 @@ public class EuromillonesService {
 	public double calcularPromedioNumero() {
 		int totalEstrella = (int) (euromillonesRepository.count());
 		int totalNumeros = totalEstrella * 6;
-		promedioNumero = new double[49];
-		promedioEstrella = new double[10];
+		promedioNumero = new double[50];
+		promedioEstrella = new double[12];
 
 		for (int i = 0; i < aparicionesNumero.length; i++) {
 			promedioNumero[i] = ((double) aparicionesNumero[i] / (double) totalNumeros) * 100;
@@ -73,8 +72,8 @@ public class EuromillonesService {
 
 	
 	public double calcularApariciones() {
-		aparicionesNumero = new int[49];
-		aparicionesEstrella = new int[10];
+		aparicionesNumero = new int[50];
+		aparicionesEstrella = new int[12];
 
 		for (Euromillones p : euromillonesRepository.findAll()) {
 			aparicionesNumero[p.getResultado0() - 1]++;
@@ -88,15 +87,19 @@ public class EuromillonesService {
 		return aparicionesNumero[0];
 	}
 
-	
-	public double setBote(double bote) {
-		this.bote = bote;
-		return bote;
-	}
 
 	
 	public double calcularEsperanza() {
-		return probabilidad5y2 * bote;
+//		double probabilidadPerder = 1 - probabilidad5y2 - probabilidad5y1 - probabilidad5 - probabilidad4y2
+//				- probabilidad4y1 - probabilidad3y2 - probabilidad4 - probabilidad2y2 - probabilidad3y1 - probabilidad3
+//				- probabilidad1y2 - probabilidad2y1 - probabilidad2;
+//		esperanza = probabilidad5y2 * 49882300.07 + probabilidad5y1 * 443320.35 + probabilidad5 * 75703.23
+//				+ probabilidad4y2 * 4322.36 + probabilidad4y1 * 198.61 + probabilidad3y2 * 79.39 + probabilidad4 * 89.87
+//				+ probabilidad2y2 * 20.03 + probabilidad3y1 * 14.67 + probabilidad3 * 12.20 + probabilidad1y2 * 10.72
+//				+ probabilidad2y1 * 8.08 + probabilidad2 * 4.16;
+		
+		esperanza=0.5;
+		return esperanza;
 	}
 
 	
@@ -135,7 +138,6 @@ public class EuromillonesService {
 		calcularProbabilidadesVictoria();
 		calcularApariciones();
 		calcularPromedioNumero();
-		setBote(bote);
 		calcularEsperanza();
 		calcularMediaResultados();
 		calcularMediaComplementos();

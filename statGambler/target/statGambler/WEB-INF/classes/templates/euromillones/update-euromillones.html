@@ -1,0 +1,45 @@
+<head th:include="fragments/header :: headerFragment">
+    <title id="pageTitle">statGAmbler-Home</title>
+</head>
+
+<body>
+<div th:replace="fragments/header :: header">&nbsp;</div>
+<form action="#" th:action="@{/updateeuromillones/{id}(id=${euromillones.id})}" th:object="${euromillones}" method="post">
+	<div class="form-group">
+    <label for="resultado0">Resultado 0</label>
+    <input type="text" class="form-control" th:field="*{resultado0}" id="resultado0" placeholder="Resultado0">
+    <span th:if="${#fields.hasErrors('resultado0')}" th:errors="*{resultado0}"></span>
+    </div>
+    <div class="form-group">
+    <label for="resultado1">Resultado 1</label>
+    <input type="text" class="form-control" th:field="*{resultado1}" id="resultado1" placeholder="Resultado1">
+    <span th:if="${#fields.hasErrors('resultado1')}" th:errors="*{resultado1}"></span>
+    </div>
+    <div class="form-group">
+    <label for="resultado2">Resultado 2</label>
+    <input type="text" class="form-control" th:field="*{resultado2}" id="resultado2" placeholder="Resultado2">
+    <span th:if="${#fields.hasErrors('resultado2')}" th:errors="*{resultado2}"></span>
+    </div>
+    <div class="form-group">
+    <label for="resultado3">Resultado 3</label>
+    <input type="text" class="form-control" th:field="*{resultado3}" id="resultado3" placeholder="Resultado3">
+    <span th:if="${#fields.hasErrors('resultado3')}" th:errors="*{resultado3}"></span>
+    </div>
+    <div class="form-group">
+    <label for="resultado4">Resultado 4</label>
+    <input type="text" class="form-control" th:field="*{resultado4}" id="resultado4" placeholder="Resultado4">
+    <span th:if="${#fields.hasErrors('resultado4')}" th:errors="*{resultado4}"></span>
+    </div>
+    <div class="form-group">
+    <label for="estrella0">Estrella 0</label>
+    <input type="text" class="form-control" th:field="*{estrella0}" id="estrella0" placeholder="Estrella0">
+    <span th:if="${#fields.hasErrors('estrella0')}" th:errors="*{estrella0}"></span>
+    </div>
+    <div class="form-group">
+    <label for="estrella1">Estrella 1</label>
+    <input type="text" class="form-control" th:field="*{estrella1}" id="estrella1" placeholder="Estrella1">
+    <span th:if="${#fields.hasErrors('estrella1')}" th:errors="*{estrella1}"></span>
+    </div>
+    <input type="submit" class="btn btn-primary" value="Add Euromillones">
+</form>
+</body>

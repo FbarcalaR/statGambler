@@ -9,16 +9,16 @@
 		<h2 th:case="null">No stats yet!</h2>
 		<div th:case="*">
 		<!-- cabecera -->
-	<div class="card">
-		<div class="card-header">Datos generales de Euromillones</div>
-		<div class="card-body">
-			<div class="container">
-				<table class="table table-borderless table-hover">
+		</br>
+	<div class="col-md-12">
+		<div class="card">
+			<div class="card-header">Datos generales de Euromillones</div>
+			<div class="card-body">
+			<table class="table table-borderless table-hover">
 					<thead>
 						<tr>
 							<th>Media de Resultados</th>
 							<th>Media de Estrellas</th>
-							<th>Bote</th>
 							<th>Esperanza</th>
 						</tr>
 					</thead>
@@ -26,7 +26,6 @@
 						<tr>
 							<td data-title="Media de Resultados"><a	th:text="${euromillonesService.mediaResultados}"></a></td>
 							<td data-title="Media de Estrellas"><a	th:text="${euromillonesService.mediaComplementos}"></a></td>
-							<td data-title="Bote"><a th:text="${euromillonesService.bote}"></a></td>
 							<td data-title="Esperanza"><a th:text="${euromillonesService.esperanza}"></a></td>
 						</tr>
 						<tr>
@@ -36,6 +35,7 @@
 							<th>probabilidad4y2</th>
 							<th>probabilidad4y1</th>
 							<th>probabilidad4</th>
+							<th>probabilidad3y2</th>
 						</tr>
 						<tr>
 							<td data-title="probabilidad6"><a th:text="${euromillonesService.probabilidad5y2}"></a></td>
@@ -44,35 +44,37 @@
 							<td data-title="probabilidad4"><a th:text="${euromillonesService.probabilidad4y2}"></a></td>
 							<td data-title="probabilidad3"><a th:text="${euromillonesService.probabilidad4y1}"></a></td>
 							<td data-title="probabilidad3"><a th:text="${euromillonesService.probabilidad4}"></a></td>
+							<td data-title="probabilidad3"><a th:text="${euromillonesService.probabilidad3y2}"></a></td>
 						</tr>
 						<tr>
-							<th>probabilidad3y2</th>
 							<th>probabilidad3y1</th>
 							<th>probabilidad3</th>
 							<th>probabilidad2y2</th>
 							<th>probabilidad2y1</th>
 							<th>probabilidad2</th>
+							<th>Esperanza media</th>
 						</tr>
 						<tr>
-							<td data-title="probabilidad3"><a th:text="${euromillonesService.probabilidad3y2}"></a></td>
+							
 							<td data-title="probabilidad3"><a th:text="${euromillonesService.probabilidad3y1}"></a></td>
 							<td data-title="probabilidad3"><a th:text="${euromillonesService.probabilidad3}"></a></td>
 							<td data-title="probabilidad3"><a th:text="${euromillonesService.probabilidad2y2}"></a></td>
 							<td data-title="probabilidad3"><a th:text="${euromillonesService.probabilidad2y1}"></a></td>
 							<td data-title="probabilidad3"><a th:text="${euromillonesService.probabilidad2}"></a></td>
+							<td data-title="esperanza"><a th:text="${euromillonesService.esperanza}"></a></td>
 						</tr>
 					</tbody>
 				</table>
-			</div>
+				</div>
 		</div>
-	</div>
-	
+	</div>	
 	<!-- detalles -->
-<div class="card">
-		<div class="card-header">Estadísticas de Euromillones</div>
-		<div class="card-body">
-			<div class="container accordion">
-				<table class="table table-hover">
+	</br>
+	<div class="col-md-12">
+		<div class="card">
+			<div class="card-header">Estadísticas de Euromillones</div>
+			<div class="card-body">
+			<table class="table table-hover">
 					<thead>
 						<tr>
 							<th>numero</th>
@@ -101,11 +103,43 @@
 			</div>
 		</div>
 	</div>
+	
+	</br>
+	<div class="col-md-12">
+		<div class="card">
+			<div class="card-header">Estadísticas de estrellas</div>
+			<div class="card-body">
+			<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>numero</th>
+							<th>Promedio numeros</th>
+							<th>Apariciones numeros</th>
+						</tr>
+					</thead>
+					<tbody>
+					<th:block th:each="estadisticas, euromillonesServiceStat : ${euromillonesService.promedioEstrella}">
+					<span th:if="${euromillonesServiceStat.index+25 &lt; 51}">
+					<tr>
+						<b><td th:text="${euromillonesServiceStat.index+1}"></td></b>
+						<td th:text="${euromillonesService.promedioEstrella[euromillonesServiceStat.index]}"></td>
+						<td th:text="${euromillonesService.aparicionesEstrella[euromillonesServiceStat.index]}"></td>
+					</tr>
+					</span>
+					</th:block>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>	
 </div>
+</br>
+<div class="col-md-5 offset-md-7">
 		<p>
-			<a type="button" class="btn btn-primary" href="/euromillones">Mostrar editar Euromilloness</a>
+			<a type="button" class="btn btn-primary" href="/euromillones">Mostrar editar Euromillones</a>
 			<a type="button" class="btn btn-primary" href="/index">volver al indice</a>
 		</p>
+		</div>
 	</div>
 </div>
 </body>

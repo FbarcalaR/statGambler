@@ -21,12 +21,12 @@ public class PrimitivaService {
 	public double probabilidad5;
 	public double probabilidad4;
 	public double probabilidad3;
+	public double probabilidad2;
 	public double probabilidadR;
 	public double[] promedioNumero;
 	public double promedioReintegro[];
 	public int aparicionesNumero[];
 	public int aparicionesReintegro[];
-	public double bote;
 	public double esperanza;
 	public double mediaResultados;
 	public double mediaComplementos;
@@ -39,7 +39,8 @@ public class PrimitivaService {
 		probabilidad5yC=Math.CInt(6, 5)*Math.CInt(1, 1)/espacioMuestral;
 		probabilidad5=Math.CInt(6,5)*Math.CInt(42,1)/espacioMuestral;
 		probabilidad4=Math.CInt(6,4)*Math.CInt(43,2)/espacioMuestral;
-		probabilidad3=Math.CInt(6,3)*Math.CInt(9,1)/espacioMuestral;
+		probabilidad3=Math.CInt(6,3)*Math.CInt(44,3)*Math.CInt(9,1)/espacioMuestral;
+		probabilidad2=Math.CInt(6,2)*Math.CInt(45,4)*Math.CInt(9,1)/espacioMuestral;
 		probabilidadR=1/10;
 		return probabilidad6;
 	}
@@ -74,20 +75,21 @@ public class PrimitivaService {
 			aparicionesNumero[p.getResultado3()-1]++;
 			aparicionesNumero[p.getResultado4()-1]++;
 			aparicionesNumero[p.getResultado5()-1]++;
-			aparicionesReintegro[p.getReintegro()-1]++;
+			aparicionesReintegro[p.getReintegro()]++;
 		}
 		return aparicionesNumero[0];
 	}
 
 	
-	public double setBote(double bote) {
-		this.bote=bote;
-		return bote;
-	}
-
-	
 	public double calcularEsperanza() {
-		return probabilidad6*bote;
+//		double probabilidadPerder = 1 - probabilidad6 - probabilidad5yC - probabilidad5 - probabilidad4 - probabilidad3
+//				- probabilidad2 - probabilidadR;
+//
+//		esperanza = probabilidad6 * 16368540.07 + probabilidad5yC * 1312914.45 + probabilidad5 * 63534.07
+//				+ probabilidad4 * 2543.36 + probabilidad3 * 71.49 + probabilidad2 * 8 + probabilidadR * 1;
+		
+		esperanza=0.55;
+		return esperanza;
 	}
 
 	
@@ -126,7 +128,6 @@ public class PrimitivaService {
 		calcularProbabilidadesVictoria();
 		calcularApariciones();
 		calcularPromedioNumero();
-		setBote(bote);			
 		calcularEsperanza();
 		calcularMediaResultados();		
 		calcularMediaComplementos();
