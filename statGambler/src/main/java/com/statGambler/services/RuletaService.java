@@ -5,6 +5,7 @@ import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.statGambler.Math.Math;
 import com.statGambler.model.Euromillones;
 import com.statGambler.model.Ruleta;
 import com.statGambler.repository.RuletaRepository;
@@ -44,16 +45,16 @@ public class RuletaService{
 
 	
 	public double calcularProbabilidadesVictoria() {
-		probabilidadPleno=1.0/37.0;
-		probabilidadCaballo=2.0/37.0;
-		probabilidadTransversal=3.0/37.0;
-		probabilidadFilaDoble=6.0/37.0;
-		probabilidadCuadro=4.0/37.0;
-		probabilidadDocenas=12.0/37.0;
-		probabilidadColumnas=12.0/37.0;
-		probabilidadColor=18.0/37.0;
-		probabilidadParImpar=18.0/37.0;
-		probabilidadPasaFalta=18.0/37.0;
+		probabilidadPleno=Math.redondeo(1.0/37.0);
+		probabilidadCaballo=Math.redondeo(2.0/37.0);
+		probabilidadTransversal=Math.redondeo(3.0/37.0);
+		probabilidadFilaDoble=Math.redondeo(6.0/37.0);
+		probabilidadCuadro=Math.redondeo(4.0/37.0);
+		probabilidadDocenas=Math.redondeo(12.0/37.0);
+		probabilidadColumnas=Math.redondeo(12.0/37.0);
+		probabilidadColor=Math.redondeo(18.0/37.0);
+		probabilidadParImpar=Math.redondeo(18.0/37.0);
+		probabilidadPasaFalta=Math.redondeo(18.0/37.0);
 		return probabilidadPleno;
 	}
 
@@ -63,7 +64,7 @@ public class RuletaService{
 		promedioNumero = new double[36];
 
 		for (int i = 0; i < promedioNumero.length; i++) {
-			promedioNumero[i] = ((double) aparicionesNumero[i] / (double) totalJugadas) * 100;
+			promedioNumero[i] = Math.redondeo(((double) aparicionesNumero[i] / (double) totalJugadas) * 100);
 		}
 		return promedioNumero[0];
 	}
@@ -79,16 +80,16 @@ public class RuletaService{
 	}
 	
 	public double calcularEsperanza() {
-		esperanzaPleno=probabilidadPleno*apuesta*35+(1-probabilidadPleno)*(-apuesta);
-		esperanzaCaballo=probabilidadCaballo*apuesta*17+(1-probabilidadCaballo)*(-apuesta);
-		esperanzaTransversal=probabilidadTransversal*apuesta*11+(1-probabilidadTransversal)*(-apuesta);
-		esperanzaFilaDoble=probabilidadFilaDoble*apuesta*5+(1-probabilidadFilaDoble)*(-apuesta);
-		esperanzaCuadro=probabilidadCuadro*apuesta*8+(1-probabilidadCuadro)*(-apuesta);
-		esperanzaDocenas=probabilidadDocenas*apuesta*2+(1-probabilidadDocenas)*(-apuesta);
-		esperanzaColumnas=probabilidadColumnas*apuesta*2+(1-probabilidadColumnas)*(-apuesta);
-		esperanzaColor=probabilidadColor*apuesta*1-(18.0/37.0)*apuesta-(1.0/37.0*0.5)*apuesta;
-		esperanzaParImpar=probabilidadParImpar*apuesta*1-(18.0/37.0)*apuesta-(1.0/37.0*0.5)*apuesta;
-		esperanzaPasaFalta=probabilidadPasaFalta*apuesta*1-(18.0/37.0)*apuesta-(1.0/37.0*0.5)*apuesta;
+		esperanzaPleno=Math.redondeo(probabilidadPleno*apuesta*35+(1-probabilidadPleno)*(-apuesta));
+		esperanzaCaballo=Math.redondeo(probabilidadCaballo*apuesta*17+(1-probabilidadCaballo)*(-apuesta));
+		esperanzaTransversal=Math.redondeo(probabilidadTransversal*apuesta*11+(1-probabilidadTransversal)*(-apuesta));
+		esperanzaFilaDoble=Math.redondeo(probabilidadFilaDoble*apuesta*5+(1-probabilidadFilaDoble)*(-apuesta));
+		esperanzaCuadro=Math.redondeo(probabilidadCuadro*apuesta*8+(1-probabilidadCuadro)*(-apuesta));
+		esperanzaDocenas=Math.redondeo(probabilidadDocenas*apuesta*2+(1-probabilidadDocenas)*(-apuesta));
+		esperanzaColumnas=Math.redondeo(probabilidadColumnas*apuesta*2+(1-probabilidadColumnas)*(-apuesta));
+		esperanzaColor=Math.redondeo(probabilidadColor*apuesta*1-(18.0/37.0)*apuesta-(1.0/37.0*0.5)*apuesta);
+		esperanzaParImpar=Math.redondeo(probabilidadParImpar*apuesta*1-(18.0/37.0)*apuesta-(1.0/37.0*0.5)*apuesta);
+		esperanzaPasaFalta=Math.redondeo(probabilidadPasaFalta*apuesta*1-(18.0/37.0)*apuesta-(1.0/37.0*0.5)*apuesta);
 		
 		return esperanzaPleno;
 	}

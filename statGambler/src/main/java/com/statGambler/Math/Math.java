@@ -24,5 +24,8 @@ public class Math {
 		public static int CInt(int n, int k) {
 			return CBig(n, k).intValue();
 		}
-	
+	public static double redondeo(double resul) {
+		//return resul;
+		return java.lang.Math.round((resul*10000000000d))/10000000000d;
+	}
 }

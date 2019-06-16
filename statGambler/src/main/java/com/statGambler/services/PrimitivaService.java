@@ -36,12 +36,12 @@ public class PrimitivaService {
 		double espacioMuestral=(double)Math.CInt(49,6)*Math.CInt(10,1);
 		
 		probabilidad6=1/espacioMuestral;
-		probabilidad5yC=Math.CInt(6, 5)*Math.CInt(1, 1)/espacioMuestral;
-		probabilidad5=Math.CInt(6,5)*Math.CInt(42,1)/espacioMuestral;
-		probabilidad4=Math.CInt(6,4)*Math.CInt(43,2)/espacioMuestral;
-		probabilidad3=Math.CInt(6,3)*Math.CInt(44,3)*Math.CInt(9,1)/espacioMuestral;
-		probabilidad2=Math.CInt(6,2)*Math.CInt(45,4)*Math.CInt(9,1)/espacioMuestral;
-		probabilidadR=1/10;
+		probabilidad5yC=Math.redondeo(Math.CInt(6, 5)*Math.CInt(1, 1)/espacioMuestral);
+		probabilidad5=Math.redondeo(Math.CInt(6,5)*Math.CInt(42,1)/espacioMuestral);
+		probabilidad4=Math.redondeo(Math.CInt(6,4)*Math.CInt(43,2)/espacioMuestral);
+		probabilidad3=Math.redondeo(Math.CInt(6,3)*Math.CInt(44,3)*Math.CInt(9,1)/espacioMuestral);
+		probabilidad2=Math.redondeo(Math.CInt(6,2)*Math.CInt(45,4)*Math.CInt(9,1)/espacioMuestral);
+		probabilidadR=Math.redondeo(1/10);
 		return probabilidad6;
 	}
 
@@ -54,10 +54,10 @@ public class PrimitivaService {
 		
 		
 		for(int i=0;i<aparicionesNumero.length;i++) {
-			promedioNumero[i]=((double)aparicionesNumero[i]/(double)totalNumeros)*100;
+			promedioNumero[i]=Math.redondeo(((double)aparicionesNumero[i]/(double)totalNumeros)*100);
 		}
 		for(int i=0;i<aparicionesReintegro.length;i++) {
-			promedioReintegro[i]=((double)aparicionesReintegro[i]/(double)totalReintegros)*100;
+			promedioReintegro[i]=Math.redondeo(((double)aparicionesReintegro[i]/(double)totalReintegros)*100);
 		}
 		
 		return promedioReintegro[0];
@@ -106,7 +106,7 @@ public class PrimitivaService {
 			mediaResultados+=p.getResultado5();
 			total=total+6;
 		}
-		mediaResultados=mediaResultados/total;
+		mediaResultados=Math.redondeo(mediaResultados/total);
 		return mediaResultados;
 	}
 
@@ -119,7 +119,7 @@ public class PrimitivaService {
 			mediaComplementos+=p.getReintegro();
 			total++;
 		}
-		mediaComplementos=mediaComplementos/total;
+		mediaComplementos=Math.redondeo(mediaComplementos/total);
 		return mediaComplementos;
 	}
 
