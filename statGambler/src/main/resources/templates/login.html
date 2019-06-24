@@ -1,9 +1,14 @@
-
 <head th:include="fragments/header :: headerFragment">
 <title id="pageTitle">Login statGambler</title>
 </head>
 
-<body style="background-color:gray;">
+<body style="background-color: gray;">
+<div th:if="${param.error}">
+            Invalid username and password.
+        </div>
+        <div th:if="${param.logout}">
+            You have been logged out.
+        </div>
 	</br>
 	</br>
 	</br>
@@ -29,10 +34,10 @@
 							</div>
 							</br>
 							<div class="row">
-								<label for="psswrd">Contrase&ntilde;a</label> <input type="text"
-									th:field="*{psswrd}" id="psswrd" class="password"
-									placeholder="Psswrd"> <span
-									th:if="${#fields.hasErrors('psswrd')}" th:errors="*{psswrd}"></span>
+								<label for="password">Contrase&ntilde;a</label> <input
+									type="password" th:field="*{password}" id="password"
+									class="password" placeholder="Password"> <span
+									th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
 							</div>
 							<div class="row">
 								<button class="btn btn-primary" type="submit" value="Login">Login</button>
@@ -49,3 +54,23 @@
 </body>
 
 </html>
+<!-- <!DOCTYPE html> -->
+<!-- <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" -->
+<!--       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3"> -->
+<!--     <head> -->
+<!--         <title>Spring Security Example </title> -->
+<!--     </head> -->
+<!--     <body> -->
+<!--         <div th:if="${param.error}"> -->
+<!--             Invalid username and password. -->
+<!--         </div> -->
+<!--         <div th:if="${param.logout}"> -->
+<!--             You have been logged out. -->
+<!--         </div> -->
+<!--         <form th:action="@{/login}" method="post"> -->
+<!--             <div><label> User Name : <input type="text" name="username"/> </label></div> -->
+<!--             <div><label> Password: <input type="password" name="password"/> </label></div> -->
+<!--             <div><input type="submit" value="Sign In"/></div> -->
+<!--         </form> -->
+<!--     </body> -->
+<!-- </html> -->

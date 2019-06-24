@@ -1,9 +1,13 @@
 package com.statGambler.model;
 
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Transient;
 
 
 @Entity
@@ -11,16 +15,20 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	public String username;
-	public String psswrd;
+	private String username;
+	private String password;
+	@Transient
+    private String passwordConfirm;
 
+    @ManyToMany
+    private Set<Role> roles;
 	
 	public User() { }
 
 	public User(Long id, String name, String pass) {
 		this.id = id;
 		this.username = name;
-		this.psswrd = pass;
+		this.password = pass;
 	}
 
 	public Long getId() {
@@ -38,19 +46,36 @@ public class User {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-
-	public String getPsswrd() {
-		return psswrd;
-	}
-
-	public void setPsswrd(String psswrd) {
-		this.psswrd = psswrd;
-	}
 	
+	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		User u=(User)obj;
-		return u.psswrd.equals(this.psswrd) && u.username.equals(this.username);
+		return u.password.equals(this.password) && u.username.equals(this.username);
+	}
+
+	public String getPasswordConfirm() {
+		return passwordConfirm;
+	}
+
+	public void setPasswordConfirm(String passwordConfirm) {
+		this.passwordConfirm = passwordConfirm;
+	}
+
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
 	}
 
 	

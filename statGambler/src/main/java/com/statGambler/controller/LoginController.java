@@ -17,7 +17,8 @@ import com.statGambler.repository.UserRepository;
 public class LoginController {
 	
 	@Autowired
-	UserRepository userRepository;
+	UserRepository userService;
+	
 	
 	@GetMapping("/index")
 	public String getIndex(User u) {
@@ -26,8 +27,7 @@ public class LoginController {
 	
 	@GetMapping("/")
 	public String getRoot(User u) {
-//        return "index";
-        return "login";
+        return "index";
     }
 	
 	@PostMapping("/index")
@@ -56,9 +56,9 @@ public class LoginController {
             return "login";
         }
          
-        userRepository.save(user);
-        model.addAttribute("users", userRepository.findAll());
-        return "login";
+        userService.save(user);
+        model.addAttribute("users", userService.findAll());
+        return "index";
     }
     
     @PostMapping("/login")
@@ -67,11 +67,6 @@ public class LoginController {
             return "login";
         }
     	
-    	for(User u: userRepository.findAll()) {
-			if(u.equals(user)) {
-				return "index";
-			}
-		}
-    	return "login";
+    	return "index";
     }
 }
