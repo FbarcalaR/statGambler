@@ -26,13 +26,12 @@ public class LoginController {
 	
 	@GetMapping("/index")
 	public String getIndex(User u) {
+		
         return "index";
     }
 	
 	@GetMapping("/")
 	public String getRoot(User u) {
-		
-			
         return "index";
     }
 	
@@ -48,6 +47,7 @@ public class LoginController {
 	
 	@GetMapping("/login")
 	public String getLoginForm(User u) {
+		
         return "login";
     }
 	
@@ -66,7 +66,6 @@ public class LoginController {
         if (result.hasErrors()) {
             return "new-user";
         }
-        
         userDetailsService.save(user);
         return "login";
     }
@@ -76,7 +75,7 @@ public class LoginController {
     	if (result.hasErrors()) {
             return "login";
         }
-    	
+    	System.out.println(user.toString());
     	return "index";
     }
 }

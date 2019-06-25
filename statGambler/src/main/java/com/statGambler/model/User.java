@@ -82,5 +82,13 @@ public class User {
 		this.roles = roles;
 	}
 
-	
+	@Override
+	public String toString() {
+		String resul="username: " + username + "pass: "+password + "roles:";
+		for(Role r : roles) {
+			resul+=" "+r.getName();
+		}
+		
+		return resul;
+	}
 }
