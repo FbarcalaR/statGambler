@@ -18,8 +18,6 @@ import com.statGambler.services.MyUserDetailsService;
 @Controller
 public class LoginController {
 	
-	 @Autowired
-	 private UserRepository userRepository;
 	@Autowired
 	MyUserDetailsService userDetailsService;	
 	@Autowired
@@ -55,7 +53,6 @@ public class LoginController {
 	
 	@GetMapping("/logout")
 	public String logout(User u) {
-		userDetailsService.loadUserByUsername(null);
         return "login";
     }
 	
