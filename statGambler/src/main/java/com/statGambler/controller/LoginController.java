@@ -1,8 +1,5 @@
 package com.statGambler.controller;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,20 +10,18 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.statGambler.model.Role;
 import com.statGambler.model.User;
-import com.statGambler.repository.RoleRepository;
 import com.statGambler.repository.UserRepository;
+import com.statGambler.services.MyUserDetailsService;
 
 
 @Controller
 public class LoginController {
 	
+	 @Autowired
+	 private UserRepository userRepository;
 	@Autowired
-	UserRepository userRepository;
-	@Autowired
-	RoleRepository roleRepository;
-	
+	MyUserDetailsService userDetailsService;	
 	@Autowired
 	PasswordEncoder encoder;
 	
@@ -38,6 +33,8 @@ public class LoginController {
 	
 	@GetMapping("/")
 	public String getRoot(User u) {
+		
+			
         return "index";
     }
 	
@@ -56,6 +53,12 @@ public class LoginController {
         return "login";
     }
 	
+	@GetMapping("/logout")
+	public String logout(User u) {
+		userDetailsService.loadUserByUsername(null);
+        return "login";
+    }
+	
 	@GetMapping("/layout")
 	public String getLayout() {
         return "_Layout";
@@ -64,17 +67,11 @@ public class LoginController {
     @PostMapping("/newuser")
     public String newUser(@Valid User user, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            return "login";
+            return "new-user";
         }
         
-        Iterable<Role> roles= roleRepository.findAll();
-        Set<Role> rolSet=new HashSet<Role>();
-        for(Role r: roles) {
-        	rolSet.add(r);
-        }
-        user.setRoles(rolSet);
-        userRepository.save(user);
-        return "index";
+        userDetailsService.save(user);
+        return "login";
     }
     
     @PostMapping("/login")
