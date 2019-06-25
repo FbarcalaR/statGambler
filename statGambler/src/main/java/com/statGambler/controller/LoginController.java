@@ -1,15 +1,21 @@
 package com.statGambler.controller;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.statGambler.model.Role;
 import com.statGambler.model.User;
+import com.statGambler.repository.RoleRepository;
 import com.statGambler.repository.UserRepository;
 
 
@@ -17,7 +23,12 @@ import com.statGambler.repository.UserRepository;
 public class LoginController {
 	
 	@Autowired
-	UserRepository userService;
+	UserRepository userRepository;
+	@Autowired
+	RoleRepository roleRepository;
+	
+	@Autowired
+	PasswordEncoder encoder;
 	
 	
 	@GetMapping("/index")
@@ -55,9 +66,14 @@ public class LoginController {
         if (result.hasErrors()) {
             return "login";
         }
-         
-        userService.save(user);
-        model.addAttribute("users", userService.findAll());
+        
+        Iterable<Role> roles= roleRepository.findAll();
+        Set<Role> rolSet=new HashSet<Role>();
+        for(Role r: roles) {
+        	rolSet.add(r);
+        }
+        user.setRoles(rolSet);
+        userRepository.save(user);
         return "index";
     }
     

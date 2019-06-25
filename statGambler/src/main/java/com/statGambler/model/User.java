@@ -3,11 +3,14 @@ package com.statGambler.model;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Transient;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
@@ -20,7 +23,8 @@ public class User {
 	@Transient
     private String passwordConfirm;
 
-    @ManyToMany
+	@JsonIgnore
+    @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
 	
 	public User() { }
