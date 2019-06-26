@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.statGambler.model.EstadisticasPersonales;
 import com.statGambler.model.Ruleta;
 import com.statGambler.repository.RuletaRepository;
+import com.statGambler.services.EstadisticasPersonalesService;
 import com.statGambler.services.RuletaService;
 
 @Controller
@@ -21,6 +23,8 @@ public class RuletaController {
 	RuletaRepository ruletaRepository;
 	@Autowired
 	RuletaService ruletaService;
+	@Autowired
+	private EstadisticasPersonalesService estadisticasPersonalesService;
 
 	@GetMapping("/ruletaform")
 	public String showSignUpForm(Ruleta ruleta) {
@@ -88,6 +92,7 @@ public class RuletaController {
 		ruletaService.calcularTodo();
 		model.addAttribute("ruletaService", ruletaService);
 		model.addAttribute("ruletas", ruletaRepository.findAll());
+		model.addAttribute("estadisticasPersonales", estadisticasPersonalesService.getEstadisticas());
 		return "ruletas/stats-ruleta";
 	}
 	
@@ -96,7 +101,22 @@ public class RuletaController {
 		ruletaService.calcularTodo();
 		model.addAttribute("ruletaService", ruletaService);
 		model.addAttribute("ruletas", ruletaRepository.findAll());
+		model.addAttribute("estadisticasPersonales", estadisticasPersonalesService.getEstadisticas());
 		return "ruletas/stats-ruleta";
+	}
+	
+	@PostMapping("/postEstadisticasRuletas")
+	public String postEstadisticas(@Valid EstadisticasPersonales eP, Model model) {
+    	estadisticasPersonalesService.setEstadisticasRuletas(eP);
+		model.addAttribute("estadisticasPersonales", eP);
+		return showStats(model, ruletaService.apuesta);
+	}
+    
+    @PostMapping("/postApuestaRuletas")
+	public String postApuesta(@Valid EstadisticasPersonales eP, Model model) {
+    	estadisticasPersonalesService.setApuestaRuletas(eP);
+    	model.addAttribute("estadisticasPersonales", eP);
+		return showStats(model, ruletaService.apuesta);
 	}
 
 }

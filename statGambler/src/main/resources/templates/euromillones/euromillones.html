@@ -22,8 +22,8 @@
 							<th>Resultado 4</th>
 							<th>Estrella 0</th>
 							<th>Estrella 1</th>
-							<th>editar</th>
-							<th>borrar</th>
+							<th><div sec:authorize="hasRole('ADMIN')">editar</div></th>
+							<th><div sec:authorize="hasRole('ADMIN')">borrar</div></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -36,8 +36,8 @@
 					<td th:text="${euromillones.resultado4}"></td>
 					<td th:text="${euromillones.estrella0}">
 					<td th:text="${euromillones.estrella1}">
-					<td><a th:href="@{/editeuromillones/{id}(id=${euromillones.id})}">Edit</a></td>
-					<td><a th:href="@{/deleteeuromillones/{id}(id=${euromillones.id})}">Delete</a></td>
+					<td><div sec:authorize="hasRole('ADMIN')"><a th:href="@{/editeuromillones/{id}(id=${euromillones.id})}">Edit</a></div></td>
+					<td><div sec:authorize="hasRole('ADMIN')"><a th:href="@{/deleteeuromillones/{id}(id=${euromillones.id})}">Delete</a></div></td>
 				</tr>
 					</tbody>
 				</table>
@@ -46,7 +46,9 @@
 	</div>
 	</div>
 	<p>
+	<div sec:authorize="hasRole('ADMIN')">
 		<a type="button" class="btn btn-primary"  href="/euromillonesform">Add a new euromillones</a>
+	</div>
 		<a type="button" class="btn btn-primary"  href="/euromillonesstats">Volver</a>
 	</p>
 </div>

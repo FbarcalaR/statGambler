@@ -8,6 +8,102 @@
 	<div th:switch="${ruletas}">
 		<h2 th:case="null">No stats yet!</h2>
 		<div th:case="*">
+		
+		<div class="card">
+						<div class="card-header">Estadísticas personales -
+							Ruletas</div>
+						<div class="card-body">
+							<table class="table table-borderless table-hover">
+								<thead>
+									<tr>
+										<th>Dinero Gastado</th>
+										<th>Dinero Ganado</th>
+										<th>Beneficio</th>
+										<th>Apuestas Jugadas</th>
+										<th>Beneficio Medio</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><a
+											th:text="${estadisticasPersonales.dineroGastadoRuletas}"></a></td>
+										<td><a
+											th:text="${estadisticasPersonales.dineroGanadoRuletas}"></a></td>
+										<td><a
+											th:text="${estadisticasPersonales.beneficioRuletas}"></a></td>
+										<td><a
+											th:text="${estadisticasPersonales.apuestasRuletasJugadas}"></a></td>
+										<td><a
+											th:text="${estadisticasPersonales.beneficioMedioRuletas}"></a></td>
+									</tr>
+								</tbody>
+							</table>
+							<form action="#" th:action="@{/postEstadisticasRuletas}"
+								th:object="${estadisticasPersonales}" method="post">
+								<div class="form-group">
+									<table class="table table-borderless">
+										<tbody>
+											<tr>
+												<td><label for="apuesta">Dinero Gastado</label> <input
+													type="text" class="form-control"
+													th:field="*{dineroGastadoRuletas}"
+													id="dineroGastadoRuletas"
+													placeholder="dineroGastadoRuletas"> <span
+													th:if="${#fields.hasErrors('dineroGastadoRuletas')}"
+													th:errors="*{dineroGastadoRuletas}"></span></td>
+												<td><label for="apuesta">Dinero Ganado</label> <input
+													type="text" class="form-control"
+													th:field="*{dineroGanadoRuletas}"
+													id="dineroGanadoRuletas"
+													placeholder="dineroGanadoRuletas"> <span
+													th:if="${#fields.hasErrors('dineroGanadoRuletas')}"
+													th:errors="*{dineroGanadoRuletas}"></span></td>
+												<td><label for="apuesta">Apuestas Jugadas</label> <input
+													type="text" class="form-control"
+													th:field="*{apuestasRuletasJugadas}"
+													id="apuestasRuletasJugadas"
+													placeholder="apuestasRuletasJugadas"> <span
+													th:if="${#fields.hasErrors('apuestasRuletasJugadas')}"
+													th:errors="*{apuestasRuletasJugadas}"></span></td>
+											</tr>
+										</tbody>
+									</table>
+									<input type="submit" class="btn btn-primary"
+													value="Actualiza estadisticas">
+								</div>
+							</form>
+							<form action="#" th:action="@{/postApuestaRuletas}"
+								th:object="${estadisticasPersonales}" method="post">
+								<div class="form-group">
+									<div class="form-group">
+										<table class="table table-borderless">
+											<tbody>
+												<tr>
+													<td><label for="apuesta">Dinero Gastado</label> <input
+														type="text" class="form-control"
+														th:field="*{dineroGastadoRuletas}"
+														id="dineroGastadoRuletas"
+														placeholder="dineroGastadoRuletas"> <span
+														th:if="${#fields.hasErrors('dineroGastadoRuletas')}"
+														th:errors="*{dineroGastadoRuletas}"></span></td>
+													<td><label for="apuesta">Dinero Ganado</label> <input
+														type="text" class="form-control"
+														th:field="*{dineroGanadoRuletas}"
+														id="dineroGanadoRuletas"
+														placeholder="dineroGanadoRuletas"> <span
+														th:if="${#fields.hasErrors('dineroGanadoRuletas')}"
+														th:errors="*{dineroGanadoRuletas}"></span></td>
+												</tr>
+											</tbody>
+										</table>
+										<input type="submit" class="btn btn-primary"
+														value="Nueva Apuesta">
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+		
 			<!-- cabecera -->
 			</br>
 
@@ -160,10 +256,10 @@
 	</div>
 	</br>
 		<div class="col-md-5 offset-md-7">
-		<p>
-			<a type="button" class="btn btn-primary" href="/ruletas">Mostrar editar Ruletas</a>
-			<a type="button" class="btn btn-primary" href="/index">Volver al indice</a>
-		</p>
-	</div>
+					<p>
+					<a type="button" class="btn btn-primary" href="/ruletas">Mostrar o editar Ruletas</a>
+					<a type="button" class="btn btn-primary" href="/index">Volver al indice</a>
+					</p>
+				</div>
 </div>
 </body>

@@ -1,10 +1,17 @@
 package com.statGambler.controller;
 
+import java.security.Principal;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,17 +19,27 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.statGambler.model.EstadisticasPersonales;
 import com.statGambler.model.Euromillones;
+import com.statGambler.model.User;
 import com.statGambler.repository.EuromillonesRepository;
+import com.statGambler.repository.UserRepository;
+import com.statGambler.services.EstadisticasPersonalesService;
 import com.statGambler.services.EuromillonesService;
+import com.statGambler.services.MyUserDetailsService;
+import com.statGambler.services.MyUserPrincipal;
 
 @Controller
 public class EuromillonesController{
 	
 	@Autowired
-	EuromillonesRepository euromillonesRepository;
+	private EuromillonesRepository euromillonesRepository;
 	@Autowired
-	EuromillonesService euromillonesService;
+	private EuromillonesService euromillonesService;
+	@Autowired
+	private MyUserDetailsService myUserDetailsService;
+	@Autowired
+	private EstadisticasPersonalesService estadisticasPersonalesService;
 	
 	@GetMapping("/euromillonesform")
     public String showSignUpForm(Euromillones euromillones) {
@@ -79,10 +96,25 @@ public class EuromillonesController{
 	
     @GetMapping("/euromillonesstats")
     public String showStats(Model model) {
-		euromillonesService.calcularTodo(1000.0);
+		euromillonesService.calcularTodo();
 		model.addAttribute("euromillonesService", euromillonesService);
 		model.addAttribute("euromillones", euromillonesRepository.findAll());
+		model.addAttribute("estadisticasPersonales", estadisticasPersonalesService.getEstadisticas());
         return "euromillones/stats-euromillones";
     }
+    
+    @PostMapping("/postEstadisticasEuromillones")
+	public String postEstadisticas(@Valid EstadisticasPersonales eP, Model model) {
+    	estadisticasPersonalesService.setEstadisticasEuromillones(eP);
+		model.addAttribute("estadisticasPersonales", eP);
+		return showStats(model);
+	}
+    
+    @PostMapping("/postApuestaEuromillones")
+	public String postApuesta(@Valid EstadisticasPersonales eP, Model model) {
+    	estadisticasPersonalesService.setApuestaEuromillones(eP);
+    	model.addAttribute("estadisticasPersonales", eP);
+		return showStats(model);
+	}
     
 }

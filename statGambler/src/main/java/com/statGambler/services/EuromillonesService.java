@@ -126,7 +126,7 @@ public class EuromillonesService {
 	}
 
 	
-	public void calcularTodo(double bote) {
+	public void calcularTodo() {
 		calcularProbabilidadesVictoria();
 		calcularApariciones();
 		calcularPromedioNumero();

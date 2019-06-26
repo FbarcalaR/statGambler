@@ -23,8 +23,8 @@
 							<th>Resultado 4</th>
 							<th>Complementario</th>
 							<th>Reintegro</th>
-							<th>editar</th>
-							<th>borrar</th>
+							<th><div sec:authorize="hasRole('ADMIN')">editar</div></th>
+							<th><div sec:authorize="hasRole('ADMIN')">borrar</div></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -38,8 +38,8 @@
 					<td th:text="${primitiva.resultado5}"></td>
 					<td th:text="${primitiva.complementario}">
 					<td th:text="${primitiva.reintegro}">
-					<td><a th:href="@{/editprimitiva/{id}(id=${primitiva.id})}">Edit</a></td>
-					<td><a th:href="@{/deleteprimitiva/{id}(id=${primitiva.id})}">Delete</a></td>
+					<td><div sec:authorize="hasRole('ADMIN')"><a th:href="@{/editprimitiva/{id}(id=${primitiva.id})}">Edit</a></div></td>
+					<td><div sec:authorize="hasRole('ADMIN')"><a th:href="@{/deleteprimitiva/{id}(id=${primitiva.id})}">Delete</a></div></td>
 				</tr>
 					</tbody>
 				</table>
@@ -48,7 +48,9 @@
 	</div>
 	</div>
 	<p>
+	<div sec:authorize="hasRole('ADMIN')">
 		<a type="button" class="btn btn-primary" href="/primitivaform">Add a new primitiva</a>
+	</div>
 		<a type="button" class="btn btn-primary" href="/primitivastats">Volver</a>
 	</p>
 </div>

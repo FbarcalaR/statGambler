@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.statGambler.model.EstadisticasPersonales;
 import com.statGambler.model.Primitiva;
 import com.statGambler.repository.PrimitivaRepository;
+import com.statGambler.services.EstadisticasPersonalesService;
 import com.statGambler.services.PrimitivaService;
 
 @Controller
@@ -21,6 +23,8 @@ public class PrimitivaController{
 	PrimitivaRepository primitivaRepository;
 	@Autowired
 	PrimitivaService primitivaService;
+	@Autowired
+	private EstadisticasPersonalesService estadisticasPersonalesService;
 	
 	@GetMapping("/primitivaform")
     public String showSignUpForm(Primitiva primitiva) {
@@ -86,7 +90,22 @@ public class PrimitivaController{
 		primitivaService.calcularTodo(1000.0);
 		model.addAttribute("primitivaService", primitivaService);
 		model.addAttribute("primitivas", primitivaRepository.findAll());
+		model.addAttribute("estadisticasPersonales", estadisticasPersonalesService.getEstadisticas());
         return "primitivas/stats-primitiva";
     }
+    
+    @PostMapping("/postEstadisticasPrimitivas")
+	public String postEstadisticas(@Valid EstadisticasPersonales eP, Model model) {
+    	estadisticasPersonalesService.setEstadisticasPrimitivas(eP);
+		model.addAttribute("estadisticasPersonales", eP);
+		return showStats(model);
+	}
+    
+    @PostMapping("/postApuestaPrimitivas")
+	public String postApuesta(@Valid EstadisticasPersonales eP, Model model) {
+    	estadisticasPersonalesService.setApuestaPrimitivas(eP);
+    	model.addAttribute("estadisticasPersonales", eP);
+		return showStats(model);
+	}
     
 }
