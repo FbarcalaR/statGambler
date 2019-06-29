@@ -15,6 +15,7 @@ import com.statGambler.model.Euromillones;
 import com.statGambler.repository.EuromillonesRepository;
 import com.statGambler.services.EstadisticasPersonalesService;
 import com.statGambler.services.EuromillonesService;
+import com.statGambler.validator.EuromillonesValidator;
 
 @Controller
 public class EuromillonesController{
@@ -25,6 +26,8 @@ public class EuromillonesController{
 	private EuromillonesService euromillonesService;
 	@Autowired
 	private EstadisticasPersonalesService estadisticasPersonalesService;
+	@Autowired
+	private EuromillonesValidator euromillonesValidator;
 	
 	@GetMapping("/euromillonesform")
     public String showSignUpForm(Euromillones euromillones) {
@@ -39,6 +42,7 @@ public class EuromillonesController{
 	
     @PostMapping("/addeuromillones")
     public String addGame(@Valid Euromillones game, BindingResult result, Model model) {
+    	euromillonesValidator.validate(game, result);
         if (result.hasErrors()) {
             return "euromillones/add-euromillones";
         }
@@ -60,6 +64,7 @@ public class EuromillonesController{
     @PostMapping("/updateeuromillones/{id}")
     public String updateGame(@PathVariable("id") long id, @Valid Euromillones game, 
       BindingResult result, Model model) {
+    	euromillonesValidator.validate(game, result);
         if (result.hasErrors()) {
             game.setId(id);
             return "euromillones/update-euromillones";

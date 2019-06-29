@@ -12,12 +12,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.statGambler.model.User;
 import com.statGambler.repository.UserRepository;
+import com.statGambler.validator.UserValidator;
 
 @Controller
 public class UserController {
 	
 	@Autowired
 	UserRepository userRepository;
+	@Autowired
+	UserValidator userValidator;
      
     @GetMapping("/signup")
     public String showSignUpForm(User user) {
@@ -26,6 +29,8 @@ public class UserController {
      
     @PostMapping("/adduser")
     public String addUser(@Valid User user, BindingResult result, Model model) {
+    	userValidator.validate(user, result);
+    	
         if (result.hasErrors()) {
             return "add-user";
         }

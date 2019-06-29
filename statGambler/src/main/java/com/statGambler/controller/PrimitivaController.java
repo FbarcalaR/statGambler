@@ -15,6 +15,8 @@ import com.statGambler.model.Primitiva;
 import com.statGambler.repository.PrimitivaRepository;
 import com.statGambler.services.EstadisticasPersonalesService;
 import com.statGambler.services.PrimitivaService;
+import com.statGambler.validator.EuromillonesValidator;
+import com.statGambler.validator.PrimitivaValidator;
 
 @Controller
 public class PrimitivaController{
@@ -25,6 +27,8 @@ public class PrimitivaController{
 	PrimitivaService primitivaService;
 	@Autowired
 	private EstadisticasPersonalesService estadisticasPersonalesService;
+	@Autowired
+	private PrimitivaValidator primitivasValidator;
 	
 	@GetMapping("/primitivaform")
     public String showSignUpForm(Primitiva primitiva) {
@@ -45,6 +49,7 @@ public class PrimitivaController{
      
     @PostMapping("/addprimitiva")
     public String addGame(@Valid Primitiva game, BindingResult result, Model model) {
+    	primitivasValidator.validate(game, result);
         if (result.hasErrors()) {
             return "primitivas/add-primitiva";
         }
@@ -66,6 +71,7 @@ public class PrimitivaController{
     @PostMapping("/updateprimitiva/{id}")
     public String updateGame(@PathVariable("id") long id, @Valid Primitiva game, 
       BindingResult result, Model model) {
+    	primitivasValidator.validate(game, result);
         if (result.hasErrors()) {
             game.setId(id);
             return "primitivas/update-primitiva";

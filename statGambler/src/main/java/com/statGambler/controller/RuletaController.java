@@ -15,6 +15,8 @@ import com.statGambler.model.Ruleta;
 import com.statGambler.repository.RuletaRepository;
 import com.statGambler.services.EstadisticasPersonalesService;
 import com.statGambler.services.RuletaService;
+import com.statGambler.validator.EuromillonesValidator;
+import com.statGambler.validator.RuletaValidator;
 
 @Controller
 public class RuletaController {
@@ -25,6 +27,8 @@ public class RuletaController {
 	RuletaService ruletaService;
 	@Autowired
 	private EstadisticasPersonalesService estadisticasPersonalesService;
+	@Autowired
+	private RuletaValidator ruletasValidator;
 
 	@GetMapping("/ruletaform")
 	public String showSignUpForm(Ruleta ruleta) {
@@ -37,8 +41,9 @@ public class RuletaController {
 		return "ruletas/ruletas";
 	}
 
-	@PostMapping("/addresultadoruleta")
+	@PostMapping("/addruleta")
 	public String addGame(@Valid Ruleta game, BindingResult result, Model model) {
+		ruletasValidator.validate(game, result);
 		if (result.hasErrors()) {
 			return "ruletas/add-ruleta";
 		}
@@ -48,7 +53,7 @@ public class RuletaController {
 		return "ruletas/ruletas";
 	}
 
-	@GetMapping("/editresultadoruleta/{id}")
+	@GetMapping("/editruleta/{id}")
 	public String showUpdateForm(@PathVariable("id") long id, Model model) {
 		Ruleta ruleta = ruletaRepository.findById(id)
 				.orElseThrow(() -> new IllegalArgumentException("Invalid game Id:" + id));
@@ -57,8 +62,9 @@ public class RuletaController {
 		return "ruletas/update-ruleta";
 	}
 
-	@PostMapping("/updateresultadoruleta/{id}")
+	@PostMapping("/updateruleta/{id}")
 	public String updateGame(@PathVariable("id") long id, @Valid Ruleta game, BindingResult result, Model model) {
+		ruletasValidator.validate(game, result);
 		if (result.hasErrors()) {
 			game.setId(id);
 			return "ruletas/update-ruleta";
@@ -78,7 +84,7 @@ public class RuletaController {
 		return "ruletas/stats-ruleta";
 	}
 
-	@GetMapping("/deleteresultadoruleta/{id}")
+	@GetMapping("/deleteruleta/{id}")
 	public String deleteGame(@PathVariable("id") long id, Model model) {
 		Ruleta game = ruletaRepository.findById(id)
 				.orElseThrow(() -> new IllegalArgumentException("Invalid game Id:" + id));

@@ -1,0 +1,48 @@
+
+<head th:include="fragments/header :: headerFragment">
+<title id="pageTitle">Login statGambler</title>
+</head>
+
+<body style="background-color:gray;">
+	</br>
+	</br>
+	</br>
+	</br>
+	</br>
+	</br>
+	</br>
+	<div class="mx-auto col-md-4">
+		<div class="card">
+			<div class="card-header">Login</div>
+			<div class="card-body">
+				<div class="login_form">
+					<section class="login-wrapper">
+
+						<form action="#" th:action="@{/newuser}" th:object="${user}"
+							method="post">
+							<div class="row">
+								<label for="username">Username</label> <input type="text"
+									th:field="*{username}" id="username" placeholder="Username"
+									autocapitalize="off" autocorrect="off"> <span
+									th:if="${#fields.hasErrors('username')}"
+									th:errors="*{username}"></span>
+							</div>
+							</br>
+							<div class="row">
+								<label for="password">Contrase&ntilde;a</label> <input type="password"
+									th:field="*{password}" id="password" class="password"
+									placeholder="Password"> <span
+									th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+							</div>
+							<div class="row">
+								<button class="btn btn-primary" type="submit" value="newuser">Nuevo Usuario</button>
+							</div>
+						</form>
+					</section>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
