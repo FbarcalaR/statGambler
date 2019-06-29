@@ -22,7 +22,7 @@ import static org.hamcrest.Matchers.*;
 public class RuletaRepositoryIntegrationTest {
 
 	@Autowired
-	private RuletaRepository ruletaRepository;
+	RuletaRepository ruletaRepository;
 
 	@After
 	public void limpiaAntes() {

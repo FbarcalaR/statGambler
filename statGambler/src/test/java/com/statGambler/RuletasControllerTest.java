@@ -1,8 +1,10 @@
 package com.statGambler;
 
-import static org.junit.Assert.assertEquals;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.is;
+import static org.mockito.Mockito.when;
+
+import java.util.Optional;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -14,12 +16,7 @@ import org.springframework.validation.BindingResult;
 
 import com.statGambler.controller.RuletaController;
 import com.statGambler.model.Ruleta;
-import com.statGambler.model.Ruleta;
 import com.statGambler.repository.RuletaRepository;
-
-import static org.mockito.Mockito.*;
-
-import java.util.Optional;
 
 public class RuletasControllerTest {
 	

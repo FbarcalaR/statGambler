@@ -1,6 +1,7 @@
 package com.statGambler.Math;
 
 import java.math.BigInteger;
+import java.text.DecimalFormat;
 
 public class Math {
 		public static BigInteger CBig(int n, int k)
@@ -27,5 +28,12 @@ public class Math {
 	public static double redondeo(double resul) {
 		//return resul;
 		return java.lang.Math.round((resul*10000000000d))/10000000000d;
+	}
+	
+	public static String doubleToString(double d) {		
+		DecimalFormat nF= new DecimalFormat();
+		nF.applyPattern("#.########");
+		
+		return nF.format(d);
 	}
 }

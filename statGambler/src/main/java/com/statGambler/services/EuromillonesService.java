@@ -13,43 +13,61 @@ public class EuromillonesService {
 	@Autowired
 	EuromillonesRepository euromillonesRepository;
 
-	public double probabilidad5y2;
-	public double probabilidad5y1;
-	public double probabilidad5;
-	public double probabilidad4y2;
-	public double probabilidad4y1;
-	public double probabilidad3y2;
-	public double probabilidad4;
-	public double probabilidad2y2;
-	public double probabilidad3y1;
-	public double probabilidad3;
-	public double probabilidad1y2;
-	public double probabilidad2y1;
-	public double probabilidad2;
-	public double[] promedioNumero;
-	public double[] promedioEstrella;
+	public double probabilidad5y2Double;
+	public double probabilidad5y1Double;
+	public double probabilidad5Double;
+	public double probabilidad4y2Double;
+	public double probabilidad4y1Double;
+	public double probabilidad3y2Double;
+	public double probabilidad4Double;
+	public double probabilidad2y2Double;
+	public double probabilidad3y1Double;
+	public double probabilidad3Double;
+	public double probabilidad1y2Double;
+	public double probabilidad2y1Double;
+	public double probabilidad2Double;
+	public double[] promedioNumeroDouble;
+	public double[] promedioEstrellaDouble;
 	public int aparicionesNumero[];
 	public int aparicionesEstrella[];
-	public double esperanza;
-	public double mediaResultados;
-	public double mediaComplementos;
-
+	public double esperanzaDouble;
+	public double mediaResultadosDouble;
+	public double mediaComplementosDouble;
+	
+	public String probabilidad5y2;
+	public String probabilidad5y1;
+	public String probabilidad5;
+	public String probabilidad4y2;
+	public String probabilidad4y1;
+	public String probabilidad3y2;
+	public String probabilidad4;
+	public String probabilidad2y2;
+	public String probabilidad3y1;
+	public String probabilidad3;
+	public String probabilidad1y2;
+	public String probabilidad2y1;
+	public String probabilidad2;
+	public String[] promedioNumero;
+	public String[] promedioEstrella;
+	public String esperanza;
+	public String mediaResultados;
+	public String mediaComplementos;
 	
 	public double calcularProbabilidadesVictoria() {
 		double espacioMuestral=(double)Math.CInt(50,5)*Math.CInt(9,2);
-		probabilidad5y2 = Math.redondeo(1/espacioMuestral);
-		probabilidad5y1 = Math.redondeo((double)Math.CInt(5, 5)*Math.CInt(2, 1)*Math.CInt(7, 1)/espacioMuestral);
-		probabilidad5 =  Math.redondeo((double)Math.CInt(5, 5)*Math.CInt(7, 2) /espacioMuestral);
-		probabilidad4y2 = Math.redondeo((double)Math.CInt(5, 4)*Math.CInt(45, 1)*Math.CInt(2, 2) /espacioMuestral);
-		probabilidad4y1 = Math.redondeo((double)Math.CInt(5, 4)*Math.CInt(45, 1)*Math.CInt(2, 1)*Math.CInt(7, 1) /espacioMuestral);
-		probabilidad3y2 = Math.redondeo((double)Math.CInt(5, 3)*Math.CInt(45, 2)*Math.CInt(2, 2) /espacioMuestral);
-		probabilidad4 = Math.redondeo((double)Math.CInt(5, 4)*Math.CInt(45, 1)*Math.CInt(7, 2) /espacioMuestral);
-		probabilidad2y2 =  Math.redondeo((double)Math.CInt(5,2)*Math.CInt(45, 3)* Math.CInt(2,2)/espacioMuestral);
-		probabilidad3y1 = Math.redondeo((double)Math.CInt(5, 3)*Math.CInt(45, 2)*Math.CInt(2, 1)*Math.CInt(7, 1)/espacioMuestral);
-		probabilidad3 = Math.redondeo((double)Math.CInt(5, 3)*Math.CInt(45, 2)*Math.CInt(7, 2) /espacioMuestral);
-		probabilidad1y2 = Math.redondeo((double)Math.CInt(5,1)*Math.CInt(45,4)*Math.CInt(2,2) /espacioMuestral);
-		probabilidad2y1 = Math.redondeo((double)Math.CInt(5,2)*Math.CInt(45, 3)*Math.CInt(2, 1)*Math.CInt(7, 1)/espacioMuestral);
-		probabilidad2 = Math.redondeo((double)Math.CInt(5,2)*Math.CInt(45, 3)*Math.CInt(7, 2) /espacioMuestral);
+		probabilidad5y2Double = Math.redondeo(1/espacioMuestral);
+		probabilidad5y1Double = Math.redondeo((double)Math.CInt(5, 5)*Math.CInt(2, 1)*Math.CInt(7, 1)/espacioMuestral);
+		probabilidad5Double =  Math.redondeo((double)Math.CInt(5, 5)*Math.CInt(7, 2) /espacioMuestral);
+		probabilidad4y2Double = Math.redondeo((double)Math.CInt(5, 4)*Math.CInt(45, 1)*Math.CInt(2, 2) /espacioMuestral);
+		probabilidad4y1Double = Math.redondeo((double)Math.CInt(5, 4)*Math.CInt(45, 1)*Math.CInt(2, 1)*Math.CInt(7, 1) /espacioMuestral);
+		probabilidad3y2Double = Math.redondeo((double)Math.CInt(5, 3)*Math.CInt(45, 2)*Math.CInt(2, 2) /espacioMuestral);
+		probabilidad4Double = Math.redondeo((double)Math.CInt(5, 4)*Math.CInt(45, 1)*Math.CInt(7, 2) /espacioMuestral);
+		probabilidad2y2Double =  Math.redondeo((double)Math.CInt(5,2)*Math.CInt(45, 3)* Math.CInt(2,2)/espacioMuestral);
+		probabilidad3y1Double = Math.redondeo((double)Math.CInt(5, 3)*Math.CInt(45, 2)*Math.CInt(2, 1)*Math.CInt(7, 1)/espacioMuestral);
+		probabilidad3Double = Math.redondeo((double)Math.CInt(5, 3)*Math.CInt(45, 2)*Math.CInt(7, 2) /espacioMuestral);
+		probabilidad1y2Double = Math.redondeo((double)Math.CInt(5,1)*Math.CInt(45,4)*Math.CInt(2,2) /espacioMuestral);
+		probabilidad2y1Double = Math.redondeo((double)Math.CInt(5,2)*Math.CInt(45, 3)*Math.CInt(2, 1)*Math.CInt(7, 1)/espacioMuestral);
+		probabilidad2Double = Math.redondeo((double)Math.CInt(5,2)*Math.CInt(45, 3)*Math.CInt(7, 2) /espacioMuestral);
 		return 0;
 	}
 
@@ -57,17 +75,17 @@ public class EuromillonesService {
 	public double calcularPromedioNumero() {
 		int totalEstrella = (int) (euromillonesRepository.count());
 		int totalNumeros = totalEstrella * 6;
-		promedioNumero = new double[50];
-		promedioEstrella = new double[12];
+		promedioNumeroDouble = new double[50];
+		promedioEstrellaDouble = new double[12];
 
 		for (int i = 0; i < aparicionesNumero.length; i++) {
-			promedioNumero[i] = Math.redondeo(((double) aparicionesNumero[i] / (double) totalNumeros) * 100);
+			promedioNumeroDouble[i] = Math.redondeo(((double) aparicionesNumero[i] / (double) totalNumeros) * 100);
 		}
 		for (int i = 0; i < aparicionesEstrella.length; i++) {
-			promedioEstrella[i] = Math.redondeo(((double) aparicionesEstrella[i] / (double) totalEstrella) * 100);
+			promedioEstrellaDouble[i] = Math.redondeo(((double) aparicionesEstrella[i] / (double) totalEstrella) * 100);
 		}
 
-		return promedioEstrella[0];
+		return promedioEstrellaDouble[0];
 	}
 
 	
@@ -90,39 +108,39 @@ public class EuromillonesService {
 
 	
 	public double calcularEsperanza() {
-		esperanza=0.5;
-		return esperanza;
+		esperanzaDouble=0.5;
+		return esperanzaDouble;
 	}
 
 	
 	public double calcularMediaResultados() {
-		mediaResultados = 0;
+		mediaResultadosDouble = 0;
 		int total = 0;
 
 		for (Euromillones p : euromillonesRepository.findAll()) {
-			mediaResultados += p.getResultado0();
-			mediaResultados += p.getResultado1();
-			mediaResultados += p.getResultado2();
-			mediaResultados += p.getResultado3();
-			mediaResultados += p.getResultado4();
+			mediaResultadosDouble += p.getResultado0();
+			mediaResultadosDouble += p.getResultado1();
+			mediaResultadosDouble += p.getResultado2();
+			mediaResultadosDouble += p.getResultado3();
+			mediaResultadosDouble += p.getResultado4();
 			total = total + 6;
 		}
-		mediaResultados = Math.redondeo(mediaResultados / total);
-		return mediaResultados;
+		mediaResultadosDouble = Math.redondeo(mediaResultadosDouble / total);
+		return mediaResultadosDouble;
 	}
 
 	
 	public double calcularMediaComplementos() {
-		mediaComplementos = 0;
+		mediaComplementosDouble = 0;
 		int total = 0;
 
 		for (Euromillones p : euromillonesRepository.findAll()) {
-			mediaComplementos += p.getEstrella0();
-			mediaComplementos += p.getEstrella1();
+			mediaComplementosDouble += p.getEstrella0();
+			mediaComplementosDouble += p.getEstrella1();
 			total = total + 2;
 		}
-		mediaComplementos = Math.redondeo(mediaComplementos / total);
-		return mediaComplementos;
+		mediaComplementosDouble = Math.redondeo(mediaComplementosDouble / total);
+		return mediaComplementosDouble;
 	}
 
 	
@@ -133,5 +151,37 @@ public class EuromillonesService {
 		calcularEsperanza();
 		calcularMediaResultados();
 		calcularMediaComplementos();
+		
+		probabilidad5y2=Math.doubleToString(probabilidad5y2Double);
+		probabilidad5y1=Math.doubleToString(probabilidad5y1Double);
+		probabilidad5=Math.doubleToString(probabilidad5Double);
+		probabilidad4y2=Math.doubleToString(probabilidad4y2Double);
+		probabilidad4y1=Math.doubleToString(probabilidad4y1Double);
+		probabilidad3y2=Math.doubleToString(probabilidad3y2Double);
+		probabilidad4=Math.doubleToString(probabilidad3y2Double);
+		probabilidad2y2=Math.doubleToString(probabilidad2y2Double);
+		probabilidad3y1=Math.doubleToString(probabilidad3y1Double);
+		probabilidad3=Math.doubleToString(probabilidad3Double);
+		probabilidad1y2=Math.doubleToString(probabilidad1y2Double);
+		probabilidad2y1=Math.doubleToString(probabilidad2y1Double);
+		probabilidad2=Math.doubleToString(probabilidad2Double);
+		
+		promedioNumero=new String[promedioNumeroDouble.length];
+		int i =0;
+		for(double d : promedioNumeroDouble) {
+			promedioNumero[i]=Math.doubleToString(d);
+			i++;
+		}
+		promedioEstrella=new String[promedioEstrellaDouble.length];
+		i =0;
+		for(double d : promedioEstrellaDouble) {
+			promedioEstrella[i]=Math.doubleToString(d);
+			i++;
+		}
+
+		esperanza=Math.doubleToString(esperanzaDouble);
+		mediaResultados=Math.doubleToString(mediaResultadosDouble);
+		mediaComplementos=Math.doubleToString(mediaComplementosDouble);
+		
 	}
 }

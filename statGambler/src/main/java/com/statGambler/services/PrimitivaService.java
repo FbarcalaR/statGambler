@@ -16,51 +16,64 @@ public class PrimitivaService {
 	@Autowired
 	PrimitivaRepository primitivaRepository;
 	
-	public double probabilidad6;
-	public double probabilidad5yC;
-	public double probabilidad5;
-	public double probabilidad4;
-	public double probabilidad3;
-	public double probabilidad2;
-	public double probabilidadR;
-	public double[] promedioNumero;
-	public double promedioReintegro[];
+	public double probabilidad6Double;
+	public double probabilidad5yCDouble;
+	public double probabilidad5Double;
+	public double probabilidad4Double;
+	public double probabilidad3Double;
+	public double probabilidad2Double;
+	public double probabilidadRDouble;
+	public double[] promedioNumeroDouble;
+	public double promedioReintegroDouble[];
 	public int aparicionesNumero[];
 	public int aparicionesReintegro[];
-	public double esperanza;
-	public double mediaResultados;
-	public double mediaComplementos;
+	public double esperanzaDouble;
+	public double mediaResultadosDouble;
+	public double mediaComplementosDouble;
+	
+	public String probabilidad6;
+	public String probabilidad5yC;
+	public String probabilidad5;
+	public String probabilidad4;
+	public String probabilidad3;
+	public String probabilidad2;
+	public String probabilidadR;
+	public String[] promedioNumero;
+	public String promedioReintegro[];
+	public String esperanza;
+	public String mediaResultados;
+	public String mediaComplementos;
 
 	
 	public double calcularProbabilidadesVictoria() {
 		double espacioMuestral=(double)Math.CInt(49,6)*Math.CInt(10,1);
 		
-		probabilidad6=1/espacioMuestral;
-		probabilidad5yC=Math.redondeo(Math.CInt(6, 5)*Math.CInt(1, 1)/espacioMuestral);
-		probabilidad5=Math.redondeo(Math.CInt(6,5)*Math.CInt(42,1)/espacioMuestral);
-		probabilidad4=Math.redondeo(Math.CInt(6,4)*Math.CInt(43,2)/espacioMuestral);
-		probabilidad3=Math.redondeo(Math.CInt(6,3)*Math.CInt(44,3)*Math.CInt(9,1)/espacioMuestral);
-		probabilidad2=Math.redondeo(Math.CInt(6,2)*Math.CInt(45,4)*Math.CInt(9,1)/espacioMuestral);
-		probabilidadR=Math.redondeo(1/10);
-		return probabilidad6;
+		probabilidad6Double=1/espacioMuestral;
+		probabilidad5yCDouble=Math.redondeo(Math.CInt(6, 5)*Math.CInt(1, 1)/espacioMuestral);
+		probabilidad5Double=Math.redondeo(Math.CInt(6,5)*Math.CInt(42,1)/espacioMuestral);
+		probabilidad4Double=Math.redondeo(Math.CInt(6,4)*Math.CInt(43,2)/espacioMuestral);
+		probabilidad3Double=Math.redondeo(Math.CInt(6,3)*Math.CInt(44,3)*Math.CInt(9,1)/espacioMuestral);
+		probabilidad2Double=Math.redondeo(Math.CInt(6,2)*Math.CInt(45,4)*Math.CInt(9,1)/espacioMuestral);
+		probabilidadRDouble=Math.redondeo(1/10);
+		return probabilidad6Double;
 	}
 
 	
 	public double calcularPromedioNumero() {
 		int totalReintegros=(int) (primitivaRepository.count());
 		int totalNumeros=totalReintegros*6;
-		promedioNumero=new double[49];
-		promedioReintegro=new double[10];
+		promedioNumeroDouble=new double[49];
+		promedioReintegroDouble=new double[10];
 		
 		
 		for(int i=0;i<aparicionesNumero.length;i++) {
-			promedioNumero[i]=Math.redondeo(((double)aparicionesNumero[i]/(double)totalNumeros)*100);
+			promedioNumeroDouble[i]=Math.redondeo(((double)aparicionesNumero[i]/(double)totalNumeros)*100);
 		}
 		for(int i=0;i<aparicionesReintegro.length;i++) {
-			promedioReintegro[i]=Math.redondeo(((double)aparicionesReintegro[i]/(double)totalReintegros)*100);
+			promedioReintegroDouble[i]=Math.redondeo(((double)aparicionesReintegro[i]/(double)totalReintegros)*100);
 		}
 		
-		return promedioReintegro[0];
+		return promedioReintegroDouble[0];
 	}
 
 	
@@ -82,45 +95,39 @@ public class PrimitivaService {
 
 	
 	public double calcularEsperanza() {
-//		double probabilidadPerder = 1 - probabilidad6 - probabilidad5yC - probabilidad5 - probabilidad4 - probabilidad3
-//				- probabilidad2 - probabilidadR;
-//
-//		esperanza = probabilidad6 * 16368540.07 + probabilidad5yC * 1312914.45 + probabilidad5 * 63534.07
-//				+ probabilidad4 * 2543.36 + probabilidad3 * 71.49 + probabilidad2 * 8 + probabilidadR * 1;
-		
-		esperanza=0.55;
-		return esperanza;
+		esperanzaDouble=0.55;
+		return esperanzaDouble;
 	}
 
 	
 	public double calcularMediaResultados() {
-		mediaResultados=0;
+		mediaResultadosDouble=0;
 		int total=0;
 		
 		for(Primitiva p : primitivaRepository.findAll()) {
-			mediaResultados+=p.getResultado0();
-			mediaResultados+=p.getResultado1();
-			mediaResultados+=p.getResultado2();
-			mediaResultados+=p.getResultado3();
-			mediaResultados+=p.getResultado4();
-			mediaResultados+=p.getResultado5();
+			mediaResultadosDouble+=p.getResultado0();
+			mediaResultadosDouble+=p.getResultado1();
+			mediaResultadosDouble+=p.getResultado2();
+			mediaResultadosDouble+=p.getResultado3();
+			mediaResultadosDouble+=p.getResultado4();
+			mediaResultadosDouble+=p.getResultado5();
 			total=total+6;
 		}
-		mediaResultados=Math.redondeo(mediaResultados/total);
-		return mediaResultados;
+		mediaResultadosDouble=Math.redondeo(mediaResultadosDouble/total);
+		return mediaResultadosDouble;
 	}
 
 	
 	public double calcularMediaComplementos() {
-		mediaComplementos=0;
+		mediaComplementosDouble=0;
 		int total=0;
 		
 		for(Primitiva p : primitivaRepository.findAll()) {
-			mediaComplementos+=p.getReintegro();
+			mediaComplementosDouble+=p.getReintegro();
 			total++;
 		}
-		mediaComplementos=Math.redondeo(mediaComplementos/total);
-		return mediaComplementos;
+		mediaComplementosDouble=Math.redondeo(mediaComplementosDouble/total);
+		return mediaComplementosDouble;
 	}
 
 	
@@ -131,5 +138,31 @@ public class PrimitivaService {
 		calcularEsperanza();
 		calcularMediaResultados();		
 		calcularMediaComplementos();
+		
+		
+		probabilidad6=Math.doubleToString(probabilidad6Double);
+		probabilidad5yC=Math.doubleToString(probabilidad5yCDouble);
+		probabilidad5=Math.doubleToString(probabilidad5Double);
+		probabilidad4=Math.doubleToString(probabilidad4Double);
+		probabilidad3=Math.doubleToString(probabilidad3Double);
+		probabilidad2=Math.doubleToString(probabilidad2Double);
+		probabilidadR=Math.doubleToString(probabilidadRDouble);
+		
+		promedioNumero=new String[promedioNumeroDouble.length];
+		int i =0;
+		for(double d : promedioNumeroDouble) {
+			promedioNumero[i]=Math.doubleToString(d);
+			i++;
+		}
+		promedioReintegro=new String[promedioReintegroDouble.length];
+		i =0;
+		for(double d : promedioReintegroDouble) {
+			promedioReintegro[i]=Math.doubleToString(d);
+			i++;
+		}
+		
+		esperanza=Math.doubleToString(esperanzaDouble);
+		mediaResultados=Math.doubleToString(mediaResultadosDouble);
+		mediaComplementos=Math.doubleToString(mediaComplementosDouble);
 	}
 }

@@ -1,5 +1,6 @@
 package com.statGambler.model;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -8,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
@@ -23,6 +25,7 @@ public class User {
 	private String username;
 	private String password;
 	private String name;
+	
 	@Transient
     private String passwordConfirm;
 
@@ -109,6 +112,5 @@ public class User {
 
 	public void setName(String name) {
 		this.name = name;
-	}	
-	
+	}
 }

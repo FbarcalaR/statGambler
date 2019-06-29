@@ -37,7 +37,7 @@ public class RuletaController {
 		return "ruletas/ruletas";
 	}
 
-	@PostMapping("/addruleta")
+	@PostMapping("/addresultadoruleta")
 	public String addGame(@Valid Ruleta game, BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			return "ruletas/add-ruleta";
@@ -48,7 +48,7 @@ public class RuletaController {
 		return "ruletas/ruletas";
 	}
 
-	@GetMapping("/editruleta/{id}")
+	@GetMapping("/editresultadoruleta/{id}")
 	public String showUpdateForm(@PathVariable("id") long id, Model model) {
 		Ruleta ruleta = ruletaRepository.findById(id)
 				.orElseThrow(() -> new IllegalArgumentException("Invalid game Id:" + id));
@@ -57,7 +57,7 @@ public class RuletaController {
 		return "ruletas/update-ruleta";
 	}
 
-	@PostMapping("/updateruleta/{id}")
+	@PostMapping("/updateresultadoruleta/{id}")
 	public String updateGame(@PathVariable("id") long id, @Valid Ruleta game, BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			game.setId(id);
@@ -78,7 +78,7 @@ public class RuletaController {
 		return "ruletas/stats-ruleta";
 	}
 
-	@GetMapping("/deleteruleta/{id}")
+	@GetMapping("/deleteresultadoruleta/{id}")
 	public String deleteGame(@PathVariable("id") long id, Model model) {
 		Ruleta game = ruletaRepository.findById(id)
 				.orElseThrow(() -> new IllegalArgumentException("Invalid game Id:" + id));
@@ -109,14 +109,14 @@ public class RuletaController {
 	public String postEstadisticas(@Valid EstadisticasPersonales eP, Model model) {
     	estadisticasPersonalesService.setEstadisticasRuletas(eP);
 		model.addAttribute("estadisticasPersonales", eP);
-		return showStats(model, ruletaService.apuesta);
+		return showStats(model, ruletaService.apuestaDouble);
 	}
     
     @PostMapping("/postApuestaRuletas")
 	public String postApuesta(@Valid EstadisticasPersonales eP, Model model) {
     	estadisticasPersonalesService.setApuestaRuletas(eP);
     	model.addAttribute("estadisticasPersonales", eP);
-		return showStats(model, ruletaService.apuesta);
+		return showStats(model, ruletaService.apuestaDouble);
 	}
 
 }
