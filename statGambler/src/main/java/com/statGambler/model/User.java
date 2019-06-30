@@ -101,6 +101,7 @@ public class User {
 		String resul="username: " + username + "pass: "+password + "roles:";
 		for(Role r : roles) {
 			resul+=" "+r.getName();
+			resul+="="+r;
 		}
 		
 		return resul;

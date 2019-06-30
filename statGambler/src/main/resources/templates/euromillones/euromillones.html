@@ -22,8 +22,8 @@
 							<th>Resultado 4</th>
 							<th>Estrella 0</th>
 							<th>Estrella 1</th>
-							<th><div sec:authorize="hasRole('ADMIN')">editar</div></th>
-							<th><div sec:authorize="hasRole('ADMIN')">borrar</div></th>
+							<th></th>
+							<th></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -34,10 +34,18 @@
 					<td th:text="${euromillones.resultado2}"></td>
 					<td th:text="${euromillones.resultado3}"></td>
 					<td th:text="${euromillones.resultado4}"></td>
-					<td th:text="${euromillones.estrella0}">
-					<td th:text="${euromillones.estrella1}">
-					<td><div sec:authorize="hasRole('ADMIN')"><a th:href="@{/editeuromillones/{id}(id=${euromillones.id})}">Edit</a></div></td>
-					<td><div sec:authorize="hasRole('ADMIN')"><a th:href="@{/deleteeuromillones/{id}(id=${euromillones.id})}">Delete</a></div></td>
+					<td th:text="${euromillones.estrella0}"></td>
+					<td th:text="${euromillones.estrella1}"></td>
+					<td th:each="auth : ${#authentication.authorities }">
+						<div th:if="${auth.toString()} == ADMIN">
+							<a th:href="@{/editeuromillones/{id}(id=${euromillones.id})}">Edit</a>
+						</div>
+					</td>
+					<td th:each="auth : ${#authentication.authorities }">
+						<div th:if="${auth.toString()} == ADMIN">
+							<a th:href="@{/deleteeuromillones/{id}(id=${euromillones.id})}">Delete</a>
+						</div>
+					</td>
 				</tr>
 					</tbody>
 				</table>
@@ -45,11 +53,11 @@
 		</div>
 	</div>
 	</div>
-	<p>
-	<div sec:authorize="hasRole('ADMIN')">
-		<a type="button" class="btn btn-primary"  href="/euromillonesform">Add a new euromillones</a>
+	<div th:each="auth : ${#authentication.authorities }">
+		<div th:if="${auth.toString()} == ADMIN">
+			<a type="button" class="btn btn-primary"  href="/euromillonesform">Add a new euromillones</a>
+		</div>
 	</div>
-		<a type="button" class="btn btn-primary"  href="/euromillonesstats">Volver</a>
-	</p>
+	<a type="button" class="btn btn-primary"  href="/euromillonesstats">Volver</a>
 </div>
 </body>

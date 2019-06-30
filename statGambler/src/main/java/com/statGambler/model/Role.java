@@ -17,7 +17,7 @@ public class Role implements GrantedAuthority{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    public String name;
 
     @JsonIgnore
     @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
@@ -49,6 +49,10 @@ public class Role implements GrantedAuthority{
 
 	@Override
 	public String getAuthority() {
+		return getName();
+	}
+	@Override
+	public String toString() {
 		return getName();
 	}
 }

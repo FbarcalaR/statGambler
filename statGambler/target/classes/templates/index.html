@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:include="fragments/header :: headerFragment">
     <title id="pageTitle">statGAmbler-Home</title>
 </head>
@@ -11,15 +13,8 @@
 			<div class="card">
 			
 				<div class="card-header">Primitiva-Reglas</div>
-				<div class="card-body"> 
-				Init
-				<div sec:authorize="hasRole('ADMIN')">
-  This will only be displayed if authenticated user has role ROLE_ADMIN.
-</div>
-<div sec:authorize="hasRole('USER')">
-  This will only be displayed if authenticated user has role USER.
-</div>
-fin
+				<div class="card-body">
+					
 				de azar regulado por
 					Loter&iacute;as y Apuestas del Estado (LAE) que consiste en elegir
 					6 n&uacute;meros diferentes entre 1 y 49, con el objetivo de

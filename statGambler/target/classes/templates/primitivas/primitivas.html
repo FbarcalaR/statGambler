@@ -23,8 +23,8 @@
 							<th>Resultado 4</th>
 							<th>Complementario</th>
 							<th>Reintegro</th>
-							<th><div sec:authorize="hasRole('ADMIN')">editar</div></th>
-							<th><div sec:authorize="hasRole('ADMIN')">borrar</div></th>
+							<th></th>
+							<th></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -36,10 +36,18 @@
 					<td th:text="${primitiva.resultado3}"></td>
 					<td th:text="${primitiva.resultado4}"></td>
 					<td th:text="${primitiva.resultado5}"></td>
-					<td th:text="${primitiva.complementario}">
-					<td th:text="${primitiva.reintegro}">
-					<td><div sec:authorize="hasRole('ADMIN')"><a th:href="@{/editprimitiva/{id}(id=${primitiva.id})}">Edit</a></div></td>
-					<td><div sec:authorize="hasRole('ADMIN')"><a th:href="@{/deleteprimitiva/{id}(id=${primitiva.id})}">Delete</a></div></td>
+					<td th:text="${primitiva.complementario}"></td>
+					<td th:text="${primitiva.reintegro}"></td>
+					<td th:each="auth : ${#authentication.authorities }">
+						<div th:if="${auth.toString()} == ADMIN">
+							<a th:href="@{/editprimitiva/{id}(id=${primitiva.id})}">Edit</a>
+						</div>
+					</td>
+					<td th:each="auth : ${#authentication.authorities }">
+						<div th:if="${auth.toString()} == ADMIN">
+							<a th:href="@{/deleteprimitiva/{id}(id=${primitiva.id})}">Delete</a>
+						</div>
+					</td>
 				</tr>
 					</tbody>
 				</table>
@@ -47,11 +55,11 @@
 		</div>
 	</div>
 	</div>
-	<p>
-	<div sec:authorize="hasRole('ADMIN')">
-		<a type="button" class="btn btn-primary" href="/primitivaform">Add a new primitiva</a>
+	<div th:each="auth : ${#authentication.authorities }">
+		<div th:if="${auth.toString()} == ADMIN">
+			<a type="button" class="btn btn-primary" href="/primitivaform">Add a new primitiva</a>
+		</div>
 	</div>
 		<a type="button" class="btn btn-primary" href="/primitivastats">Volver</a>
-	</p>
 </div>
 </body>
