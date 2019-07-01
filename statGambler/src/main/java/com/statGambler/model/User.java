@@ -25,6 +25,7 @@ public class User {
 	private String username;
 	private String password;
 	private String name;
+	private Long RuletaId;
 	
 	@Transient
     private String passwordConfirm;
@@ -114,4 +115,13 @@ public class User {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	public Long getRuletaId() {
+		return RuletaId;
+	}
+
+	public void setRuletaId(Long ruletaId) {
+		RuletaId = ruletaId;
+	}
+	
 }

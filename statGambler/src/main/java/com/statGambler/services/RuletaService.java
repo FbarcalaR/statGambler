@@ -1,6 +1,7 @@
 package com.statGambler.services;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,6 +47,24 @@ public class RuletaService{
 	public double promedioNumeroDouble [];
 	public int aparicionesNumero[];
 	
+	public int aparicionesRojo;
+	public int aparicionesNegro;
+	public int aparicionesVerde;
+	public int aparicionesPar;
+	public int aparicionesImpar;
+	public int aparicionesDocena1;
+	public int aparicionesDocena2;
+	public int aparicionesDocena3;
+	
+	public double promedioRojoDouble;
+	public double promedioNegroDouble;
+	public double promedioVerdeDouble;
+	public double promedioParDouble;
+	public double promedioImparDouble;
+	public double promedioDocena1Double;
+	public double promedioDocena2Double;
+	public double promedioDocena3Double;
+	
 	public String probabilidadPleno;
 	public String probabilidadCaballo;
 	public String probabilidadTransversal;
@@ -71,7 +90,18 @@ public class RuletaService{
 	
 	public String apuesta;
 	public String promedioNumero[];
+	
+	public String promedioRojo;
+	public String promedioNegro;
+	public String promedioVerde;
+	public String promedioPar;
+	public String promedioImpar;
+	public String promedioDocena1;
+	public String promedioDocena2;
+	public String promedioDocena3;
 
+	List<Integer> rojos=Arrays.asList(1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36);
+	List<Integer> negros = Arrays.asList(2,4,6,8,10,11,13,17,20,22,24,26,28,29,31,33,35); 
 	
 	public double calcularProbabilidadesVictoria() {
 		probabilidadPlenoDouble=Math.redondeo(1.0/37.0);
@@ -88,25 +118,85 @@ public class RuletaService{
 	}
 
 	
-	public double calcularPromedioNumero() {
+	public double calcularPromedio() {
 		int totalJugadas = (int) (ruletaRepository.count());
 		promedioNumeroDouble = new double[36];
 
 		for (int i = 0; i < promedioNumeroDouble.length; i++) {
 			promedioNumeroDouble[i] = Math.redondeo(((double) aparicionesNumero[i] / (double) totalJugadas) * 100);
 		}
+		
+		 promedioRojoDouble=Math.redondeo(((double)aparicionesRojo/ (double) totalJugadas) * 100);
+		 promedioNegroDouble=Math.redondeo(((double)aparicionesNegro/ (double) totalJugadas) * 100);
+		 promedioVerdeDouble=Math.redondeo(((double)aparicionesVerde/ (double) totalJugadas) * 100);
+		 promedioParDouble=Math.redondeo(((double)aparicionesPar/ (double) totalJugadas) * 100);
+		 promedioImparDouble=Math.redondeo(((double)aparicionesImpar/ (double) totalJugadas) * 100);
+		 promedioDocena1Double=Math.redondeo(((double)aparicionesDocena1/ (double) totalJugadas) * 100);
+		 promedioDocena2Double=Math.redondeo(((double)aparicionesDocena2/ (double) totalJugadas) * 100);
+		 promedioDocena3Double=Math.redondeo(((double)aparicionesDocena3/ (double) totalJugadas) * 100);
+		
 		return promedioNumeroDouble[0];
 	}
 
 	
 	public double calcularApariciones() {
 		aparicionesNumero = new int[36];
+		aparicionesRojo=0;
+		aparicionesNegro=0;
+		aparicionesVerde=0;
+		aparicionesPar=0;
+		aparicionesImpar=0;
+		aparicionesDocena1=0;
+		aparicionesDocena2=0;
+		aparicionesDocena3=0;
 
 		for (Ruleta r : ruletaRepository.findAll()) {
-			if(r.getId()==myUserDetailsService.getUserPrincipal().getId())
-			aparicionesNumero[r.getNumero() - 1]++;
+			if(r.getUserId()==myUserDetailsService.getUserPrincipal().getRuletaId()) {
+				int numero=r.getNumero();
+				aparicionesNumero[r.getNumero() - 1]++;
+				
+				if(getColor(numero)=="rojo") {
+					aparicionesRojo++;
+				}
+				else if(getColor(numero)=="negro") {
+					aparicionesNegro++;
+				}
+				else{
+					aparicionesVerde++;
+				}
+				
+				if(numero%2==0) {
+					aparicionesPar++;
+				}
+				else {
+					aparicionesImpar++;
+				}
+				
+				if(0<numero && numero<=12) {
+					aparicionesDocena1++;
+				}
+				else if(12<numero && numero<=24) {
+					aparicionesDocena2++;
+				}
+				else if(24<numero && numero<=36) {
+					aparicionesDocena3++;
+				}
+			}
 		}
+		
 		return aparicionesNumero[0];
+	}
+	
+	private String getColor(int numero) {
+		
+		if(rojos.contains(numero)) {
+			return "rojo";
+		}
+		else if(negros.contains(numero)) {
+			return "negro";
+		}
+		else
+			return "verde";
 	}
 	
 	public double calcularEsperanza() {
@@ -133,9 +223,10 @@ public class RuletaService{
 	}
 	
 	public void calcularTodo() {
+		
 		calcularProbabilidadesVictoria();
 		calcularApariciones();
-		calcularPromedioNumero();
+		calcularPromedio();
 		calcularEsperanza();
 		
 		probabilidadPleno=Math.doubleToString(probabilidadPlenoDouble);
@@ -160,6 +251,15 @@ public class RuletaService{
 		esperanzaParImpar=Math.doubleToString(esperanzaParImparDouble);
 		esperanzaPasaFalta=Math.doubleToString(esperanzaPasaFaltaDouble);
 		apuesta=Math.doubleToString(apuestaDouble);
+		
+		 promedioRojo=Math.doubleToString(promedioRojoDouble);
+		 promedioNegro=Math.doubleToString(promedioNegroDouble);
+		 promedioVerde=Math.doubleToString(promedioVerdeDouble);
+		 promedioPar=Math.doubleToString(promedioParDouble);
+		 promedioImpar=Math.doubleToString(promedioImparDouble);
+		 promedioDocena1=Math.doubleToString(promedioDocena1Double);
+		 promedioDocena2=Math.doubleToString(promedioDocena2Double);
+		 promedioDocena3=Math.doubleToString(promedioDocena3Double);
 		
 		promedioNumero=new String[promedioNumeroDouble.length];
 		int i =0;

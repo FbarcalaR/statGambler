@@ -8,7 +8,7 @@
 	<div th:switch="${ruletas}">
 		<h2 th:case="null">No stats yet!</h2>
 		<div th:case="*">
-		
+		</br>
 		<div class="card">
 						<div class="card-header">Estadísticas personales -
 							Ruletas</div>
@@ -223,7 +223,7 @@
 		</br>
 	<div class="col-md-12">
 		<div class="card">
-			<div class="card-header">Ruleta Estadísticas</div>
+			<div class="card-header">Estadisticas Ruleta</div>
 			<div class="card-body">
 				<table class="table table-hover">
 					<thead>
@@ -238,17 +238,67 @@
 					</thead>
 					<tbody>
 					<th:block th:each="estadisticas, ruletaServiceStat : ${ruletaService.promedioNumero}">
-					<span th:if="${ruletaServiceStat.index+13 &lt; 31}">
+					<span th:if="${ruletaServiceStat.index+13 &lt; 33}">
 					<tr>
-						<b><td th:text="${ruletaServiceStat.index+1}"></td></b>
-						<td th:text="${ruletaService.promedioNumero[ruletaServiceStat.index]}"></td>
+						<b><td th:text="${ruletaServiceStat.index}"></td></b>
+						<td th:text="${ruletaService.promedioNumero[ruletaServiceStat.index]}">%</td>
 						<td th:text="${ruletaService.aparicionesNumero[ruletaServiceStat.index]}"></td>
-						<b><td th:text="${ruletaServiceStat.index+19}"></td></b>
-						<td th:text="${ruletaService.promedioNumero[ruletaServiceStat.index+12]}"></td>
-						<td th:text="${ruletaService.aparicionesNumero[ruletaServiceStat.index+12]}"></td>
+						<b><td th:text="${ruletaServiceStat.index+17}"></td></b>
+						<td th:text="${ruletaService.promedioNumero[ruletaServiceStat.index+17]}">%</td>
+						<td th:text="${ruletaService.aparicionesNumero[ruletaServiceStat.index+17]}"></td>
 					</tr>
 					</span>
 					</th:block>
+					</tbody>
+				</table>
+				</div>
+		</div>
+	</div>
+		</br>
+	<div class="col-md-12">
+		<div class="card">
+			<div class="card-header">Otras Estadísticas</div>
+			<div class="card-body">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>Promedio Rojo</th>
+							<th>Promedio Negro</th>
+							<th>Promedio Par</th>
+							<th>Promedio Impar</th>
+							<th>Promedio Primera Docena</th>
+							<th>Promedio Segunda Docena</th>
+							<th>Promedio Tercera Docena</th>
+						</tr>
+					</thead>
+					<tbody>
+					<tr>
+						<td><a th:text="${ruletaService.promedioRojo}">%</a></td>
+						<td><a th:text="${ruletaService.promedioNegro}">%</a></td>
+						<td><a th:text="${ruletaService.promedioPar}">%</a></td>
+						<td><a th:text="${ruletaService.promedioImpar}">%</a></td>
+						<td><a th:text="${ruletaService.promedioDocena1}">%</a></td>
+						<td><a th:text="${ruletaService.promedioDocena2}">%</a></td>
+						<td><a th:text="${ruletaService.promedioDocena3}">%</a></td>
+					</tr>
+					<tr>
+						<th>Apariciones Rojo</th>
+							<th>Apariciones Negro</th>
+							<th>Apariciones Par</th>
+							<th>Apariciones Impar</th>
+							<th>Apariciones Primera Docena</th>
+							<th>Apariciones Segunda Docena</th>
+							<th>Apariciones Tercera Docena</th>
+					</tr>
+					<tr>
+						<td><a th:text="${ruletaService.aparicionesRojo}"></a></td>
+						<td><a th:text="${ruletaService.aparicionesNegro}"></a></td>
+						<td><a th:text="${ruletaService.aparicionesPar}"></a></td>
+						<td><a th:text="${ruletaService.aparicionesImpar}"></a></td>
+						<td><a th:text="${ruletaService.aparicionesDocena1}"></a></td>
+						<td><a th:text="${ruletaService.aparicionesDocena2}"></a></td>
+						<td><a th:text="${ruletaService.aparicionesDocena3}"></a></td>
+					</tr>
 					</tbody>
 				</table>
 				</div>
