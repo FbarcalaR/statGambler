@@ -120,7 +120,7 @@ public class RuletaService{
 	
 	public double calcularPromedio() {
 		int totalJugadas = (int) (ruletaRepository.count());
-		promedioNumeroDouble = new double[36];
+		promedioNumeroDouble = new double[37];
 
 		for (int i = 0; i < promedioNumeroDouble.length; i++) {
 			promedioNumeroDouble[i] = Math.redondeo(((double) aparicionesNumero[i] / (double) totalJugadas) * 100);
@@ -140,7 +140,7 @@ public class RuletaService{
 
 	
 	public double calcularApariciones() {
-		aparicionesNumero = new int[36];
+		aparicionesNumero = new int[37];
 		aparicionesRojo=0;
 		aparicionesNegro=0;
 		aparicionesVerde=0;
@@ -153,7 +153,7 @@ public class RuletaService{
 		for (Ruleta r : ruletaRepository.findAll()) {
 			if(r.getUserId()==myUserDetailsService.getUserPrincipal().getRuletaId()) {
 				int numero=r.getNumero();
-				aparicionesNumero[r.getNumero() - 1]++;
+				aparicionesNumero[r.getNumero()]++;
 				
 				if(getColor(numero)=="rojo") {
 					aparicionesRojo++;

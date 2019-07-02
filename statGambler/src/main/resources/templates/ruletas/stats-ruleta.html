@@ -238,13 +238,13 @@
 					</thead>
 					<tbody>
 					<th:block th:each="estadisticas, ruletaServiceStat : ${ruletaService.promedioNumero}">
-					<span th:if="${ruletaServiceStat.index+13 &lt; 33}">
+					<span th:if="${ruletaServiceStat.index+17 &lt; 37}">
 					<tr>
 						<b><td th:text="${ruletaServiceStat.index}"></td></b>
-						<td th:text="${ruletaService.promedioNumero[ruletaServiceStat.index]}">%</td>
+						<td th:text="${ruletaService.promedioNumero[ruletaServiceStat.index]}"></td>
 						<td th:text="${ruletaService.aparicionesNumero[ruletaServiceStat.index]}"></td>
 						<b><td th:text="${ruletaServiceStat.index+17}"></td></b>
-						<td th:text="${ruletaService.promedioNumero[ruletaServiceStat.index+17]}">%</td>
+						<td th:text="${ruletaService.promedioNumero[ruletaServiceStat.index+17]}"></td>
 						<td th:text="${ruletaService.aparicionesNumero[ruletaServiceStat.index+17]}"></td>
 					</tr>
 					</span>
