@@ -1,8 +1,10 @@
 package com.statGambler;
 
-import static org.junit.Assert.assertEquals;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.is;
+import static org.mockito.Mockito.when;
+
+import java.util.Optional;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -15,10 +17,7 @@ import org.springframework.validation.BindingResult;
 import com.statGambler.controller.EuromillonesController;
 import com.statGambler.model.Euromillones;
 import com.statGambler.repository.EuromillonesRepository;
-
-import static org.mockito.Mockito.*;
-
-import java.util.Optional;
+import com.statGambler.validator.EuromillonesValidator;
 
 public class EuromillonesControllerTest {
 	
@@ -27,6 +26,9 @@ public class EuromillonesControllerTest {
 
 	@Mock
 	private EuromillonesRepository euromillonesRepository;
+
+	@Mock
+	private EuromillonesValidator euromillonesValidator;
 	
 	@Mock
 	private BindingResult bindingResult;

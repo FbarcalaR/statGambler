@@ -16,7 +16,10 @@ import org.springframework.validation.BindingResult;
 
 import com.statGambler.controller.RuletaController;
 import com.statGambler.model.Ruleta;
+import com.statGambler.model.User;
 import com.statGambler.repository.RuletaRepository;
+import com.statGambler.services.MyUserDetailsService;
+import com.statGambler.validator.RuletaValidator;
 
 public class RuletasControllerTest {
 	
@@ -25,6 +28,10 @@ public class RuletasControllerTest {
 
 	@Mock
 	private RuletaRepository ruletaRepository;
+	@Mock
+	private RuletaValidator ruletasValidator;
+	@Mock
+	private MyUserDetailsService userPrincipal;
 	
 	@Mock
 	private BindingResult bindingResult;
@@ -40,9 +47,12 @@ public class RuletasControllerTest {
 	@Test
 	public void testRuletaAdd() {
 		Ruleta ruleta = new Ruleta();
+		User user=new User();
+		user.setId(1L);
 		ruleta.setId(1l);
         when(model.addAttribute("ruleta", ruletaRepository.findAll())).thenReturn(model);
-		
+        when(userPrincipal.getUserPrincipal()).thenReturn(user);
+//        when(userPrincipal.getUserPrincipal().getId()).thenReturn(1L);
 		
 		String resul=ruletaController.addGame(ruleta, bindingResult, model);
 		

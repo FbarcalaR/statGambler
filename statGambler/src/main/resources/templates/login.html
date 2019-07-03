@@ -27,26 +27,26 @@
 						<form action="#" th:action="@{/login}" th:object="${user}"
 							method="post">
 							<div class="row">
-								<label for="username">Username</label></div><div class="row">  <input type="text"
+								<label for="username">Username</label></div><div class="row">  <input class="form-control" type="text"
 									th:field="*{username}" id="username" placeholder="Nombre"
 									autocapitalize="off" autocorrect="off"> <span
 									th:if="${#fields.hasErrors('username')}"
 									th:errors="*{username}"></span>
 							</div>
-							</br>
 							<div class="row">
-								<label for="password">Contrase&ntilde;a</label></div><div class="row"> <input
+								<label for="password">Contrase&ntilde;a</label></div><div class="row"><input
 									type="password" th:field="*{password}" id="password"
-									class="password" placeholder="Contrase&tilde;a"> <span
+									class="password form-control" placeholder="Contrase&ntilde;a"> <span
 									th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
 							</div>
-							<div class="row">
-								<button class="btn btn-primary" type="submit" value="Login">Login</button>
+							<div></br></div>
+							<div class="row btn-block">
+								<button class="btn btn-primary form-control" type="submit" value="Login">Login</button>
 							</div>
-						</form>
-						<div class="warn">
+							<div class="row">
 							No tienes cuenta?<a href="/newuser">Click aqui</a>
 						</div>
+						</form>						
 					</section>
 				</div>
 			</div>

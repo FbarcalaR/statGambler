@@ -37,6 +37,7 @@ public class UserController {
          
         userRepository.save(user);
         model.addAttribute("users", userRepository.findAll());
+        
         return "index";
     }
  

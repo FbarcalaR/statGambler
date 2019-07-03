@@ -14,7 +14,7 @@ public class Ruleta{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private int numero;
-	private int userId;
+	private Long userId;
 	
 	public Long getId() {
 		return id;
@@ -28,10 +28,10 @@ public class Ruleta{
 	public void setNumero(int numero) {
 		this.numero = numero;
 	}
-	public int getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
-	public void setUserId(int userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 	

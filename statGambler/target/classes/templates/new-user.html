@@ -9,11 +9,9 @@
 	</br>
 	</br>
 	</br>
-	</br>
-	</br>
 	<div class="mx-auto col-md-4">
 		<div class="card">
-			<div class="card-header">Login</div>
+			<div class="card-header">Nuevo usuario</div>
 			<div class="card-body">
 				<div class="login_form">
 					<section class="login-wrapper">
@@ -21,7 +19,14 @@
 						<form action="#" th:action="@{/newuser}" th:object="${user}"
 							method="post">
 							<div class="row">
-								<label for="username">Username</label> <input type="text"
+								<label for="name">Nombre</label></div><div class="row"> <input type="text" class="form-control"
+									th:field="*{name}" id="name" placeholder="Nombre"
+									autocapitalize="off" autocorrect="off"> <span
+									th:if="${#fields.hasErrors('name')}"
+									th:errors="*{name}"></span>
+							</div>
+							<div class="row">
+								<label for="username">Username</label></div><div class="row"> <input type="text" class="form-control"
 									th:field="*{username}" id="username" placeholder="Username"
 									autocapitalize="off" autocorrect="off"> <span
 									th:if="${#fields.hasErrors('username')}"
@@ -29,12 +34,19 @@
 							</div>
 							</br>
 							<div class="row">
-								<label for="password">Contrase&ntilde;a</label> <input type="password"
-									th:field="*{password}" id="password" class="password"
+								<label for="password">Contrase&ntilde;a</label></div><div class="row"><input type="password"
+									th:field="*{password}" id="password" class="password form-control"
 									placeholder="Password"> <span
 									th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
 							</div>
 							<div class="row">
+								<label for="passwordConfirm">Repetir Contrase&ntilde;a</label></div><div class="row"><input type="password"
+									th:field="*{passwordConfirm}" id="passwordConfirm" class="password form-control"
+									placeholder="PasswordConfirm"> <span
+									th:if="${#fields.hasErrors('passwordConfirm')}" th:errors="*{passwordConfirm}"></span>
+							</div>
+							<div></br></div>
+							<div class="row btn-block">
 								<button class="btn btn-primary" type="submit" value="newuser">Nuevo Usuario</button>
 							</div>
 						</form>

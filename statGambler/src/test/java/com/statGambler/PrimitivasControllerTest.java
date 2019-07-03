@@ -1,8 +1,10 @@
 package com.statGambler;
 
-import static org.junit.Assert.assertEquals;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.is;
+import static org.mockito.Mockito.when;
+
+import java.util.Optional;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -15,10 +17,7 @@ import org.springframework.validation.BindingResult;
 import com.statGambler.controller.PrimitivaController;
 import com.statGambler.model.Primitiva;
 import com.statGambler.repository.PrimitivaRepository;
-
-import static org.mockito.Mockito.*;
-
-import java.util.Optional;
+import com.statGambler.validator.PrimitivaValidator;
 
 public class PrimitivasControllerTest {
 	
@@ -27,6 +26,9 @@ public class PrimitivasControllerTest {
 
 	@Mock
 	private PrimitivaRepository primitivaRepository;
+
+	@Mock
+	private PrimitivaValidator primitivaValidator;
 	
 	@Mock
 	private BindingResult bindingResult;

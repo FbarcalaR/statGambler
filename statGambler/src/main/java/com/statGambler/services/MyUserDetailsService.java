@@ -3,21 +3,21 @@ package com.statGambler.services;
 import java.security.Principal;
 import java.util.HashSet;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.statGambler.model.EstadisticasPersonales;
 import com.statGambler.model.Role;
 import com.statGambler.model.User;
+import com.statGambler.repository.EstadisticasPersonalesRepository;
 import com.statGambler.repository.RoleRepository;
 import com.statGambler.repository.UserRepository;
 
@@ -28,6 +28,8 @@ public class MyUserDetailsService implements UserDetailsService {
     private UserRepository userRepository;
     @Autowired
     private RoleRepository roleRepository;
+    @Autowired
+    private EstadisticasPersonalesRepository estadisticasPersonalesRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
     @Autowired
@@ -46,6 +48,8 @@ public class MyUserDetailsService implements UserDetailsService {
     public void save(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         setRoles(user);
+        setRuleta(user);
+        setEstadisticasPersonales(user);
         userRepository.save(user);
     }
     
@@ -60,6 +64,43 @@ public class MyUserDetailsService implements UserDetailsService {
         	rolSet.add(r);
         }
         user.setRoles(rolSet);
+    }
+    
+    private void setRuleta(User user){
+    	Iterable<User> todos=userRepository.findAll();
+    	long ultimoID=-1;
+    	
+    	for(User u:todos) {
+    		if(ultimoID<u.getRuletaId()) {
+    			ultimoID=u.getRuletaId();
+    		}
+    	}
+    	
+    	ultimoID++;
+    	user.setRuletaId(ultimoID);
+//    	Ruleta r=new Ruleta();
+//    	r.setUserId(user.getId());
+//    	ruletaRepository.save(r);
+    	
+    }
+    
+    private void setEstadisticasPersonales(User user){
+    	Iterable<User> todos=userRepository.findAll();
+    	long ultimoID=-1;
+    	
+    	for(User u:todos) {
+    		if(ultimoID<u.getEstadisticasPersonalesId()) {
+    			ultimoID=u.getEstadisticasPersonalesId();
+    		}
+    	}
+    	
+    	EstadisticasPersonales ep=new EstadisticasPersonales();
+    	
+    	ultimoID++;
+    	ep.setUserId(user.getId());
+    	user.setEstadisticasPersonalesId(ultimoID);
+    	estadisticasPersonalesRepository.save(ep);
+    	
     }
     
     public User getUserPrincipal() {

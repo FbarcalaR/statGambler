@@ -1,5 +1,7 @@
 package com.statGambler.controller;
 
+import java.util.LinkedList;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import com.statGambler.model.EstadisticasPersonales;
 import com.statGambler.model.Ruleta;
 import com.statGambler.repository.RuletaRepository;
 import com.statGambler.services.EstadisticasPersonalesService;
+import com.statGambler.services.MyUserDetailsService;
 import com.statGambler.services.RuletaService;
 import com.statGambler.validator.EuromillonesValidator;
 import com.statGambler.validator.RuletaValidator;
@@ -29,6 +32,8 @@ public class RuletaController {
 	private EstadisticasPersonalesService estadisticasPersonalesService;
 	@Autowired
 	private RuletaValidator ruletasValidator;
+	@Autowired
+	private MyUserDetailsService userPrincipal;
 
 	@GetMapping("/ruletaform")
 	public String showSignUpForm(Ruleta ruleta) {
@@ -37,19 +42,21 @@ public class RuletaController {
 
 	@GetMapping("/ruletas")
 	public String showRuletas(Model model) {
-		model.addAttribute("ruletas", ruletaRepository.findAll());
+		modeladdRuletas(model);
 		return "ruletas/ruletas";
 	}
 
 	@PostMapping("/addruleta")
 	public String addGame(@Valid Ruleta game, BindingResult result, Model model) {
 		ruletasValidator.validate(game, result);
+		
 		if (result.hasErrors()) {
 			return "ruletas/add-ruleta";
 		}
 
+		game.setUserId(userPrincipal.getUserPrincipal().getId());
 		ruletaRepository.save(game);
-		model.addAttribute("ruletas", ruletaRepository.findAll());
+		modeladdRuletas(model);
 		return "ruletas/ruletas";
 	}
 
@@ -58,6 +65,7 @@ public class RuletaController {
 		Ruleta ruleta = ruletaRepository.findById(id)
 				.orElseThrow(() -> new IllegalArgumentException("Invalid game Id:" + id));
 
+		
 		model.addAttribute("ruleta", ruleta);
 		return "ruletas/update-ruleta";
 	}
@@ -70,8 +78,9 @@ public class RuletaController {
 			return "ruletas/update-ruleta";
 		}
 
+		game.setUserId(userPrincipal.getUserPrincipal().getId());
 		ruletaRepository.save(game);
-		model.addAttribute("ruletas", ruletaRepository.findAll());
+		modeladdRuletas(model);
 		return "ruletas/ruletas";
 	}
 
@@ -80,7 +89,7 @@ public class RuletaController {
 		ruletaService.setApuesta(apuesta);
 		ruletaService.calcularTodo();
 		model.addAttribute("ruletaService", ruletaService);
-		model.addAttribute("ruletas", ruletaRepository.findAll());
+		modeladdRuletas(model);
 		return "ruletas/stats-ruleta";
 	}
 
@@ -89,7 +98,7 @@ public class RuletaController {
 		Ruleta game = ruletaRepository.findById(id)
 				.orElseThrow(() -> new IllegalArgumentException("Invalid game Id:" + id));
 		ruletaRepository.delete(game);
-		model.addAttribute("ruletas", ruletaRepository.findAll());
+		modeladdRuletas(model);
 		return "ruletas/ruletas";
 	}
 
@@ -97,7 +106,7 @@ public class RuletaController {
 	public String showStats(Model model, Double apuesta) {
 		ruletaService.calcularTodo();
 		model.addAttribute("ruletaService", ruletaService);
-		model.addAttribute("ruletas", ruletaRepository.findAll());
+		modeladdRuletas(model);
 		model.addAttribute("estadisticasPersonales", estadisticasPersonalesService.getEstadisticas());
 		return "ruletas/stats-ruleta";
 	}
@@ -106,7 +115,7 @@ public class RuletaController {
 	public String showStatsApuesta(Model model, Double apuesta) {
 		ruletaService.calcularTodo();
 		model.addAttribute("ruletaService", ruletaService);
-		model.addAttribute("ruletas", ruletaRepository.findAll());
+		 modeladdRuletas(model);
 		model.addAttribute("estadisticasPersonales", estadisticasPersonalesService.getEstadisticas());
 		return "ruletas/stats-ruleta";
 	}
@@ -124,5 +133,16 @@ public class RuletaController {
     	model.addAttribute("estadisticasPersonales", eP);
 		return showStats(model, ruletaService.apuestaDouble);
 	}
-
+    
+    private void modeladdRuletas(Model model) {
+    	LinkedList<Ruleta> ruletas=new LinkedList<Ruleta>();
+		for(Ruleta r : ruletaRepository.findAll()) {
+			if(r.getUserId()==userPrincipal.getUserPrincipal().getId()) {
+				ruletas.add(r);
+			}
+		}
+		
+		
+		model.addAttribute("ruletas", ruletas);
+    }
 }
