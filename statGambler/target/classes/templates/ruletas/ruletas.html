@@ -4,38 +4,44 @@
 
 <body>
 <div th:replace="fragments/header :: header">&nbsp;</div>
+		<p class="row fixed-bottom offset-md-9" style="margin: 20px; margin-left: 1000px;">
+			<a type="button" class="btn btn-primary" href="/ruletaform" >A&ntilde;adir resultado</a>
+			&nbsp;
+		<a type="button" class="btn btn-primary" href="/ruletastats">Volver</a>
+		<div class="row">
+		</br>
+		</div>
+	</p>
 <div th:switch="${ruletas}">
-	<h2 th:case="null">No ruletas yet!</h2>
+	<h2 th:case="null">No hay ruletas aun</h2>
 	<div th:case="*">
+	
+	<div class="col-md-12">
 	<div class="card">
-		<div class="card-header">Euromillones</div>
+		<div class="card-header">Ruletas</div>
 		<div class="card-body">
 			<div class="container">
 				<table class="table table-borderless table-hover">
 					<thead>
-				<tr>
-					<th>Id</th>
-					<th>Numero</th>
-					<th>editar</th>
-					<th>>borrar</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="ruleta : ${ruletas}">
-					<td th:text="${ruleta.id}"></td>
-					<td th:text="${ruleta.numero}">
-					<td><a th:href="@{/editruleta/{id}(id=${ruleta.id})}">Edit</a></td>
-					<td><a th:href="@{/deleteruleta/{id}(id=${ruleta.id})}">Delete</a></td>
-				</tr>
-			</tbody>
+						<tr>
+							<th>Numero</th>
+							<th>Editar</th>
+							<th>Borrar</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="ruleta : ${ruletas}">
+							<td th:text="${ruleta.numero}">
+							<td><a th:href="@{/editruleta/{id}(id=${ruleta.id})}">Editar</a></td>
+							<td><a th:href="@{/deleteruleta/{id}(id=${ruleta.id})}">Borrar</a></td>
+						</tr>
+						<tr><td></td><td></td><td></td></tr>
+					</tbody>
 				</table>
 			</div>
 		</div>
 	</div>
 	</div>
-	<p>
-			<a type="button" class="btn btn-primary" href="/ruletaform">Add a new ruleta</a>
-		<a type="button" class="btn btn-primary" href="/ruletastats">Volver</a>
-	</p>
+	</div>
 </div>
 </body>

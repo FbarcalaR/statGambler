@@ -9,7 +9,10 @@
 	    <label for="numero">Numero</label>
 	    <input type="text" class="form-control" th:field="*{numero}" id="numero" placeholder="Numero">
 	    <span th:if="${#fields.hasErrors('numero')}" th:errors="*{numero}"></span>
+	    <div th:if="${param.error}"></div>
     </div>
-    <input type="submit" class="btn btn-primary" value="Add Ruleta">
+    <input type="submit" class="btn btn-primary row offset-md-8" value="A&ntilde;adir Ruleta">
+    &nbsp;&nbsp;
+    <a type="button" class="btn btn-primary" href="/ruletas">Cancelar</a>
 </form>
 </body>

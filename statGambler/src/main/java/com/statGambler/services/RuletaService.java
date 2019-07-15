@@ -126,14 +126,14 @@ public class RuletaService{
 			promedioNumeroDouble[i] = Math.redondeo(((double) aparicionesNumero[i] / (double) totalJugadas) * 100);
 		}
 		
-		 promedioRojoDouble=Math.redondeo(((double)aparicionesRojo/ (double) totalJugadas) * 100);
-		 promedioNegroDouble=Math.redondeo(((double)aparicionesNegro/ (double) totalJugadas) * 100);
-		 promedioVerdeDouble=Math.redondeo(((double)aparicionesVerde/ (double) totalJugadas) * 100);
-		 promedioParDouble=Math.redondeo(((double)aparicionesPar/ (double) totalJugadas) * 100);
-		 promedioImparDouble=Math.redondeo(((double)aparicionesImpar/ (double) totalJugadas) * 100);
-		 promedioDocena1Double=Math.redondeo(((double)aparicionesDocena1/ (double) totalJugadas) * 100);
-		 promedioDocena2Double=Math.redondeo(((double)aparicionesDocena2/ (double) totalJugadas) * 100);
-		 promedioDocena3Double=Math.redondeo(((double)aparicionesDocena3/ (double) totalJugadas) * 100);
+		 promedioRojoDouble=Math.redondeoPromedios(((double)aparicionesRojo/ (double) totalJugadas) * 100);
+		 promedioNegroDouble=Math.redondeoPromedios(((double)aparicionesNegro/ (double) totalJugadas) * 100);
+		 promedioVerdeDouble=Math.redondeoPromedios(((double)aparicionesVerde/ (double) totalJugadas) * 100);
+		 promedioParDouble=Math.redondeoPromedios(((double)aparicionesPar/ (double) totalJugadas) * 100);
+		 promedioImparDouble=Math.redondeoPromedios(((double)aparicionesImpar/ (double) totalJugadas) * 100);
+		 promedioDocena1Double=Math.redondeoPromedios(((double)aparicionesDocena1/ (double) totalJugadas) * 100);
+		 promedioDocena2Double=Math.redondeoPromedios(((double)aparicionesDocena2/ (double) totalJugadas) * 100);
+		 promedioDocena3Double=Math.redondeoPromedios(((double)aparicionesDocena3/ (double) totalJugadas) * 100);
 		
 		return promedioNumeroDouble[0];
 	}
@@ -200,16 +200,16 @@ public class RuletaService{
 	}
 	
 	public double calcularEsperanza() {
-		esperanzaPlenoDouble=Math.redondeo(probabilidadPlenoDouble*apuestaDouble*35+(1-probabilidadPlenoDouble)*(-apuestaDouble));
-		esperanzaCaballoDouble=Math.redondeo(probabilidadCaballoDouble*apuestaDouble*17+(1-probabilidadCaballoDouble)*(-apuestaDouble));
-		esperanzaTransversalDouble=Math.redondeo(probabilidadTransversalDouble*apuestaDouble*11+(1-probabilidadTransversalDouble)*(-apuestaDouble));
-		esperanzaFilaDobleDouble=Math.redondeo(probabilidadFilaDobleDouble*apuestaDouble*5+(1-probabilidadFilaDobleDouble)*(-apuestaDouble));
-		esperanzaCuadroDouble=Math.redondeo(probabilidadCuadroDouble*apuestaDouble*8+(1-probabilidadCuadroDouble)*(-apuestaDouble));
-		esperanzaDocenasDouble=Math.redondeo(probabilidadDocenasDouble*apuestaDouble*2+(1-probabilidadDocenasDouble)*(-apuestaDouble));
-		esperanzaColumnasDouble=Math.redondeo(probabilidadColumnasDouble*apuestaDouble*2+(1-probabilidadColumnasDouble)*(-apuestaDouble));
-		esperanzaColorDouble=Math.redondeo(probabilidadColorDouble*apuestaDouble*1-(18.0/37.0)*apuestaDouble-(1.0/37.0*0.5)*apuestaDouble);
-		esperanzaParImparDouble=Math.redondeo(probabilidadParImparDouble*apuestaDouble*1-(18.0/37.0)*apuestaDouble-(1.0/37.0*0.5)*apuestaDouble);
-		esperanzaPasaFaltaDouble=Math.redondeo(probabilidadPasaFaltaDouble*apuestaDouble*1-(18.0/37.0)*apuestaDouble-(1.0/37.0*0.5)*apuestaDouble);
+		esperanzaPlenoDouble=Math.redondeoEsperanzaRuletas(apuestaDouble+probabilidadPlenoDouble*apuestaDouble*35+(1-probabilidadPlenoDouble)*(-apuestaDouble));
+		esperanzaCaballoDouble=Math.redondeoEsperanzaRuletas(apuestaDouble+probabilidadCaballoDouble*apuestaDouble*17+(1-probabilidadCaballoDouble)*(-apuestaDouble));
+		esperanzaTransversalDouble=Math.redondeoEsperanzaRuletas(apuestaDouble+probabilidadTransversalDouble*apuestaDouble*11+(1-probabilidadTransversalDouble)*(-apuestaDouble));
+		esperanzaFilaDobleDouble=Math.redondeoEsperanzaRuletas(apuestaDouble+probabilidadFilaDobleDouble*apuestaDouble*5+(1-probabilidadFilaDobleDouble)*(-apuestaDouble));
+		esperanzaCuadroDouble=Math.redondeoEsperanzaRuletas(apuestaDouble+probabilidadCuadroDouble*apuestaDouble*8+(1-probabilidadCuadroDouble)*(-apuestaDouble));
+		esperanzaDocenasDouble=Math.redondeoEsperanzaRuletas(apuestaDouble+probabilidadDocenasDouble*apuestaDouble*2+(1-probabilidadDocenasDouble)*(-apuestaDouble));
+		esperanzaColumnasDouble=Math.redondeoEsperanzaRuletas(apuestaDouble+probabilidadColumnasDouble*apuestaDouble*2+(1-probabilidadColumnasDouble)*(-apuestaDouble));
+		esperanzaColorDouble=Math.redondeoEsperanzaRuletas(apuestaDouble+probabilidadColorDouble*apuestaDouble*1-(18.0/37.0)*apuestaDouble-(1.0/37.0*0.5)*apuestaDouble);
+		esperanzaParImparDouble=Math.redondeoEsperanzaRuletas(apuestaDouble+probabilidadParImparDouble*apuestaDouble*1-(18.0/37.0)*apuestaDouble-(1.0/37.0*0.5)*apuestaDouble);
+		esperanzaPasaFaltaDouble=Math.redondeoEsperanzaRuletas(apuestaDouble+probabilidadPasaFaltaDouble*apuestaDouble*1-(18.0/37.0)*apuestaDouble-(1.0/37.0*0.5)*apuestaDouble);
 		
 		return esperanzaPlenoDouble;
 	}
@@ -240,6 +240,7 @@ public class RuletaService{
 		probabilidadParImpar=Math.doubleToString(probabilidadParImparDouble);
 		probabilidadPasaFalta=Math.doubleToString(probabilidadPasaFaltaDouble);
 		probabilidad19_36=Math.doubleToString(probabilidad19_36Double);
+		
 		esperanzaPleno=Math.doubleToString(esperanzaPlenoDouble);
 		esperanzaCaballo=Math.doubleToString(esperanzaCaballoDouble);
 		esperanzaTransversal=Math.doubleToString(esperanzaTransversalDouble);
@@ -250,21 +251,22 @@ public class RuletaService{
 		esperanzaColor=Math.doubleToString(esperanzaColorDouble);
 		esperanzaParImpar=Math.doubleToString(esperanzaParImparDouble);
 		esperanzaPasaFalta=Math.doubleToString(esperanzaPasaFaltaDouble);
+		
 		apuesta=Math.doubleToString(apuestaDouble);
 		
-		 promedioRojo=Math.doubleToString(promedioRojoDouble);
-		 promedioNegro=Math.doubleToString(promedioNegroDouble);
-		 promedioVerde=Math.doubleToString(promedioVerdeDouble);
-		 promedioPar=Math.doubleToString(promedioParDouble);
-		 promedioImpar=Math.doubleToString(promedioImparDouble);
-		 promedioDocena1=Math.doubleToString(promedioDocena1Double);
-		 promedioDocena2=Math.doubleToString(promedioDocena2Double);
-		 promedioDocena3=Math.doubleToString(promedioDocena3Double);
+		 promedioRojo=Math.doubleToString(promedioRojoDouble)+" %";
+		 promedioNegro=Math.doubleToString(promedioNegroDouble)+" %";
+		 promedioVerde=Math.doubleToString(promedioVerdeDouble)+" %";
+		 promedioPar=Math.doubleToString(promedioParDouble)+" %";
+		 promedioImpar=Math.doubleToString(promedioImparDouble)+" %";
+		 promedioDocena1=Math.doubleToString(promedioDocena1Double)+" %";
+		 promedioDocena2=Math.doubleToString(promedioDocena2Double)+" %";
+		 promedioDocena3=Math.doubleToString(promedioDocena3Double)+" %";
 		
 		promedioNumero=new String[promedioNumeroDouble.length];
 		int i =0;
 		for(double d : promedioNumeroDouble) {
-			promedioNumero[i]=Math.doubleToString(d);
+			promedioNumero[i]=Math.doubleToString(d)+" %";
 			i++;
 		}
 	}

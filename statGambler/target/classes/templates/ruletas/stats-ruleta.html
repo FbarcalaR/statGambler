@@ -6,11 +6,12 @@
 <div th:replace="fragments/header :: header">&nbsp;</div>
 <div>
 	<div th:switch="${ruletas}">
-		<h2 th:case="null">No stats yet!</h2>
+		<h2 th:case="null">No hay estadisticas aun</h2>
 		<div th:case="*">
 		</br>
+		<div class="col-md-12">
 		<div class="card">
-						<div class="card-header">Estadísticas personales -
+						<div class="card-header">Estad&iacute;sticas personales -
 							Ruletas</div>
 						<div class="card-body">
 							<table class="table table-borderless table-hover">
@@ -38,40 +39,6 @@
 									</tr>
 								</tbody>
 							</table>
-							<form action="#" th:action="@{/postEstadisticasRuletas}"
-								th:object="${estadisticasPersonales}" method="post">
-								<div class="form-group">
-									<table class="table table-borderless">
-										<tbody>
-											<tr>
-												<td><label for="apuesta">Dinero Gastado</label> <input
-													type="text" class="form-control"
-													th:field="*{dineroGastadoRuletas}"
-													id="dineroGastadoRuletas"
-													placeholder="dineroGastadoRuletas"> <span
-													th:if="${#fields.hasErrors('dineroGastadoRuletas')}"
-													th:errors="*{dineroGastadoRuletas}"></span></td>
-												<td><label for="apuesta">Dinero Ganado</label> <input
-													type="text" class="form-control"
-													th:field="*{dineroGanadoRuletas}"
-													id="dineroGanadoRuletas"
-													placeholder="dineroGanadoRuletas"> <span
-													th:if="${#fields.hasErrors('dineroGanadoRuletas')}"
-													th:errors="*{dineroGanadoRuletas}"></span></td>
-												<td><label for="apuesta">Apuestas Jugadas</label> <input
-													type="text" class="form-control"
-													th:field="*{apuestasRuletasJugadas}"
-													id="apuestasRuletasJugadas"
-													placeholder="apuestasRuletasJugadas"> <span
-													th:if="${#fields.hasErrors('apuestasRuletasJugadas')}"
-													th:errors="*{apuestasRuletasJugadas}"></span></td>
-											</tr>
-										</tbody>
-									</table>
-									<input type="submit" class="btn btn-primary"
-													value="Actualiza estadisticas">
-								</div>
-							</form>
 							<form action="#" th:action="@{/postApuestaRuletas}"
 								th:object="${estadisticasPersonales}" method="post">
 								<div class="form-group">
@@ -93,6 +60,13 @@
 														placeholder="dineroGanadoRuletas"> <span
 														th:if="${#fields.hasErrors('dineroGanadoRuletas')}"
 														th:errors="*{dineroGanadoRuletas}"></span></td>
+													<td><label for="resultadoRuleta">Numero resultado</label> <input
+														type="text" class="form-control"
+														th:field="*{resultadoRuleta}"
+														id="resultadoRuleta"
+														placeholder="resultadoRuleta"> <span
+														th:if="${#fields.hasErrors('resultadoRuleta')}"
+														th:errors="*{resultadoRuleta}"></span></td>
 												</tr>
 											</tbody>
 										</table>
@@ -103,6 +77,7 @@
 							</form>
 						</div>
 					</div>
+				</div>
 		
 			<!-- cabecera -->
 			</br>
@@ -115,7 +90,7 @@
 							<div class="col-md-3">
 								<form action="#" th:action="@{/apuesta}"
 									th:object="${ruletaService}" method="post">
-									<div class="form-group col-3">
+									<div class="form-group">
 										<label for="apuesta">Apuesta</label> <input type="text"
 											class="form-control" th:field="*{apuesta}" id="apuesta"
 											placeholder="Apuesta"> <span
@@ -184,34 +159,34 @@
 				<table class="table table-borderless table-hover table-responsive">
 					<thead>
 						<tr>
-							<th class="w-25">Probabilidad de pleno</th>
-							<th class="col-xs-1">Probabilidad de caballo</th>
-							<th class="col-xs-1">Probabilidad de transversal</th>
-							<th class="col-xs-1">Probabilidad de fila doble</th>
-							<th class="col-xs-1">Probabilidad de cuadro</th>
+							<th>Probabilidad de pleno</th>
+							<th >Probabilidad de caballo</th>
+							<th >Probabilidad de transversal</th>
+							<th >Probabilidad de fila doble</th>
+							<th >Probabilidad de cuadro</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td class="col-xs-1"><a th:text="${ruletaService.probabilidadPleno}"></a></td>
-							<td class="col-xs-1"><a th:text="${ruletaService.probabilidadCaballo}"></a></td>
-							<td class="col-xs-1"><a th:text="${ruletaService.probabilidadTransversal}"></a></td>
-							<td class="col-xs-1"><a th:text="${ruletaService.probabilidadFilaDoble}"></a></td>
-							<td class="col-xs-1"><a th:text="${ruletaService.probabilidadCuadro}"></a></td>
+							<td ><a th:text="${ruletaService.probabilidadPleno}"></a></td>
+							<td ><a th:text="${ruletaService.probabilidadCaballo}"></a></td>
+							<td ><a th:text="${ruletaService.probabilidadTransversal}"></a></td>
+							<td ><a th:text="${ruletaService.probabilidadFilaDoble}"></a></td>
+							<td ><a th:text="${ruletaService.probabilidadCuadro}"></a></td>
 						</tr>
 						<tr>
-							<th class="col-xs-1">Probabilidad de docenas</th>
-							<th class="col-xs-1">Probabilidad de columnas</th>
-							<th class="col-xs-1">Probabilidad de color</th>
-							<th class="col-xs-1">Probabilidad de par o impar</th>
-							<th class="col-xs-1">Probabilidad de Pasa o Falta</th>
+							<th >Probabilidad de docenas</th>
+							<th >Probabilidad de columnas</th>
+							<th >Probabilidad de color</th>
+							<th >Probabilidad de par o impar</th>
+							<th >Probabilidad de Pasa o Falta</th>
 						</tr>
 						<tr>
-							<td class="col-xs-1"><a th:text="${ruletaService.probabilidadDocenas}"></a></td>
-							<td class="col-xs-1"><a th:text="${ruletaService.probabilidadColumnas}"></a></td>
-							<td class="col-xs-1"><a th:text="${ruletaService.probabilidadColor}"></a></td>
-							<td class="col-xs-1"><a th:text="${ruletaService.probabilidadParImpar}"></a></td>
-							<td class="col-xs-1"><a th:text="${ruletaService.probabilidadPasaFalta}"></a></td>
+							<td ><a th:text="${ruletaService.probabilidadDocenas}"></a></td>
+							<td ><a th:text="${ruletaService.probabilidadColumnas}"></a></td>
+							<td ><a th:text="${ruletaService.probabilidadColor}"></a></td>
+							<td ><a th:text="${ruletaService.probabilidadParImpar}"></a></td>
+							<td ><a th:text="${ruletaService.probabilidadPasaFalta}"></a></td>
 						</tr>
 					</tbody>
 				</table>
@@ -223,7 +198,7 @@
 		</br>
 	<div class="col-md-12">
 		<div class="card">
-			<div class="card-header">Estadisticas Ruleta</div>
+			<div class="card-header">Estad&iacute;sticas Ruleta</div>
 			<div class="card-body">
 				<table class="table table-hover">
 					<thead>
@@ -257,7 +232,7 @@
 		</br>
 	<div class="col-md-12">
 		<div class="card">
-			<div class="card-header">Otras Estadísticas</div>
+			<div class="card-header">Otras Estad&iacute;sticas</div>
 			<div class="card-body">
 				<table class="table table-hover">
 					<thead>
@@ -305,10 +280,10 @@
 		</div>
 	</div>
 	</br>
-		<div class="col-md-5 offset-md-7">
+		<div class="col-md-5 offset-md-9">
 					<p>
 					<a type="button" class="btn btn-primary" href="/ruletas">Mostrar o editar Ruletas</a>
-					<a type="button" class="btn btn-primary" href="/index">Volver al indice</a>
+					<a type="button" class="btn btn-primary" href="/index">Volver</a>
 					</p>
 				</div>
 </div>

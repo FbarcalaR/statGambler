@@ -28,8 +28,6 @@ public class PrimitivaService {
 	public int aparicionesNumero[];
 	public int aparicionesReintegro[];
 	public double esperanzaDouble;
-	public double mediaResultadosDouble;
-	public double mediaComplementosDouble;
 	
 	public String probabilidad6;
 	public String probabilidad5yC;
@@ -41,8 +39,6 @@ public class PrimitivaService {
 	public String[] promedioNumero;
 	public String promedioReintegro[];
 	public String esperanza;
-	public String mediaResultados;
-	public String mediaComplementos;
 
 	
 	public double calcularProbabilidadesVictoria() {
@@ -67,10 +63,10 @@ public class PrimitivaService {
 		
 		
 		for(int i=0;i<aparicionesNumero.length;i++) {
-			promedioNumeroDouble[i]=Math.redondeo(((double)aparicionesNumero[i]/(double)totalNumeros)*100);
+			promedioNumeroDouble[i]=Math.redondeoPromedios(((double)aparicionesNumero[i]/(double)totalNumeros)*100);
 		}
 		for(int i=0;i<aparicionesReintegro.length;i++) {
-			promedioReintegroDouble[i]=Math.redondeo(((double)aparicionesReintegro[i]/(double)totalReintegros)*100);
+			promedioReintegroDouble[i]=Math.redondeoPromedios(((double)aparicionesReintegro[i]/(double)totalReintegros)*100);
 		}
 		
 		return promedioReintegroDouble[0];
@@ -100,45 +96,11 @@ public class PrimitivaService {
 	}
 
 	
-	public double calcularMediaResultados() {
-		mediaResultadosDouble=0;
-		int total=0;
-		
-		for(Primitiva p : primitivaRepository.findAll()) {
-			mediaResultadosDouble+=p.getResultado0();
-			mediaResultadosDouble+=p.getResultado1();
-			mediaResultadosDouble+=p.getResultado2();
-			mediaResultadosDouble+=p.getResultado3();
-			mediaResultadosDouble+=p.getResultado4();
-			mediaResultadosDouble+=p.getResultado5();
-			total=total+6;
-		}
-		mediaResultadosDouble=Math.redondeo(mediaResultadosDouble/total);
-		return mediaResultadosDouble;
-	}
-
-	
-	public double calcularMediaComplementos() {
-		mediaComplementosDouble=0;
-		int total=0;
-		
-		for(Primitiva p : primitivaRepository.findAll()) {
-			mediaComplementosDouble+=p.getReintegro();
-			total++;
-		}
-		mediaComplementosDouble=Math.redondeo(mediaComplementosDouble/total);
-		return mediaComplementosDouble;
-	}
-
-	
 	public void calcularTodo(double bote) {
 		calcularProbabilidadesVictoria();
 		calcularApariciones();
 		calcularPromedioNumero();
-		calcularEsperanza();
-		calcularMediaResultados();		
-		calcularMediaComplementos();
-		
+		calcularEsperanza();		
 		
 		probabilidad6=Math.doubleToString(probabilidad6Double);
 		probabilidad5yC=Math.doubleToString(probabilidad5yCDouble);
@@ -151,18 +113,16 @@ public class PrimitivaService {
 		promedioNumero=new String[promedioNumeroDouble.length];
 		int i =0;
 		for(double d : promedioNumeroDouble) {
-			promedioNumero[i]=Math.doubleToString(d);
+			promedioNumero[i]=Math.doubleToString(d)+" %";
 			i++;
 		}
 		promedioReintegro=new String[promedioReintegroDouble.length];
 		i =0;
 		for(double d : promedioReintegroDouble) {
-			promedioReintegro[i]=Math.doubleToString(d);
+			promedioReintegro[i]=Math.doubleToString(d)+" %";
 			i++;
 		}
 		
 		esperanza=Math.doubleToString(esperanzaDouble);
-		mediaResultados=Math.doubleToString(mediaResultadosDouble);
-		mediaComplementos=Math.doubleToString(mediaComplementosDouble);
 	}
 }

@@ -63,14 +63,6 @@ public class LoginController {
         return "_Layout";
     }
 	
-    @PostMapping("/newuser")
-    public String newUser(@Valid User user, BindingResult result, Model model) {
-        if (result.hasErrors()) {
-            return "new-user";
-        }
-        userDetailsService.save(user);
-        return "login";
-    }
     
     @PostMapping("/login")
     public String logIn(@Valid User user, BindingResult result, Model model) {

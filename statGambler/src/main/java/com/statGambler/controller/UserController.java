@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.statGambler.model.User;
 import com.statGambler.repository.UserRepository;
+import com.statGambler.services.MyUserDetailsService;
 import com.statGambler.validator.UserValidator;
 
 @Controller
@@ -21,24 +22,22 @@ public class UserController {
 	UserRepository userRepository;
 	@Autowired
 	UserValidator userValidator;
+	@Autowired
+	MyUserDetailsService userDetailsService;	
      
     @GetMapping("/signup")
     public String showSignUpForm(User user) {
         return "add-user";
     }
      
-    @PostMapping("/adduser")
-    public String addUser(@Valid User user, BindingResult result, Model model) {
+    @PostMapping("/newuser")
+    public String newUser(@Valid User user, BindingResult result, Model model) {
     	userValidator.validate(user, result);
-    	
         if (result.hasErrors()) {
-            return "add-user";
+            return "new-user";
         }
-         
-        userRepository.save(user);
-        model.addAttribute("users", userRepository.findAll());
-        
-        return "index";
+        userDetailsService.save(user);
+        return "login";
     }
  
     @GetMapping("/edit/{id}")

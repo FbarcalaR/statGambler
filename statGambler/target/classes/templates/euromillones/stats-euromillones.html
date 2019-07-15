@@ -6,13 +6,13 @@
 	<div th:replace="fragments/header :: header">&nbsp;</div>
 	<div>
 		<div th:switch="${euromillones}">
-			<h2 th:case="null">No stats yet!</h2>
+			<h2 th:case="null">No hay estadiaticas todavia</h2>
 			<div th:case="*">
 
 </br>
 				<div class="col-md-12">
 					<div class="card">
-						<div class="card-header">Estadísticas personales -
+						<div class="card-header">Estad&iacute;sticas personales -
 							Euromillones</div>
 						<div class="card-body">
 							<table class="table table-borderless table-hover">
@@ -40,40 +40,6 @@
 									</tr>
 								</tbody>
 							</table>
-							<form action="#" th:action="@{/postEstadisticasEuromillones}"
-								th:object="${estadisticasPersonales}" method="post">
-								<div class="form-group">
-									<table class="table table-borderless">
-										<tbody>
-											<tr>
-												<td><label for="apuesta">Dinero Gastado</label> <input
-													type="text" class="form-control"
-													th:field="*{dineroGastadoEuromillones}"
-													id="dineroGastadoEuromillones"
-													placeholder="dineroGastadoEuromillones"> <span
-													th:if="${#fields.hasErrors('dineroGastadoEuromillones')}"
-													th:errors="*{dineroGastadoEuromillones}"></span></td>
-												<td><label for="apuesta">Dinero Ganado</label> <input
-													type="text" class="form-control"
-													th:field="*{dineroGanadoEuromillones}"
-													id="dineroGanadoEuromillones"
-													placeholder="dineroGanadoEuromillones"> <span
-													th:if="${#fields.hasErrors('dineroGanadoEuromillones')}"
-													th:errors="*{dineroGanadoEuromillones}"></span></td>
-												<td><label for="apuesta">Apuestas Jugadas</label> <input
-													type="text" class="form-control"
-													th:field="*{apuestasEuromillonesJugadas}"
-													id="apuestasEuromillonesJugadas"
-													placeholder="apuestasEuromillonesJugadas"> <span
-													th:if="${#fields.hasErrors('apuestasEuromillonesJugadas')}"
-													th:errors="*{apuestasEuromillonesJugadas}"></span></td>
-											</tr>
-										</tbody>
-									</table>
-									<input type="submit" class="btn btn-primary"
-													value="Actualiza estadisticas">
-								</div>
-							</form>
 							<form action="#" th:action="@{/postApuestaEuromillones}"
 								th:object="${estadisticasPersonales}" method="post">
 								<div class="form-group">
@@ -105,6 +71,7 @@
 							</form>
 						</div>
 					</div>
+					</div>
 
 					<!-- cabecera -->
 					</br>
@@ -113,36 +80,19 @@
 							<div class="card-header">Datos generales de Euromillones</div>
 							<div class="card-body">
 
-								<div>
-									dinerito <a th:text="${dineroeuromillones}"></a>
-								</div>
-
 								<table class="table table-borderless table-hover">
 									<thead>
 										<tr>
-											<th>Media de Resultados</th>
-											<th>Media de Estrellas</th>
-											<th>Esperanza</th>
+											<th>probabilidad 5y2</th>
+											<th>probabilidad 5y1</th>
+											<th>probabilidad 5</th>
+											<th>probabilidad 4y2</th>
+											<th>probabilidad 4y1</th>
+											<th>probabilidad 4</th>
+											<th>probabilidad 3y2</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td data-title="Media de Resultados"><a
-												th:text="${euromillonesService.mediaResultados}"></a></td>
-											<td data-title="Media de Estrellas"><a
-												th:text="${euromillonesService.mediaComplementos}"></a></td>
-											<td data-title="Esperanza"><a
-												th:text="${euromillonesService.esperanza}"></a></td>
-										</tr>
-										<tr>
-											<th>probabilidad5y2</th>
-											<th>probabilidad5y1</th>
-											<th>probabilidad5</th>
-											<th>probabilidad4y2</th>
-											<th>probabilidad4y1</th>
-											<th>probabilidad4</th>
-											<th>probabilidad3y2</th>
-										</tr>
 										<tr>
 											<td data-title="probabilidad6"><a
 												th:text="${euromillonesService.probabilidad5y2}"></a></td>
@@ -160,11 +110,11 @@
 												th:text="${euromillonesService.probabilidad3y2}"></a></td>
 										</tr>
 										<tr>
-											<th>probabilidad3y1</th>
-											<th>probabilidad3</th>
-											<th>probabilidad2y2</th>
-											<th>probabilidad2y1</th>
-											<th>probabilidad2</th>
+											<th>probabilidad 3y1</th>
+											<th>probabilidad 3</th>
+											<th>probabilidad 2y2</th>
+											<th>probabilidad 2y1</th>
+											<th>probabilidad 2</th>
 											<th>Esperanza media</th>
 										</tr>
 										<tr>
@@ -191,15 +141,15 @@
 					</br>
 					<div class="col-md-12">
 						<div class="card">
-							<div class="card-header">Estadísticas de Euromillones</div>
+							<div class="card-header">Estad&iacute;sticas de Euromillones</div>
 							<div class="card-body">
 								<table class="table table-hover">
 									<thead>
 										<tr>
-											<th>numero</th>
+											<th>Numero</th>
 											<th>Promedio numeros</th>
 											<th>Apariciones numeros</th>
-											<th>numero</th>
+											<th>Numero</th>
 											<th>Promedio numeros</th>
 											<th>Apariciones numeros</th>
 										</tr>
@@ -231,12 +181,12 @@
 					</br>
 					<div class="col-md-12">
 						<div class="card">
-							<div class="card-header">Estadísticas de estrellas</div>
+							<div class="card-header">Estad&iacute;sticas de estrellas</div>
 							<div class="card-body">
 								<table class="table table-hover">
 									<thead>
 										<tr>
-											<th>numero</th>
+											<th>Numero</th>
 											<th>Promedio numeros</th>
 											<th>Apariciones numeros</th>
 										</tr>
@@ -261,10 +211,10 @@
 					</div>
 				</div>
 				</br>
-				<div class="col-md-5 offset-md-7">
+				<div class="col-md-5 offset-md-9">
 					<p>
 					<a type="button" class="btn btn-primary" href="/euromillones">Mostrar Euromillones</a>
-					<a type="button" class="btn btn-primary" href="/index">volver al indice</a>
+					<a type="button" class="btn btn-primary" href="/index">Volver</a>
 					</p>
 				</div>
 			</div>

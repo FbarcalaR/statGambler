@@ -16,10 +16,10 @@
 			<div class="card-header">Login</div>
 			<div class="card-body">
 			<div th:if="${param.error}">
-            Invalid username and password.
+            usuario y contrase&ntilde;a invalidos
         </div>
         <div th:if="${param.logout}">
-            You have been logged out.
+            Has cerrado sesion
         </div>
 				<div class="login_form">
 					<section class="login-wrapper">
@@ -28,7 +28,7 @@
 							method="post">
 							<div class="row">
 								<label for="username">Username</label></div><div class="row">  <input class="form-control" type="text"
-									th:field="*{username}" id="username" placeholder="Nombre"
+									th:field="*{username}" id="username" placeholder="Usuario"
 									autocapitalize="off" autocorrect="off"> <span
 									th:if="${#fields.hasErrors('username')}"
 									th:errors="*{username}"></span>

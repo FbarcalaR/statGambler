@@ -1,12 +1,10 @@
 package com.statGambler.validator;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 import com.statGambler.model.Ruleta;
-import com.statGambler.services.MyUserDetailsService;
 
 @Component
 public class RuletaValidator implements Validator {
@@ -20,8 +18,8 @@ public class RuletaValidator implements Validator {
     public void validate(Object o, Errors errors) {
     	Ruleta ruleta = (Ruleta) o;
 
-        if (ruleta.getNumero()<1 || ruleta.getNumero()>37) {
-            errors.rejectValue("numero", "Size.euromillones.resultadoEuromillones");
+        if (ruleta.getNumero()<0 || ruleta.getNumero()>37) {
+            errors.rejectValue("numero", "Size", "el resultado debe ser mayor que 0 y menor que 37");
         }
     }
 }

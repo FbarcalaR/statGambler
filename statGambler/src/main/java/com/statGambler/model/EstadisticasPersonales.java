@@ -7,38 +7,40 @@ import org.springframework.security.core.GrantedAuthority;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class EstadisticasPersonales{
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private Long userId;
-    
-    private double dineroGastadoPrimitivas;
-    private double dineroGanadoPrimitivas;
-    private double beneficioPrimitivas;
-    private int apuestasPrimitivasJugadas;
-    private double beneficioMedioPrimitivas;
-    
-    private double dineroGastadoEuromillones;
-    private double dineroGanadoEuromillones;
-    private double beneficioEuromillones;
-    private int apuestasEuromillonesJugadas;
-    private double beneficioMedioEuromillones;
-    
-    private double dineroGastadoRuletas;
-    private double dineroGanadoRuletas;
-    private double beneficioRuletas;
-    private int apuestasRuletasJugadas;
-    private double beneficioMedioRuletas;
+public class EstadisticasPersonales {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	private Long userId;
 
-    public Long getId() {
-        return id;
-    }
+	private double dineroGastadoPrimitivas;
+	private double dineroGanadoPrimitivas;
+	private double beneficioPrimitivas;
+	private int apuestasPrimitivasJugadas;
+	private double beneficioMedioPrimitivas;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-    
+	private double dineroGastadoEuromillones;
+	private double dineroGanadoEuromillones;
+	private double beneficioEuromillones;
+	private int apuestasEuromillonesJugadas;
+	private double beneficioMedioEuromillones;
+
+	private double dineroGastadoRuletas;
+	private double dineroGanadoRuletas;
+	private double beneficioRuletas;
+	private int apuestasRuletasJugadas;
+	private double beneficioMedioRuletas;
+
+	@Transient
+	private int resultadoRuleta;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public Long getUserId() {
 		return userId;
@@ -166,6 +168,14 @@ public class EstadisticasPersonales{
 
 	public void setBeneficioMedioRuletas(double beneficioMedioRuletas) {
 		this.beneficioMedioRuletas = beneficioMedioRuletas;
+	}
+
+	public int getResultadoRuleta() {
+		return resultadoRuleta;
+	}
+
+	public void setResultadoRuleta(int resultadoRuleta) {
+		this.resultadoRuleta = resultadoRuleta;
 	}
 
 }

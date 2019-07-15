@@ -20,26 +20,26 @@ public class EuromillonesValidator implements Validator {
     	Euromillones euromillones = (Euromillones) o;
 
         if (euromillones.getResultado0()<1 || euromillones.getResultado0()>50) {
-            errors.rejectValue("resultado0", "Size.euromillones.resultadoEuromillones");
+            errors.rejectValue("resultado0", "Size.euromillones.resultadoEuromillones", "el resultado debe ser mayor que 0 y menor que 50");
         }
         if (euromillones.getResultado1()<1|| euromillones.getResultado1()>50) {
-            errors.rejectValue("resultado1", "Size.euromillones.resultadoEuromillones");
+            errors.rejectValue("resultado1", "Size.euromillones.resultadoEuromillones", "el resultado debe ser mayor que 0 y menor que 50");
         }
         if (euromillones.getResultado2()<1|| euromillones.getResultado2()>50) {
-            errors.rejectValue("resultado2", "Size.euromillones.resultadoEuromillones");
+            errors.rejectValue("resultado2", "Size.euromillones.resultadoEuromillones", "el resultado debe ser mayor que 0 y menor que 50");
         }
         if (euromillones.getResultado3()<1|| euromillones.getResultado3()>50) {
-            errors.rejectValue("resultado3", "Size.euromillones.resultadoEuromillones");
+            errors.rejectValue("resultado3", "Size.euromillones.resultadoEuromillones", "el resultado debe ser mayor que 0 y menor que 50");
         }
         if (euromillones.getResultado4()<1|| euromillones.getResultado4()>50) {
-            errors.rejectValue("resultado4", "Size.euromillones.resultadoEuromillones");
+            errors.rejectValue("resultado4", "Size.euromillones.resultadoEuromillones", "el resultado debe ser mayor que 0 y menor que 50");
         }
         
         if (euromillones.getEstrella0()<1|| euromillones.getEstrella0()>50) {
-            errors.rejectValue("estrella0", "Size.euromillones.estrellaEuromillones");
+            errors.rejectValue("estrella0", "Size.euromillones.estrellaEuromillones", "el resultado debe ser mayor que 0 y menor que 13");
         }
         if (euromillones.getEstrella1()<1|| euromillones.getEstrella1()>50) {
-            errors.rejectValue("estrella1", "Size.euromillones.estrellaEuromillones");
+            errors.rejectValue("estrella1", "Size.euromillones.estrellaEuromillones", "el resultado debe ser mayor que 0 y menor que 13");
         }
         
     }

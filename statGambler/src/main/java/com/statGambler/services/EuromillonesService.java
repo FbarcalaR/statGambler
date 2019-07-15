@@ -31,8 +31,6 @@ public class EuromillonesService {
 	public int aparicionesNumero[];
 	public int aparicionesEstrella[];
 	public double esperanzaDouble;
-	public double mediaResultadosDouble;
-	public double mediaComplementosDouble;
 	
 	public String probabilidad5y2;
 	public String probabilidad5y1;
@@ -50,8 +48,6 @@ public class EuromillonesService {
 	public String[] promedioNumero;
 	public String[] promedioEstrella;
 	public String esperanza;
-	public String mediaResultados;
-	public String mediaComplementos;
 	
 	public double calcularProbabilidadesVictoria() {
 		double espacioMuestral=(double)Math.CInt(50,5)*Math.CInt(9,2);
@@ -79,10 +75,10 @@ public class EuromillonesService {
 		promedioEstrellaDouble = new double[12];
 
 		for (int i = 0; i < aparicionesNumero.length; i++) {
-			promedioNumeroDouble[i] = Math.redondeo(((double) aparicionesNumero[i] / (double) totalNumeros) * 100);
+			promedioNumeroDouble[i] = Math.redondeoPromedios(((double) aparicionesNumero[i] / (double) totalNumeros) * 100);
 		}
 		for (int i = 0; i < aparicionesEstrella.length; i++) {
-			promedioEstrellaDouble[i] = Math.redondeo(((double) aparicionesEstrella[i] / (double) totalEstrella) * 100);
+			promedioEstrellaDouble[i] = Math.redondeoPromedios(((double) aparicionesEstrella[i] / (double) totalEstrella) * 100);
 		}
 
 		return promedioEstrellaDouble[0];
@@ -111,46 +107,12 @@ public class EuromillonesService {
 		esperanzaDouble=0.5;
 		return esperanzaDouble;
 	}
-
-	
-	public double calcularMediaResultados() {
-		mediaResultadosDouble = 0;
-		int total = 0;
-
-		for (Euromillones p : euromillonesRepository.findAll()) {
-			mediaResultadosDouble += p.getResultado0();
-			mediaResultadosDouble += p.getResultado1();
-			mediaResultadosDouble += p.getResultado2();
-			mediaResultadosDouble += p.getResultado3();
-			mediaResultadosDouble += p.getResultado4();
-			total = total + 6;
-		}
-		mediaResultadosDouble = Math.redondeo(mediaResultadosDouble / total);
-		return mediaResultadosDouble;
-	}
-
-	
-	public double calcularMediaComplementos() {
-		mediaComplementosDouble = 0;
-		int total = 0;
-
-		for (Euromillones p : euromillonesRepository.findAll()) {
-			mediaComplementosDouble += p.getEstrella0();
-			mediaComplementosDouble += p.getEstrella1();
-			total = total + 2;
-		}
-		mediaComplementosDouble = Math.redondeo(mediaComplementosDouble / total);
-		return mediaComplementosDouble;
-	}
-
 	
 	public void calcularTodo() {
 		calcularProbabilidadesVictoria();
 		calcularApariciones();
 		calcularPromedioNumero();
 		calcularEsperanza();
-		calcularMediaResultados();
-		calcularMediaComplementos();
 		
 		probabilidad5y2=Math.doubleToString(probabilidad5y2Double);
 		probabilidad5y1=Math.doubleToString(probabilidad5y1Double);
@@ -169,19 +131,17 @@ public class EuromillonesService {
 		promedioNumero=new String[promedioNumeroDouble.length];
 		int i =0;
 		for(double d : promedioNumeroDouble) {
-			promedioNumero[i]=Math.doubleToString(d);
+			promedioNumero[i]=Math.doubleToString(d)+" %";
 			i++;
 		}
 		promedioEstrella=new String[promedioEstrellaDouble.length];
 		i =0;
 		for(double d : promedioEstrellaDouble) {
-			promedioEstrella[i]=Math.doubleToString(d);
+			promedioEstrella[i]=Math.doubleToString(d)+" %";
 			i++;
 		}
 
 		esperanza=Math.doubleToString(esperanzaDouble);
-		mediaResultados=Math.doubleToString(mediaResultadosDouble);
-		mediaComplementos=Math.doubleToString(mediaComplementosDouble);
 		
 	}
 }

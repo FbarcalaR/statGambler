@@ -25,9 +25,15 @@ public class Math {
 		public static int CInt(int n, int k) {
 			return CBig(n, k).intValue();
 		}
+		
 	public static double redondeo(double resul) {
 		//return resul;
-		return java.lang.Math.round((resul*10000000000d))/10000000000d;
+		return java.lang.Math.round((resul*100000000000d))/100000000000d;
+	}
+	
+	public static double redondeoPromedios(double resul) {
+		//return resul;
+		return java.lang.Math.round((resul*100d))/100d;
 	}
 	
 	public static String doubleToString(double d) {		
@@ -36,4 +42,11 @@ public class Math {
 		
 		return nF.format(d);
 	}
+	
+	public static double redondeoEsperanzaRuletas(double resul) {
+		//return resul;
+		return java.lang.Math.round((resul*100d))/100d;
+	}
+	
+	
 }

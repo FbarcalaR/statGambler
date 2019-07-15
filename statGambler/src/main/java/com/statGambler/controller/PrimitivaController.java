@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -51,9 +52,13 @@ public class PrimitivaController{
     public String addGame(@Valid Primitiva game, BindingResult result, Model model) {
     	primitivasValidator.validate(game, result);
         if (result.hasErrors()) {
+        	for(ObjectError r : result.getAllErrors()) {
+            	System.out.println(r.getDefaultMessage());
+        	}
             return "primitivas/add-primitiva";
         }
-         
+        
+        System.out.println("ALL GOOD");
         primitivaRepository.save(game);
         model.addAttribute("primitivas", primitivaRepository.findAll());
         return "primitivas/primitivas";

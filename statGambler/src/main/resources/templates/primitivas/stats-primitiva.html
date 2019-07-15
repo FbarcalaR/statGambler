@@ -4,11 +4,12 @@
 <div th:replace="fragments/header :: header">&nbsp;</div>
 <div>
 	<div th:switch="${primitivas}">
-		<h2 th:case="null">No stats yet!</h2>
+		<h2 th:case="null">No hay estadisticas todavia</h2>
 		<div th:case="*">
 		</br>
+		<div class="col-md-12">
 		<div class="card">
-						<div class="card-header">Estadísticas personales -
+						<div class="card-header">Estad&iacute;sticas personales -
 							Primitivas</div>
 						<div class="card-body">
 							<table class="table table-borderless table-hover">
@@ -36,40 +37,6 @@
 									</tr>
 								</tbody>
 							</table>
-							<form action="#" th:action="@{/postEstadisticasPrimitivas}"
-								th:object="${estadisticasPersonales}" method="post">
-								<div class="form-group">
-									<table class="table table-borderless">
-										<tbody>
-											<tr>
-												<td><label for="apuesta">Dinero Gastado</label> <input
-													type="text" class="form-control"
-													th:field="*{dineroGastadoPrimitivas}"
-													id="dineroGastadoPrimitivas"
-													placeholder="dineroGastadoPrimitivas"> <span
-													th:if="${#fields.hasErrors('dineroGastadoPrimitivas')}"
-													th:errors="*{dineroGastadoPrimitivas}"></span></td>
-												<td><label for="apuesta">Dinero Ganado</label> <input
-													type="text" class="form-control"
-													th:field="*{dineroGanadoPrimitivas}"
-													id="dineroGanadoPrimitivas"
-													placeholder="dineroGanadoPrimitivas"> <span
-													th:if="${#fields.hasErrors('dineroGanadoPrimitivas')}"
-													th:errors="*{dineroGanadoPrimitivas}"></span></td>
-												<td><label for="apuesta">Apuestas Jugadas</label> <input
-													type="text" class="form-control"
-													th:field="*{apuestasPrimitivasJugadas}"
-													id="apuestasPrimitivasJugadas"
-													placeholder="apuestasPrimitivasJugadas"> <span
-													th:if="${#fields.hasErrors('apuestasPrimitivasJugadas')}"
-													th:errors="*{apuestasPrimitivasJugadas}"></span></td>
-											</tr>
-										</tbody>
-									</table>
-									<input type="submit" class="btn btn-primary"
-													value="Actualiza estadisticas">
-								</div>
-							</form>
 							<form action="#" th:action="@{/postApuestaPrimitivas}"
 								th:object="${estadisticasPersonales}" method="post">
 								<div class="form-group">
@@ -101,6 +68,7 @@
 							</form>
 						</div>
 					</div>
+					</div>
 		
 <!-- cabecera -->
 </br>
@@ -111,23 +79,19 @@
 			<table class="table table-borderless table-hover">
 					<thead>
 						<tr>
-							<th>Media de Resultados</th>
-							<th>Media de reintegros</th>
 							<th>Esperanza Media</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td data-title="Media de Resultados"><a	th:text="${primitivaService.mediaResultados}"></a></td>
-							<td data-title="Media de reintegros"><a	th:text="${primitivaService.mediaComplementos}"></a></td>
 							<td data-title="Esperanza"><a th:text="${primitivaService.esperanza}"></a></td>
 						</tr>
 						<tr>
-							<th>probabilidad6</th>
-							<th>probabilidad5yC</th>
-							<th>probabilidad5</th>
-							<th>probabilidad4</th>
-							<th>probabilidad3</th>
+							<th>probabilidad 6</th>
+							<th>probabilidad 5yC</th>
+							<th>probabilidad 5</th>
+							<th>probabilidad 4</th>
+							<th>probabilidad 3</th>
 						</tr>
 						<tr>
 							<td data-title="probabilidad6"><a th:text="${primitivaService.probabilidad6}"></a></td>
@@ -147,15 +111,15 @@
 </br>
 	<div class="col-md-12">
 		<div class="card">
-			<div class="card-header">Estadísticas de Primitivas</div>
+			<div class="card-header">Estad&iacute;sticas de Primitivas</div>
 			<div class="card-body">
 			<table class="table table-hover">
 					<thead>
 						<tr>
-							<th>numero</th>
+							<th>Numero</th>
 							<th>Promedio numeros</th>
 							<th>Apariciones numeros</th>
-							<th>numero</th>
+							<th>Numero</th>
 							<th>Promedio numeros</th>
 							<th>Apariciones numeros</th>
 						</tr>
@@ -182,7 +146,7 @@
 	</br>
 	<div class="col-md-12">
 		<div class="card">
-			<div class="card-header">Estisticas Reintegro</div>
+			<div class="card-header">Estad&iacute;sticas Reintegro</div>
 			<div class="card-body">
 			<table class="table table-hover">
 					<thead>
@@ -211,10 +175,10 @@
 </div>
 </div>
 </br>
-<div class="col-md-5 offset-md-7">
+<div class="col-md-5 offset-md-9">
 	<p>
 		<a type="button" class="btn btn-primary" href="primitivas">Mostrar Primitivas</a>
-		<a type="button" class="btn btn-primary" href="/index">Volver al indice</a>
+		<a type="button" class="btn btn-primary" href="/index">Volver</a>
 	</p>
 	</div>
 </body>

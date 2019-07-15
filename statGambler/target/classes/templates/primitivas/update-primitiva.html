@@ -1,41 +1,57 @@
+<head th:include="fragments/header :: headerFragment">
+    <title id="pageTitle">statGAmbler-Home</title>
+</head>
+
 <body>
 <div th:replace="fragments/header :: header">&nbsp;</div>
 <form action="#" th:action="@{/updateprimitiva/{id}(id=${primitiva.id})}" th:object="${primitiva}" method="post">
-	<div class="form-group">
+		<div class="row">
+	<div class="col-md-2">
     <label for="resultado0">Resultado 0</label>
     <input type="text" class="form-control" th:field="*{resultado0}" id="resultado0" placeholder="Resultado0">
     <span th:if="${#fields.hasErrors('resultado0')}" th:errors="*{resultado0}"></span>
     </div>
-    <div class="form-group">
+    <div class="col-md-2">
     <label for="resultado1">Resultado 1</label>
     <input type="text" class="form-control" th:field="*{resultado1}" id="resultado1" placeholder="Resultado1">
     <span th:if="${#fields.hasErrors('resultado1')}" th:errors="*{resultado1}"></span>
     </div>
-    <div class="form-group">
+    <div class="col-md-2">
     <label for="resultado2">Resultado 2</label>
     <input type="text" class="form-control" th:field="*{resultado2}" id="resultado2" placeholder="Resultado2">
     <span th:if="${#fields.hasErrors('resultado2')}" th:errors="*{resultado2}"></span>
     </div>
-    <div class="form-group">
+    <div class="col-md-2">
     <label for="resultado3">Resultado 3</label>
     <input type="text" class="form-control" th:field="*{resultado3}" id="resultado3" placeholder="Resultado3">
     <span th:if="${#fields.hasErrors('resultado3')}" th:errors="*{resultado3}"></span>
     </div>
-    <div class="form-group">
+    <div class="col-md-2">
     <label for="resultado4">Resultado 4</label>
     <input type="text" class="form-control" th:field="*{resultado4}" id="resultado4" placeholder="Resultado4">
     <span th:if="${#fields.hasErrors('resultado4')}" th:errors="*{resultado4}"></span>
     </div>
-    <div class="form-group">
+    <div class="col-md-2">
+    <label for="resultado5">Resultado 5</label>
+    <input type="text" class="form-control" th:field="*{resultado5}" id="resultado5" placeholder="Resultado5">
+    <span th:if="${#fields.hasErrors('resultado5')}" th:errors="*{resultado5}"></span>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-md-2">
     <label for="estrella0">Complementario</label>
     <input type="text" class="form-control" th:field="*{complementario}" id="complementario" placeholder="Complementario">
     <span th:if="${#fields.hasErrors('complementario')}" th:errors="*{complementario}"></span>
     </div>
-    <div class="form-group">
+    <div class="col-md-2">
     <label for="estrella1">Reintegro</label>
     <input type="text" class="form-control" th:field="*{reintegro}" id="reintegro" placeholder="Reintegro">
     <span th:if="${#fields.hasErrors('reintegro')}" th:errors="*{reintegro}"></span>
     </div>
-    <input type="submit" class="btn btn-primary" value="Add Primitiva">
+    </div>
+    
+    <input type="submit" class="btn btn-primary row offset-md-8" value="Actualizar Primitiva">
+    &nbsp;&nbsp;
+    <a type="button" class="btn btn-primary" href="/primitivas">Cancelar</a>
 </form>
 </body>

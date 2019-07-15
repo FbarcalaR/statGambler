@@ -1,63 +1,72 @@
 <head th:include="fragments/header :: headerFragment">
-    <title id="pageTitle">statGAmbler-Home</title>
+    <title id="pageTitle">statGambler-Inicio</title>
 </head>
 
 <body>
-<div th:replace="fragments/header :: header">&nbsp;</div>
-<div th:switch="${euromillones}">
-	<h2 th:case="null">No euromilloness yet!</h2>
+	<div th:replace="fragments/header :: header">&nbsp;</div>
+		<div class="row fixed-bottom offset-md-9" style="margin: 20px; margin-left: 1000px;">
+		<div th:each="auth : ${#authentication.authorities }">
+			<div th:if="${auth.toString()} == ADMIN">
+				<a type="button" class="btn btn-primary" href="/euromillonesform">A&ntilde;adir euromillones</a>
+				&nbsp;
+			</div>
+		</div>
+		<a type="button" class="btn btn-primary" href="/euromillonesstats" >Volver</a>
+		<div class="row">
+		</br>
+		</div>
+	</div>
+	<div th:switch="${euromillones}">
+		<h2 th:case="null">No hay euromillones aun</h2>
 	<div th:case="*">
-	<div class="card">
-		<div class="card-header">Euromillones</div>
-		<div class="card-body">
-			<div class="container">
-				<table class="table table-borderless table-hover">
-					<thead>
-						<tr>
-							<th>Id</th>
-							<th>Resultado 0</th>
-							<th>Resultado 1</th>
-							<th>Resultado 2</th>
-							<th>Resultado 3</th>
-							<th>Resultado 4</th>
-							<th>Estrella 0</th>
-							<th>Estrella 1</th>
-							<th></th>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="euromillones : ${euromillones}">
-					<td th:text="${euromillones.id}"></td>
-					<td th:text="${euromillones.resultado0}"></td>
-					<td th:text="${euromillones.resultado1}"></td>
-					<td th:text="${euromillones.resultado2}"></td>
-					<td th:text="${euromillones.resultado3}"></td>
-					<td th:text="${euromillones.resultado4}"></td>
-					<td th:text="${euromillones.estrella0}"></td>
-					<td th:text="${euromillones.estrella1}"></td>
-					<td th:each="auth : ${#authentication.authorities }">
-						<div th:if="${auth.toString()} == ADMIN">
-							<a th:href="@{/editeuromillones/{id}(id=${euromillones.id})}">Edit</a>
-						</div>
-					</td>
-					<td th:each="auth : ${#authentication.authorities }">
-						<div th:if="${auth.toString()} == ADMIN">
-							<a th:href="@{/deleteeuromillones/{id}(id=${euromillones.id})}">Delete</a>
-						</div>
-					</td>
-				</tr>
-					</tbody>
-				</table>
+	<div class="col-md-12">
+	</br>
+		<div class="card">
+			<div class="card-header">Euromillones</div>
+			<div class="card-body">
+				<div class="container">
+					<table class="table table-borderless table-hover">
+						<thead>
+							<tr>
+								<th>Resultado 0</th>
+								<th>Resultado 1</th>
+								<th>Resultado 2</th>
+								<th>Resultado 3</th>
+								<th>Resultado 4</th>
+								<th>Estrella 1</th>
+								<th>Estrella 2</th>
+								<th></th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="euromillones : ${euromillones}">
+								<td th:text="${euromillones.resultado0}"></td>
+								<td th:text="${euromillones.resultado1}"></td>
+								<td th:text="${euromillones.resultado2}"></td>
+								<td th:text="${euromillones.resultado3}"></td>
+								<td th:text="${euromillones.resultado4}"></td>
+								<td th:text="${euromillones.estrella0}"></td>
+								<td th:text="${euromillones.estrella1}"></td>
+								<td th:each="auth : ${#authentication.authorities }">
+									<div th:if="${auth.toString()} == ADMIN">
+										<a th:href="@{/editeuromillones/{id}(id=${euromillones.id})}">Editar</a>
+									</div>
+								</td>
+								<td th:each="auth : ${#authentication.authorities }">
+									<div th:if="${auth.toString()} == ADMIN">
+										<a
+											th:href="@{/deleteeuromillones/{id}(id=${euromillones.id})}">Borrar</a>
+									</div>
+								</td>
+							</tr>
+							<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
 	</div>
 	</div>
-	<div th:each="auth : ${#authentication.authorities }">
-		<div th:if="${auth.toString()} == ADMIN">
-			<a type="button" class="btn btn-primary"  href="/euromillonesform">Add a new euromillones</a>
-		</div>
-	</div>
-	<a type="button" class="btn btn-primary"  href="/euromillonesstats">Volver</a>
 </div>
 </body>

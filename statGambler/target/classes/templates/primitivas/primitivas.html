@@ -1,65 +1,73 @@
 <head th:include="fragments/header :: headerFragment">
-    <title id="pageTitle">statGAmbler-Home</title>
+<title id="pageTitle">statGambler-Inicio</title>
 </head>
 
 <body>
-<div th:replace="fragments/header :: header">&nbsp;</div>
-<div th:switch="${primitivas}">
-	<h2 th:case="null">No primitivas yet!</h2>
+	<div th:replace="fragments/header :: header">&nbsp;</div>
+		<div class="row fixed-bottom offset-md-9" style="margin: 20px; margin-left: 1000px;">
+		<div th:each="auth : ${#authentication.authorities }">
+			<div th:if="${auth.toString()} == ADMIN">
+				<a type="button" class="btn btn-primary" href="/primitivaform" >Add	a new primitiva</a>
+				&nbsp;
+			</div>
+		</div>
+		<a type="button" class="btn btn-primary" href="/primitivastats">Volver</a>
+		<div class="row">
+		</br>
+		</div>
+	</div>
+	<div th:switch="${primitivas}">
+		<h2 th:case="null">No hay primitivas aun</h2>
 	<div th:case="*">
-	<div class="card">
-		<div class="card-header">Primitivas</div>
-		<div class="card-body">
-			<div class="container">
-				<table class="table table-borderless table-hover">
-					<thead>
-						<tr>
-							<th>Id</th>
-							<th>Resultado 0</th>
-							<th>Resultado 1</th>
-							<th>Resultado 2</th>
-							<th>Resultado 3</th>
-							<th>Resultado 4</th>
-							<th>Resultado 4</th>
-							<th>Complementario</th>
-							<th>Reintegro</th>
-							<th></th>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody>
-					<tr th:each="primitiva : ${primitivas}">
-					<td th:text="${primitiva.id}"></td>
-					<td th:text="${primitiva.resultado0}"></td>
-					<td th:text="${primitiva.resultado1}"></td>
-					<td th:text="${primitiva.resultado2}"></td>
-					<td th:text="${primitiva.resultado3}"></td>
-					<td th:text="${primitiva.resultado4}"></td>
-					<td th:text="${primitiva.resultado5}"></td>
-					<td th:text="${primitiva.complementario}"></td>
-					<td th:text="${primitiva.reintegro}"></td>
-					<td th:each="auth : ${#authentication.authorities }">
-						<div th:if="${auth.toString()} == ADMIN">
-							<a th:href="@{/editprimitiva/{id}(id=${primitiva.id})}">Edit</a>
-						</div>
-					</td>
-					<td th:each="auth : ${#authentication.authorities }">
-						<div th:if="${auth.toString()} == ADMIN">
-							<a th:href="@{/deleteprimitiva/{id}(id=${primitiva.id})}">Delete</a>
-						</div>
-					</td>
-				</tr>
-					</tbody>
-				</table>
+	</br>
+	<div class="col-md-12">
+		<div class="card">
+			<div class="card-header">Primitivas</div>
+			<div class="card-body">
+				<div class="container">
+					<table class="table table-borderless table-hover">
+						<thead>
+							<tr>
+								<th>Resultado 0</th>
+								<th>Resultado 1</th>
+								<th>Resultado 2</th>
+								<th>Resultado 3</th>
+								<th>Resultado 4</th>
+								<th>Resultado 4</th>
+								<th>Complementario</th>
+								<th>Reintegro</th>
+								<th></th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="primitiva : ${primitivas}">
+								<td th:text="${primitiva.resultado0}"></td>
+								<td th:text="${primitiva.resultado1}"></td>
+								<td th:text="${primitiva.resultado2}"></td>
+								<td th:text="${primitiva.resultado3}"></td>
+								<td th:text="${primitiva.resultado4}"></td>
+								<td th:text="${primitiva.resultado5}"></td>
+								<td th:text="${primitiva.complementario}"></td>
+								<td th:text="${primitiva.reintegro}"></td>
+								<td th:each="auth : ${#authentication.authorities }">
+									<div th:if="${auth.toString()} == ADMIN">
+										<a th:href="@{/editprimitiva/{id}(id=${primitiva.id})}">Editar</a>
+									</div>
+								</td>
+								<td th:each="auth : ${#authentication.authorities }">
+									<div th:if="${auth.toString()} == ADMIN">
+										<a th:href="@{/deleteprimitiva/{id}(id=${primitiva.id})}">Borrar</a>
+									</div>
+								</td>
+							</tr>
+							<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
 	</div>
 	</div>
-	<div th:each="auth : ${#authentication.authorities }">
-		<div th:if="${auth.toString()} == ADMIN">
-			<a type="button" class="btn btn-primary" href="/primitivaform">Add a new primitiva</a>
-		</div>
-	</div>
-		<a type="button" class="btn btn-primary" href="/primitivastats">Volver</a>
 </div>
 </body>
