@@ -30,6 +30,11 @@ public class EstadisticasPersonales {
 	private double beneficioRuletas;
 	private int apuestasRuletasJugadas;
 	private double beneficioMedioRuletas;
+	
+	@Transient
+	private double dineroGastadoAux;
+	@Transient
+	private double dineroGanadoAux;
 
 	@Transient
 	private int resultadoRuleta;
@@ -178,4 +183,22 @@ public class EstadisticasPersonales {
 		this.resultadoRuleta = resultadoRuleta;
 	}
 
+	public double getDineroGastadoAux() {
+		return dineroGastadoAux;
+	}
+
+	public void setDineroGastadoAux(double dineroGastadoAux) {
+		this.dineroGastadoAux = dineroGastadoAux;
+	}
+
+	public double getDineroGanadoAux() {
+		return dineroGanadoAux;
+	}
+
+	public void setDineroGanadoAux(double dineroGanadoAux) {
+		this.dineroGanadoAux = dineroGanadoAux;
+	}
+
+	
+	
 }

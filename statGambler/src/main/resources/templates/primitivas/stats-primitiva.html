@@ -12,7 +12,7 @@
 						<div class="card-header">Estad&iacute;sticas personales -
 							Primitivas</div>
 						<div class="card-body">
-							<table class="table table-borderless table-hover">
+							<table class="table table-borderless table-hover table-responsive">
 								<thead>
 									<tr>
 										<th>Dinero Gastado</th>
@@ -46,18 +46,18 @@
 												<tr>
 													<td><label for="apuesta">Dinero Gastado</label> <input
 														type="text" class="form-control"
-														th:field="*{dineroGastadoPrimitivas}"
-														id="dineroGastadoPrimitivas"
-														placeholder="dineroGastadoPrimitivas"> <span
-														th:if="${#fields.hasErrors('dineroGastadoPrimitivas')}"
-														th:errors="*{dineroGastadoPrimitivas}"></span></td>
+														th:field="*{dineroGastadoAux}"
+														id="dineroGastadoAux"
+														placeholder="0.0"> <span
+														th:if="${#fields.hasErrors('dineroGastadoAux')}"
+														th:errors="*{dineroGastadoAux}"></span></td>
 													<td><label for="apuesta">Dinero Ganado</label> <input
 														type="text" class="form-control"
-														th:field="*{dineroGanadoPrimitivas}"
-														id="dineroGanadoPrimitivas"
-														placeholder="dineroGanadoPrimitivas"> <span
-														th:if="${#fields.hasErrors('dineroGanadoPrimitivas')}"
-														th:errors="*{dineroGanadoPrimitivas}"></span></td>
+														th:field="*{dineroGanadoAux}"
+														id="dineroGanadoAux"
+														placeholder="0.0"> <span
+														th:if="${#fields.hasErrors('dineroGanadoAux')}"
+														th:errors="*{dineroGanadoAux}"></span></td>
 												</tr>
 											</tbody>
 										</table>
@@ -76,7 +76,7 @@
 		<div class="card">
 			<div class="card-header">Datos generales de Primitivas</div>
 			<div class="card-body">
-			<table class="table table-borderless table-hover">
+			<table class="table table-borderless table-hover table-responsive">
 					<thead>
 						<tr>
 							<th>Esperanza Media</th>
@@ -113,7 +113,7 @@
 		<div class="card">
 			<div class="card-header">Estad&iacute;sticas de Primitivas</div>
 			<div class="card-body">
-			<table class="table table-hover">
+			<table class="table table-hover table-responsive">
 					<thead>
 						<tr>
 							<th>Numero</th>
@@ -148,7 +148,7 @@
 		<div class="card">
 			<div class="card-header">Estad&iacute;sticas Reintegro</div>
 			<div class="card-body">
-			<table class="table table-hover">
+			<table class="table table-hover table-responsive">
 					<thead>
 						<tr>
 							<th>Reintegro</th>

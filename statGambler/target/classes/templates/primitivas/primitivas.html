@@ -4,10 +4,10 @@
 
 <body>
 	<div th:replace="fragments/header :: header">&nbsp;</div>
-		<div class="row fixed-bottom offset-md-9" style="margin: 20px; margin-left: 1000px;">
+		<div class="row fixed-bottom offset-md-9">
 		<div th:each="auth : ${#authentication.authorities }">
 			<div th:if="${auth.toString()} == ADMIN">
-				<a type="button" class="btn btn-primary" href="/primitivaform" >Add	a new primitiva</a>
+				<a type="button" class="btn btn-primary" href="/primitivaform" >A&ntilde;adir resultado</a>
 				&nbsp;
 			</div>
 		</div>
@@ -25,7 +25,7 @@
 			<div class="card-header">Primitivas</div>
 			<div class="card-body">
 				<div class="container">
-					<table class="table table-borderless table-hover">
+					<table class="table table-borderless table-hover table-responsive">
 						<thead>
 							<tr>
 								<th>Resultado 0</th>

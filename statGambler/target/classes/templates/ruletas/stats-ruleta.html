@@ -14,7 +14,7 @@
 						<div class="card-header">Estad&iacute;sticas personales -
 							Ruletas</div>
 						<div class="card-body">
-							<table class="table table-borderless table-hover">
+							<table class="table table-borderless table-hover table-responsive">
 								<thead>
 									<tr>
 										<th>Dinero Gastado</th>
@@ -43,28 +43,28 @@
 								th:object="${estadisticasPersonales}" method="post">
 								<div class="form-group">
 									<div class="form-group">
-										<table class="table table-borderless">
+										<table class="table table-borderless table-responsive">
 											<tbody>
 												<tr>
 													<td><label for="apuesta">Dinero Gastado</label> <input
 														type="text" class="form-control"
-														th:field="*{dineroGastadoRuletas}"
-														id="dineroGastadoRuletas"
-														placeholder="dineroGastadoRuletas"> <span
-														th:if="${#fields.hasErrors('dineroGastadoRuletas')}"
-														th:errors="*{dineroGastadoRuletas}"></span></td>
+														th:field="*{dineroGastadoAux}"
+														id="dineroGastadoAux"
+														placeholder="0.0"> <span
+														th:if="${#fields.hasErrors('dineroGastadoAux')}"
+														th:errors="*{dineroGastadoAux}"></span></td>
 													<td><label for="apuesta">Dinero Ganado</label> <input
 														type="text" class="form-control"
-														th:field="*{dineroGanadoRuletas}"
-														id="dineroGanadoRuletas"
-														placeholder="dineroGanadoRuletas"> <span
-														th:if="${#fields.hasErrors('dineroGanadoRuletas')}"
-														th:errors="*{dineroGanadoRuletas}"></span></td>
+														th:field="*{dineroGanadoAux}"
+														id="dineroGanadoAux"
+														placeholder="0.0"> <span
+														th:if="${#fields.hasErrors('dineroGanadoAux')}"
+														th:errors="*{dineroGanadoAux}"></span></td>
 													<td><label for="resultadoRuleta">Numero resultado</label> <input
 														type="text" class="form-control"
 														th:field="*{resultadoRuleta}"
 														id="resultadoRuleta"
-														placeholder="resultadoRuleta"> <span
+														placeholder="0.0"> <span
 														th:if="${#fields.hasErrors('resultadoRuleta')}"
 														th:errors="*{resultadoRuleta}"></span></td>
 												</tr>
@@ -101,8 +101,8 @@
 										value="Actualiza Apuesta">
 								</form>
 							</div>
-								<div class="col-md-4">
-									<table>
+								<div class="row col-md-8">
+									<table class="table table-borderless table-responsive col-md-4">
 										<tbody>
 											<tr>
 												<th>Esperanza Pleno:</th>
@@ -124,7 +124,12 @@
 												<th>Esperanza Cuadro:</th>
 												<td><a th:text="${ruletaService.esperanzaCuadro}"></a></td>
 											</tr>
-											<tr>
+											
+										</tbody>
+									</table>
+									<table class="table table-borderless table-responsive col-md-4">
+										<tbody>
+										<tr>
 												<th>Esperanza Docenas:</th>
 												<td><a th:text="${ruletaService.esperanzaDocenas}"></a></td>
 											</tr>
@@ -200,7 +205,7 @@
 		<div class="card">
 			<div class="card-header">Estad&iacute;sticas Ruleta</div>
 			<div class="card-body">
-				<table class="table table-hover">
+				<table class="table table-hover table-responsive">
 					<thead>
 						<tr>
 							<th>Numero</th>
@@ -234,7 +239,7 @@
 		<div class="card">
 			<div class="card-header">Otras Estad&iacute;sticas</div>
 			<div class="card-body">
-				<table class="table table-hover">
+				<table class="table table-hover table-responsive">
 					<thead>
 						<tr>
 							<th>Promedio Rojo</th>

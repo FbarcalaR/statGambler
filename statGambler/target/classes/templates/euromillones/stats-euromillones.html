@@ -15,7 +15,7 @@
 						<div class="card-header">Estad&iacute;sticas personales -
 							Euromillones</div>
 						<div class="card-body">
-							<table class="table table-borderless table-hover">
+							<table class="table table-borderless table-hover table-responsive">
 								<thead>
 									<tr>
 										<th>Dinero Gastado</th>
@@ -49,18 +49,18 @@
 												<tr>
 													<td><label for="apuesta">Dinero Gastado</label> <input
 														type="text" class="form-control"
-														th:field="*{dineroGastadoEuromillones}"
-														id="dineroGastadoEuromillones"
-														placeholder="dineroGastadoEuromillones"> <span
-														th:if="${#fields.hasErrors('dineroGastadoEuromillones')}"
-														th:errors="*{dineroGastadoEuromillones}"></span></td>
+														th:field="*{dineroGastadoAux}"
+														id="dineroGastadoAux"
+														placeholder="0.0"> <span
+														th:if="${#fields.hasErrors('dineroGastadoAux')}"
+														th:errors="*{dineroGastadoAux}"></span></td>
 													<td><label for="apuesta">Dinero Ganado</label> <input
 														type="text" class="form-control"
-														th:field="*{dineroGanadoEuromillones}"
-														id="dineroGanadoEuromillones"
-														placeholder="dineroGanadoEuromillones"> <span
-														th:if="${#fields.hasErrors('dineroGanadoEuromillones')}"
-														th:errors="*{dineroGanadoEuromillones}"></span></td>
+														th:field="*{dineroGanadoAux}"
+														id="dineroGanadoAux"
+														placeholder="0.0"> <span
+														th:if="${#fields.hasErrors('dineroGanadoAux')}"
+														th:errors="*{dineroGanadoAux}"></span></td>
 												</tr>
 											</tbody>
 										</table>
@@ -80,7 +80,7 @@
 							<div class="card-header">Datos generales de Euromillones</div>
 							<div class="card-body">
 
-								<table class="table table-borderless table-hover">
+								<table class="table table-borderless table-hover table-responsive">
 									<thead>
 										<tr>
 											<th>probabilidad 5y2</th>
@@ -143,7 +143,7 @@
 						<div class="card">
 							<div class="card-header">Estad&iacute;sticas de Euromillones</div>
 							<div class="card-body">
-								<table class="table table-hover">
+								<table class="table table-hover table-responsive">
 									<thead>
 										<tr>
 											<th>Numero</th>
@@ -183,7 +183,7 @@
 						<div class="card">
 							<div class="card-header">Estad&iacute;sticas de estrellas</div>
 							<div class="card-body">
-								<table class="table table-hover">
+								<table class="table table-hover table-responsive">
 									<thead>
 										<tr>
 											<th>Numero</th>

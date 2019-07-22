@@ -90,20 +90,32 @@ public class EuromillonesController{
 		model.addAttribute("euromillonesService", euromillonesService);
 		model.addAttribute("euromillones", euromillonesRepository.findAll());
 		model.addAttribute("estadisticasPersonales", estadisticasPersonalesService.getEstadisticas());
+		System.out.println(estadisticasPersonalesService.getEstadisticas().getDineroGastadoEuromillones());
         return "euromillones/stats-euromillones";
     }
     
     @PostMapping("/postEstadisticasEuromillones")
 	public String postEstadisticas(@Valid EstadisticasPersonales eP, Model model) {
     	estadisticasPersonalesService.setEstadisticasEuromillones(eP);
-		model.addAttribute("estadisticasPersonales", eP);
 		return showStats(model);
 	}
     
     @PostMapping("/postApuestaEuromillones")
 	public String postApuesta(@Valid EstadisticasPersonales eP, Model model) {
+		System.out.println("estadistica nuevas: "+ eP.getDineroGanadoEuromillones()+ " "+eP.getDineroGastadoEuromillones());
+		System.out.println("estadistica nuevasprim: "+ eP.getDineroGanadoPrimitivas()+ " "+eP.getDineroGastadoPrimitivas());
+    	
+    	eP.setDineroGanadoEuromillones(eP.getDineroGanadoAux());
+    	eP.setDineroGastadoEuromillones(eP.getDineroGastadoAux());
+    	System.out.println(eP.getDineroGanadoEuromillones() + " "+ eP.getDineroGastadoEuromillones());
+    	
     	estadisticasPersonalesService.setApuestaEuromillones(eP);
-    	model.addAttribute("estadisticasPersonales", eP);
+
+    	eP.setDineroGanadoAux(0.0);
+    	eP.setDineroGastadoAux(0.0);
+
+		System.out.println("estadistica nuevas: "+ eP.getDineroGanadoEuromillones()+ " "+eP.getDineroGastadoEuromillones());
+		System.out.println("estadistica nuevasprim: "+ eP.getDineroGanadoPrimitivas()+ " "+eP.getDineroGastadoPrimitivas());
 		return showStats(model);
 	}
     

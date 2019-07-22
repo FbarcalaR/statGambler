@@ -107,15 +107,26 @@ public class PrimitivaController{
     
     @PostMapping("/postEstadisticasPrimitivas")
 	public String postEstadisticas(@Valid EstadisticasPersonales eP, Model model) {
+    	eP.setDineroGanadoPrimitivas(eP.getDineroGanadoAux());
+    	eP.setDineroGastadoPrimitivas(eP.getDineroGastadoAux());
+    	
+    	
     	estadisticasPersonalesService.setEstadisticasPrimitivas(eP);
-		model.addAttribute("estadisticasPersonales", eP);
+    	
+    	eP.setDineroGanadoAux(0.0);
+    	eP.setDineroGastadoAux(0.0);
 		return showStats(model);
 	}
     
     @PostMapping("/postApuestaPrimitivas")
 	public String postApuesta(@Valid EstadisticasPersonales eP, Model model) {
+    	eP.setDineroGanadoPrimitivas(eP.getDineroGanadoAux());
+    	eP.setDineroGastadoPrimitivas(eP.getDineroGastadoAux());
+    	
     	estadisticasPersonalesService.setApuestaPrimitivas(eP);
-    	model.addAttribute("estadisticasPersonales", eP);
+    	
+    	eP.setDineroGanadoAux(0.0);
+    	eP.setDineroGastadoAux(0.0);
 		return showStats(model);
 	}
     

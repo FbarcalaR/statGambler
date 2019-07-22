@@ -51,7 +51,6 @@ public class RuletaController {
 		ruletasValidator.validate(game, result);
 		
 		if (result.hasErrors()) {
-			System.out.println("JA PETAO MAZO");
 			return showSignUpForm(new Ruleta());
 		}
 
@@ -121,12 +120,14 @@ public class RuletaController {
 	@PostMapping("/postEstadisticasRuletas")
 	public String postEstadisticas(@Valid EstadisticasPersonales eP, Model model) {
     	estadisticasPersonalesService.setEstadisticasRuletas(eP);
-		model.addAttribute("estadisticasPersonales", eP);
 		return showStats(model, ruletaService.apuestaDouble);
 	}
     
     @PostMapping("/postApuestaRuletas")
-	public String postApuesta(@Valid EstadisticasPersonales eP, Model model) {
+	public String postApuesta(@Valid EstadisticasPersonales eP, Model model, BindingResult result) {
+    	eP.setDineroGanadoRuletas(eP.getDineroGanadoAux());
+    	eP.setDineroGastadoRuletas(eP.getDineroGastadoAux());
+    	
     	if(eP.getDineroGastadoRuletas()!=0.0 && eP.getDineroGanadoRuletas()!=0.0) {
     		estadisticasPersonalesService.setApuestaRuletas(eP);
     	}
@@ -134,8 +135,17 @@ public class RuletaController {
     	Ruleta game= new Ruleta();
     	game.setNumero(eP.getResultadoRuleta());
     	game.setUserId(userPrincipal.getUserPrincipal().getId());
+    	
+    	ruletasValidator.validate(game, result);
+		if (result.hasErrors()) {
+			return showStats(model, ruletaService.apuestaDouble);
+		}
+    	
 		ruletaRepository.save(game);
 		modeladdRuletas(model);
+
+    	eP.setDineroGanadoAux(0.0);
+    	eP.setDineroGastadoAux(0.0);
 		return showStats(model, ruletaService.apuestaDouble);
 	}
     
